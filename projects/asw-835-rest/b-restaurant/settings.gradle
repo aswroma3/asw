@@ -1,0 +1,6 @@
+include "restaurant-service-api-rest"
+include "restaurant-server"
+include "restaurant-client-rest"
+include "restaurant-async-client-rest"
+rootProject.name = 'restaurant'
+

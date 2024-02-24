@@ -1,0 +1,44 @@
+SENTENCE APPLICATION with HELM 
+
+* Avvio normale 
+
+Avviare l'applicazione con il comando 
+helm install sentence.app sentence -n sentence
+(deploy-sentence.sh)
+
+In questo caso verrà usato il file di deployment sentence-application.yaml 
+e i parametri di configurazione di default del file values.yaml 
+
+
+* Avvio con repliche  
+
+Avviare l'applicazione con il comando 
+helm install -f sentence/replicated-values.yaml sentence.app sentence -n sentence
+(deploy-sentence-replicated.sh)
+
+In questo caso verrà usato il file di deployment sentence-application.yaml 
+e i parametri di configurazione del file replicated-values.yaml 
+e i parametri di configurazione di default del file values.yaml 
+
+
+* Avvio con ritardi  
+
+Avviare l'applicazione con il comando 
+helm install -f sentence/with-delays-values.yaml sentence.app sentence -n sentence
+(deploy-sentence-with-delays.sh)
+
+In questo caso verrà usato il file di deployment sentence-application.yaml 
+e i parametri di configurazione del file with-delays-values.yaml 
+e i parametri di configurazione di default del file values.yaml 
+
+
+* Avvio con repliche e repliche
+
+Avviare l'applicazione con il comando 
+helm install -f sentence/replicated-values.yaml -f sentence/with-delays-values.yaml sentence.app sentence -n sentence
+(deploy-sentence-replicated-with-delays.sh)
+
+In questo caso verrà usato il file di deployment sentence-application.yaml 
+e i parametri di configurazione del file replicated-values.yaml 
+e i parametri di configurazione del file with-delays-values.yaml 
+e i parametri di configurazione di default del file values.yaml 

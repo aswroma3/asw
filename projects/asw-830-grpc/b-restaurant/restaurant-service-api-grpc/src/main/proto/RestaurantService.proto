@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "asw.efood.restaurantservice.api.grpc";
+// option java_outer_classname = "RestaurantServiceProto";
+// option objc_class_prefix = "OS";
+
+// package restaurantservice;
+
+service RestaurantService {
+  rpc createRestaurant(CreateRestaurantRequest) returns (CreateRestaurantReply) {}
+  rpc getRestaurant(GetRestaurantRequest) returns (GetRestaurantReply) {}
+  rpc getAllRestaurants(GetAllRestaurantsRequest) returns (GetAllRestaurantsReply) {}
+}
+
+message CreateRestaurantRequest {
+  string name = 1;
+  string location = 2;
+}
+
+message CreateRestaurantReply {
+  int64 restaurantId = 1;
+}
+
+message GetRestaurantRequest {
+  int64 restaurantId = 1;
+}
+
+message GetRestaurantReply {
+  int64 restaurantId = 1;
+  string name = 2;
+  string location = 3;  
+}
+
+message GetAllRestaurantsRequest {
+}
+
+message GetAllRestaurantsReply {
+  repeated GetRestaurantReply restaurants = 1;
+}
+

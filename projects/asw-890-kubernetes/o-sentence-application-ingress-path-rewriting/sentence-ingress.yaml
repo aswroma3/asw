@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sentence
+  annotations:
+    nginx.org/rewrites: "serviceName=sentence rewrite=/;serviceName=sentencesync rewrite=/;serviceName=sentenceasync rewrite=/"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sentence.aswroma3.it 
+    http: 
+      paths: 
+      # passa per l'api gateway 
+      - pathType: Prefix
+        path: /
+        backend: 
+          service: 
+            name: apigateway
+            port: 
+              number: 8080 
+      # bypassa l'api gateway  
+      - pathType: Prefix
+        path: /sentence
+        backend: 
+          service: 
+            name: sentence
+            port: 
+              number: 8080 
+      # solo frasi ottenute con il servizio che fa chiamate sincrone  
+      - pathType: Prefix
+        path: /sentence/sync
+        backend: 
+          service: 
+            name: sentencesync
+            port: 
+              number: 8080 
+      # solo frasi ottenute con il servizio che fa chiamate asincrone  
+      - pathType: Prefix
+        path: /sentence/async
+        backend: 
+          service: 
+            name: sentenceasync
+            port: 
+              number: 8080 
+              

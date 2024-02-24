@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '3.1.4'
+		springDependencyManagementVersion = '1.1.3'
+		springCloudVersion = '2022.0.4'
+		springdocOpenApiVersion = '2.2.0'
+		lombokVersion = '1.18.30'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}")
+	}
+}
+
+subprojects {
+
+	apply plugin: 'java'
+	java {
+		sourceCompatibility = JavaVersion.VERSION_17
+	}
+
+	group = 'asw.ordermanager'
+
+	repositories {
+		mavenCentral()
+	}
+	
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+
+}

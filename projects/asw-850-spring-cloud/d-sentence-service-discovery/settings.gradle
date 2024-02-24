@@ -1,0 +1,7 @@
+include 'sentence-service'
+include 'word-service'
+
+rootProject.name = 'asw-sentence'
+
+project(':sentence-service').name = 'sentence'
+project(':word-service').name = 'word'

@@ -1,0 +1,4 @@
+gRPC non è ancora compatibile con Spring 3 
+
+Credo che il motivo sia che genera codice Java con le annotazioni javax 
+

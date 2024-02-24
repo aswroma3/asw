@@ -1,0 +1,4 @@
+### escludi le cartelle di Vagrant ###
+**/.vagrant/
+### escludi progetti di prova ###
+z*/

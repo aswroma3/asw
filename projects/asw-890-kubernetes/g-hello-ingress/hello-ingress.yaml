@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels: 
+      app: hello 
+  template: 
+    metadata:
+      name: hello-pod 
+      labels: 
+        app: hello 
+    spec:
+      containers:
+      - name: hello-container
+        image: aswroma3/hello-kube:latest
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+spec:
+  type: NodePort 
+  selector:
+    app: hello
+  ports:
+  - port: 8080
+    targetPort: 8080
+#     nodePort: 32081
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-ing
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hello.aswroma3.it 
+    http: 
+      paths: 
+      - path: /
+        pathType: Prefix
+        backend: 
+          service: 
+            name: hello-svc
+            port: 
+              number: 8080 
+
+

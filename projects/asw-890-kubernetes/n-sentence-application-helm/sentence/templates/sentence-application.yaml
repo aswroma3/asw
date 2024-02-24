@@ -1,0 +1,361 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subject
+spec:
+  replicas: {{ .Values.sentence.word.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: subject
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: subject
+    spec:
+      containers:
+      - name: subject-container
+        image: aswroma3/sentence-word-kube:{{ .Values.sentence.image.version }}
+        env: 
+        - name: SPRING_PROFILES_ACTIVE
+          value: subject
+        {{- if .Values.sentence.withdelays }}
+        - name: ASW_SENTENCE_WORDSERVICE_DELAY
+          value: {{ .Values.sentence.word.delay | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 120
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verb
+spec:
+  replicas: {{ .Values.sentence.word.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: verb
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: verb
+    spec:
+      containers:
+      - name: verb-container
+        image: aswroma3/sentence-word-kube:{{ .Values.sentence.image.version }}
+        env: 
+        - name: SPRING_PROFILES_ACTIVE
+          value: verb
+        {{- if .Values.sentence.withdelays }}
+        - name: ASW_SENTENCE_WORDSERVICE_DELAY
+          value: {{ .Values.sentence.word.delay | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 120
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: object
+spec:
+  replicas: {{ .Values.sentence.word.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: object
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: object
+    spec:
+      containers:
+      - name: object-container
+        image: aswroma3/sentence-word-kube:{{ .Values.sentence.image.version }}
+        env: 
+        - name: SPRING_PROFILES_ACTIVE
+          value: object
+        {{- if .Values.sentence.withdelays }}
+        - name: ASW_SENTENCE_WORDSERVICE_DELAY
+          value: {{ .Values.sentence.word.delay | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 120
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentence
+spec:
+  replicas: {{ .Values.sentence.sentence.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: sentence
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: sentence
+    spec:
+      containers:
+      - name: sentence-container
+        image: aswroma3/sentence-sentence-kube:{{ .Values.sentence.image.version }}
+        env: 
+        {{- if .Values.sentence.withnames }}
+        - name: ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME
+          value: S-SYNC
+        {{- end }}
+        {{- if .Values.sentence.withdelays }}
+        - name: ASW_SENTENCE_SENTENCESERVICE_DELAY
+          value: {{ .Values.sentence.sentence.delay | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 180
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+#        startupProbe: 
+#          httpGet: 
+#            path: /actuator/health
+#            port: 8080
+#          periodSeconds: 10
+#          failureThreshold: 30 
+          
+{{- if .Values.sentence.withasync }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentence-async
+spec:
+  replicas: {{ .Values.sentence.sentence.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: sentence
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: sentence
+    spec:
+      containers:
+      - name: sentence-async-container
+        image: aswroma3/sentence-sentence-async-kube:{{ .Values.sentence.image.version }}
+        env: 
+        {{- if .Values.sentence.withnames }}
+        - name: ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME
+          value: S-ASYNC
+        {{- end }}
+        {{- if .Values.sentence.withdelays }}
+        - name: ASW_SENTENCE_SENTENCESERVICE_DELAY
+          value: {{ .Values.sentence.sentence.delay | quote }}
+        {{- end }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 180
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+#        startupProbe: 
+#          httpGet: 
+#            path: /actuator/health
+#            port: 8080
+#          periodSeconds: 10
+#          failureThreshold: 30 
+{{- end }}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigateway
+spec:
+  replicas: {{ .Values.sentence.apigateway.replicas }}
+  selector:
+    matchLabels:
+      app: sentence
+      service: apigateway
+  template: 
+    metadata:
+      labels:
+        app: sentence
+        service: apigateway
+    spec:
+      containers:
+      - name: apigateway-container
+        image: aswroma3/sentence-apigateway-kube:{{ .Values.sentence.image.version }}
+        ports:
+        - containerPort: 8080
+        livenessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 3 
+          initialDelaySeconds: 180
+        readinessProbe: 
+          httpGet: 
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 10
+#        startupProbe: 
+#          httpGet: 
+#            path: /actuator/health
+#            port: 8080
+#          periodSeconds: 10
+#          failureThreshold: 30 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subject
+spec:
+  selector:
+    app: sentence
+    service: subject
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: verb
+spec:
+  selector:
+    app: sentence
+    service: verb
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: object
+spec:
+  selector:
+    app: sentence
+    service: object
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentence
+spec:
+  selector:
+    app: sentence
+    service: sentence
+#  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigateway
+spec:
+  selector:
+    app: sentence
+    service: apigateway
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+#    nodePort: 32082
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sentence
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sentence.aswroma3.it 
+    http: 
+      paths: 
+      - pathType: Prefix
+        path: /
+        backend: 
+          service: 
+            name: apigateway
+            port: 
+              number: 8080 
+
+

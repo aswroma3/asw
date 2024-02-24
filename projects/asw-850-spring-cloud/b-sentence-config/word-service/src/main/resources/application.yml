@@ -1,0 +1,54 @@
+# application.yml
+--- 
+spring: 
+  application.name: ${spring.config.activate.on-profile}
+  # va bene anche: application.name: ${spring.profiles.active}
+  config.import: optional:configserver:http://localhost:8888
+
+server: 
+  port: ${PORT:${SERVER_PORT:0}}
+#  port: 8080
+
+# parole di default (per tutti i profili, usate se il config server non e' accessibile)
+asw.sentence: 
+  wordservice: 
+    words: default,default,default
+
+# actuator 
+management.endpoints.web.exposure.include: info,health
+
+--- 
+spring: 
+  config.activate.on-profile: subject
+  # application.name: subject
+
+server: 
+  port: 8081
+
+#asw.sentence: 
+#  wordservice: 
+#    words: default subject
+    
+--- 
+spring: 
+  config.activate.on-profile: verb
+  # application.name: verb
+
+server: 
+  port: 8082
+
+#asw.sentence: 
+#  wordservice: 
+#    words: default verb
+    
+--- 
+spring: 
+  config.activate.on-profile: object
+  # application.name: object
+
+server: 
+  port: 8083
+  
+#asw.sentence: 
+#  wordservice: 
+#    words: default object

@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: service-discovery-reader
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: service-discovery-reader-binding
+subjects:
+# all service accounts in any namespace
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: service-discovery-reader
+  apiGroup: ""
+

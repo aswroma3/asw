@@ -1,0 +1,12 @@
+# verb.yml
+--- 
+spring: 
+  config.activate.on-profile: verb
+
+server: 
+  port: 8082
+
+asw.sentence: 
+  wordservice: 
+#    words: works,works
+    words: WORKS,WORKS

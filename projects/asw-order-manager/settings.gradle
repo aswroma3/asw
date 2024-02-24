@@ -1,0 +1,8 @@
+include 'order-service'
+include 'order-service-api'
+include 'product-service'
+include 'product-service-api'
+include 'order-validation-service'
+include 'api-gateway'
+
+rootProject.name = 'asw-ordermanager'

@@ -1,0 +1,6 @@
+Fonti 
+
+https://refactorfirst.com/spring-cloud-resiliance4j-circuitbreaker-and-retry
+https://resilience4j.readme.io/docs/circuitbreaker
+https://resilience4j.readme.io/docs/retry
+https://docs.spring.io/spring-cloud-circuitbreaker/docs/current/reference/html/

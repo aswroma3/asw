@@ -1,0 +1,9 @@
+include 'sentence-service'
+include 'word-service'
+include 'api-gateway'
+
+rootProject.name = 'asw-sentence'
+
+project(':sentence-service').name = 'sentence'
+project(':word-service').name = 'word'
+project(':api-gateway').name = 'apigateway'

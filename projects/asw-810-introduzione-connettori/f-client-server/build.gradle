@@ -1,0 +1,68 @@
+/* 
+ * Gradle build file per un'applicazione Java multi-progetto
+ * di tipo client-server. 
+ * 
+ * - gradle build compila, crea i jar e prepara la distribuzione 
+ * - gradle clean cancella i jar file e la distribuzione 
+ * - gradle server:run esegue il server 
+ * - gradle client:run esegue il client (supponendo che il server sia su localhost)
+ * - gradle client:run --args <indirizzo del server remoto> esegue il client, per accedere al server remoto specificato
+ */ 
+ 
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'junit:junit:4.12'
+    }
+}
+
+project(':service') {
+}
+
+project(':server') {
+    
+    dependencies {
+        implementation project(':service')
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class': 'asw.intro.server.Server'
+            attributes 'Class-Path': 'service.jar' 
+        }
+    }
+
+    apply plugin: 'application' 
+	application { 
+		mainClass = 'asw.intro.server.Server'
+		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
+	}
+   
+}
+
+project(':client') {
+
+    dependencies {
+        implementation project(':service')
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class': 'asw.intro.client.Main'
+            attributes 'Class-Path': 'service.jar' 
+        }
+    }
+
+    apply plugin: 'application' 
+	application { 
+		mainClass = 'asw.intro.client.Main'
+		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
+	}
+
+}
+

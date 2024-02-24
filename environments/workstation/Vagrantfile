@@ -1,0 +1,94 @@
+# 
+# Vagrantfile per un singolo nodo (workstation) 
+# per la compilazione dei progetti, 
+# con Java, Gradle e Maven, Docker e Docker Compose.  
+#
+# Versione "workstation", con piu' memoria e piu' processori 
+# 
+
+VAGRANTFILE_API_VERSION = "2"
+
+ASW_RESOURCES='/home/asw/resources/'
+
+# risolve un problema delle versioni più recenti di Vagrant su windows 
+# see https://github.com/hashicorp/vagrant/issues/11637
+# sugli altri OS probabilmente va commentato 
+Encoding.default_external = Encoding.find('Windows-1250')
+Encoding.default_internal = Encoding.find('Windows-1250') 
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    # Configurazioni comuni.
+
+    # Ubuntu 22.04 LTS 64 bit VirtualBox (Bento)
+    config.vm.box = "bento/ubuntu-22.04"
+
+    # folder per i progetti Asw (/home/asw/projects)
+    config.vm.synced_folder "../../projects/", "/home/asw/projects", :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per le risorse condivise per gli ambienti Asw (/home/asw/resources) 
+    config.vm.synced_folder "../../resources/", "/home/asw/resources", :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i dati condivisi per gli ambienti Asw (/home/asw/data) 
+	# da usare per eventuali volumi docker 
+    # config.vm.synced_folder "../../data/", "/home/asw/data", :mount_options => ["dmode=777", "fmode=777"]
+
+    #
+    # Configurazione del nodo "workstation", che prevede: 
+    # - Java SDK (Open JDK 17)
+    # - Gradle 
+    # - Apache Maven 
+    # - Docker 
+	# - Docker Compose 
+    #
+    config.vm.define "workstation" do |node|
+        node.vm.hostname = "workstation"    
+        node.vm.network "private_network", ip: "10.11.1.121", virtualbox__intnet: true
+
+        node.vm.provider "virtualbox" do |v| 
+            # queste risorse bastano nei casi piu' semplici 
+			# v.memory = 2048
+			# v.cpus = 2
+			# queste risorse consentono anche di lanciare piu' applicazioni Spring e anche piu' contenitori Docker
+            v.memory = 4096 
+            v.cpus = 4
+        end 
+
+        node.vm.network "forwarded_port", guest: 22, host: 2222, id: 'ssh', auto_correct: true 
+        node.ssh.forward_agent = true
+ 
+        # pubblicazione di alcune porte sull'host  
+        node.vm.network "forwarded_port", guest: 8080, host: 8080, id: 'http', auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8082, host: 8082, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8083, host: 8083, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8088, host: 8088, id: 'pgadmin'
+        # node.vm.network "forwarded_port", guest: 8089, host: 8089, id: 'kafka-ui'
+        # node.vm.network "forwarded_port", guest: 9092, host: 9092, id: 'kafka'
+        # node.vm.network "forwarded_port", guest: 5432, host: 5432, id: 'postgres'
+
+		# node.vm.network "forwarded_port", guest: 9090, host: 9090, id: 'prometheus'
+        # node.vm.network "forwarded_port", guest: 3000, host: 3000, id: 'grafana'
+        # node.vm.network "forwarded_port", guest: 9411, host: 9411, id: 'zipkin'
+
+        # installa Java, Gradle e Maven 
+        node.vm.provision :shell, :inline => 'apt-get update'
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-open-jdk.sh"
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-maven.sh"
+
+		# installa docker e docker compose 
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/prepare-docker.sh"
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker.sh"
+        # node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker-compose.sh"
+		
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "workstation/configure-workstation-hosts.sh"
+
+		# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
+        node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
+		
+        node.vm.provision :shell, 
+            inline: "echo  'configurazione nodo workstation completata'"
+
+    end
+
+end

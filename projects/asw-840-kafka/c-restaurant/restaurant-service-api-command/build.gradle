@@ -1,0 +1,10 @@
+dependencies {
+	implementation project(":efood-common-api-command")
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+jar {
+    enabled = true
+}
+

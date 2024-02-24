@@ -1,0 +1,72 @@
+# application.yml 
+--- 
+spring: 
+  application: 
+    name: sentence
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery: 
+        instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 10s
+        # configurazione per effettuare esprimenti, NON USARE UN PRODUZIONE 
+        # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
+        healthCheckCriticalTimeout: 45s
+        # consul deve restituire solo servizi che passano l'health check (default=false) 
+        queryPassing: true 
+    loadbalancer: 
+      ribbon.enabled: false 
+
+server: 
+#  port: ${PORT:${SERVER_PORT:0}}
+  port: 8080
+
+# ATTENZIONE: 
+# QUESTA CONFIGURAZIONE E' PENSATA SOLO PER EFFETTUARE DEGLI ESPERIMENTI
+# MA NON VA USATA IN PRODUZIONE
+resilience4j:
+  # see https://resilience4j.readme.io/docs/circuitbreaker
+  circuitbreaker:
+    circuit-breaker-aspect-order: 1
+    instances:
+      subjectClientCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+      verbClientCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+      objectClientCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+  # see https://resilience4j.readme.io/docs/retry 
+  retry:
+    # 2>1: retry ha priorità maggiore di circuit breaker  
+    retry-aspect-order: 2
+    instances:
+      wordClientRetry:
+        max-attempts: 2
+        wait-duration: 500ms
+        # eccezioni che causano un retry 
+        retry-exceptions:
+         - org.springframework.web.client.RestClientException
+         - org.springframework.web.reactive.function.client.WebClientException

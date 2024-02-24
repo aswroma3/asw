@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels: 
+      app: hello 
+  template: 
+    metadata:
+      name: hello-pod 
+      labels: 
+        app: hello 
+    spec:
+      containers:
+      - name: hello-container
+        image: aswroma3/hello-kube:latest

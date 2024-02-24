@@ -1,0 +1,19 @@
+INTRODUZIONE AI CONNETTORI 
+
+Si tratta di semplici esempi, che introducono l'uso dei connettori. 
+
+In generale, valgono le seguenti considerazioni: 
+- il sottoprogetto app definisce l'applicazione, composta dai seguenti package  
+  - il package service definisce l'interfaccia Service del servizio 
+  - nel package server: 
+    - la classe ServiceImpl definisce l'implementazione del servizio
+    - la classe Server (ove presente) serve a creare ed avviare il servizio 
+  - nel package client: 
+    - la classe Client definisce il client del servizio
+  - nel package main: 
+    - la classe Main (un'applicazione) serve a creare ed avviare il client   
+
+Inoltre, ove presenti: 
+- i package connector definiscono connettori (come una factory o un proxy) 
+- il package context definisce l'application context 
+

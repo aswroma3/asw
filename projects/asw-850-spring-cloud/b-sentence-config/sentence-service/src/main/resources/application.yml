@@ -1,0 +1,15 @@
+# application.yml 
+--- 
+spring: 
+  application: 
+    name: sentence
+
+server: 
+#  port: ${PORT:${SERVER_PORT:0}}
+  port: 8080
+
+asw.sentence: 
+  sentenceservice: 
+    subject.uri: http://localhost:8081 
+    verb.uri: http://localhost:8082 
+    object.uri: http://localhost:8083 

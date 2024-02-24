@@ -1,0 +1,10 @@
+# Custom values for sentence, with deplays.
+
+sentence: 
+  withasync: true 
+  withnames: true 
+  withdelays: true
+  sentence: 
+    delay: 10 
+  word: 
+    delay: 40 

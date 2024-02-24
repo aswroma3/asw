@@ -1,0 +1,11 @@
+# object.yml
+--- 
+spring: 
+  config.activate.on-profile: object
+
+server: 
+  port: 8083
+
+asw.sentence: 
+  wordservice: 
+    words: from local files,from local files

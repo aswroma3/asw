@@ -1,0 +1,37 @@
+<html>
+<body> 
+
+<h1>Menu of Restaurant <span th:text="${restaurant.name}">name goes here</span></h1> 
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="menuItem : ${menu.menuItems}">
+                <td th:text="${menuItem.id}">id goes here</td>
+                <td th:text="${menuItem.name}">name goes here</td>
+                <td th:text="${menuItem.price}">price goes here</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+	<form th:action="@{'/web/restaurants/'+${restaurant.id}+'/menu?edit'}" method="POST">
+		<button type="submit">Edit restaurant menu</button>
+	</form>
+</div>
+
+<hr/>
+
+<p><a href="/web/restaurants">Restaurants list</a></p>  
+<p><a href="/web/restaurants?add">Add a restaurant</a></p>  
+
+</body> 
+</html>

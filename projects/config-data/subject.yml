@@ -1,0 +1,12 @@
+# subject.yml
+--- 
+spring: 
+  config.activate.on-profile: subject
+
+server: 
+  port: 8081
+
+asw.sentence: 
+  wordservice: 
+#    words: Spring Cloud Config,Spring Cloud Config
+    words: SPRING CLOUD CONFIG,SPRING CLOUD CONFIG

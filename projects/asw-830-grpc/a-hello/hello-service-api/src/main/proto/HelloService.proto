@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "asw.hello.grpc.proto";
+// option java_outer_classname = "HelloServiceProto";
+// option objc_class_prefix = "OS";
+
+// package helloservice;
+
+/* Il servizio HelloService. */ 
+service HelloService {
+  /* il servizio definisce una sola operazione sayHello */ 
+  rpc sayHello(HelloRequest) returns (HelloReply) {}
+}
+
+/* Il messaggio di richiesta di sayHello contiene il nome. */ 
+message HelloRequest {
+  string name = 1;
+}
+
+/* Il messaggio di risposta di sayHello contiene il saluto. */
+message HelloReply {
+  string greeting = 1;
+}
+

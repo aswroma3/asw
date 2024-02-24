@@ -1,0 +1,49 @@
+<html>
+<body> 
+
+<h1>Add menu of Restaurant <span th:text="${restaurant.name}">name goes here</span></h1> 
+
+<div>
+	<form th:action="@{'/web/restaurants/'+${restaurant.id}+'/menu'}" method="POST"
+	      th:object="${form}">
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>
+        <button type="submit" name="addMenuItem">Add menu item</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="menuItem,rowStat : *{menuItems}">
+      <!--td th:text="${rowStat.count}">1</td>
+      <td-->
+      <td>
+        <input type="text" th:field="*{menuItems[__${rowStat.index}__].id}" />
+      </td>
+      </td>
+      <td>
+        <input type="text" th:field="*{menuItems[__${rowStat.index}__].name}" />
+      </td>
+      <td>
+        <input type="text" th:field="*{menuItems[__${rowStat.index}__].price}" />
+      </td>
+      <td>
+        <button type="submit" name="removeMenuItem" th:value="${rowStat.index}">Remove menu item</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+		<button type="submit">Save restaurant menu</button>
+	</form>
+</div>
+
+<p><a href="/web/restaurants">Restaurants list</a></p>  
+<p><a href="/web/restaurants?add">Add a restaurant</a></p>  
+										
+</body> 
+</html>

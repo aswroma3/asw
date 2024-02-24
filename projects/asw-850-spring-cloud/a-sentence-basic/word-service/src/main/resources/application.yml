@@ -1,0 +1,52 @@
+# application.yml
+--- 
+spring: 
+  application: 
+    name: test
+
+server: 
+  port: ${PORT:${SERVER_PORT:0}}
+#  port: 8080
+
+asw.sentence: 
+  wordservice: 
+    words: to,pass,the,test
+
+--- 
+spring: 
+  config.activate.on-profile: subject
+  application: 
+    name: subject
+
+server: 
+  port: 8081
+
+asw.sentence: 
+  wordservice: 
+    words: He,She,Ann,Mary,John,Paul,My dog,My cat
+  
+--- 
+spring: 
+  config.activate.on-profile: verb
+  application: 
+    name: verb
+
+server: 
+  port: 8082
+
+asw.sentence: 
+  wordservice: 
+    words: likes,loves,hates,dreams,does not like,does not love
+  
+--- 
+spring: 
+  config.activate.on-profile: object
+  application: 
+    name: object
+
+server: 
+  port: 8083
+
+asw.sentence: 
+  wordservice: 
+    words: beans,cats,dogs,pasta,pizza,pizza margherita,spring,my dog,my cat

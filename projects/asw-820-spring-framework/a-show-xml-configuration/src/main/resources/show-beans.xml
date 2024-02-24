@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="hendrix" class="asw.spring.show.Musician">
+    <constructor-arg value="Jimi"/> 
+    <constructor-arg ref="stratocaster"/> 
+  </bean>
+	
+  <bean id="stratocaster" class="asw.spring.show.Guitar">
+    <property name="sound" value="Ua ua uaa"/>
+  </bean>
+
+  <bean id="may" class="asw.spring.show.Musician">
+    <constructor-arg value="Brian"/> 
+    <constructor-arg ref="redspecial"/> 
+  </bean>
+	
+  <bean id="redspecial" class="asw.spring.show.Guitar">
+    <property name="sound" value="La la laa"/>
+  </bean>
+
+</beans>

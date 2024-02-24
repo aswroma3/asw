@@ -1,0 +1,33 @@
+/* 
+ * Gradle build file per una semplice applicazione Spring. 
+ * 
+ * I principali task Gradle sono: 
+ * - gradle build compila l'applicazione  
+ * - gradle run manda in esecuzione l'applicazione 
+ * - gradle clean cancella i file generati da gradle  
+ */ 
+ 
+apply plugin: 'java'
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'application'
+application { 
+	mainClass = 'asw.spring.show.Main'
+}
+
+dependencies {
+    implementation 'org.springframework:spring-context:6.0.12'
+	testImplementation 'org.springframework:spring-test:6.0.12'	
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+}
+
+test {
+    useJUnitPlatform()
+}

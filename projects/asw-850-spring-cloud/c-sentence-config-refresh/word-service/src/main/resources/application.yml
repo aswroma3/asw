@@ -1,0 +1,58 @@
+# application.yml
+--- 
+spring: 
+  application.name: ${spring.config.activate.on-profile}
+  # va bene anche: application.name: ${spring.profiles.active}
+  config.import: optional:configserver:http://localhost:8888
+  # rabbitmq 
+  activemq.broker-url: localhost:5672
+
+server: 
+  port: ${PORT:${SERVER_PORT:0}}
+#  port: 8080
+
+# parole di default (per tutti i profili, usate se il config server non e' accessibile)
+asw.sentence: 
+  wordservice: 
+    words: default,default,default
+
+# abilita il refresh e il refresh dinamico esponendo gli endpoint selezionati 
+# https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html 
+management.endpoints.web.exposure.include: info,health,refresh,busrefresh 
+
+--- 
+spring: 
+  config.activate.on-profile: subject
+  # application.name: subject
+
+server: 
+  port: 8081
+
+#asw.sentence: 
+#  wordservice: 
+#    words: default subject
+    
+--- 
+spring: 
+  config.activate.on-profile: verb
+  # application.name: verb
+
+server: 
+  port: 8082
+
+#asw.sentence: 
+#  wordservice: 
+#    words: default verb
+    
+--- 
+spring: 
+  config.activate.on-profile: object
+  # application.name: object
+
+server: 
+  port: 8083
+  
+#asw.sentence: 
+#  wordservice: 
+#    words: default object
+

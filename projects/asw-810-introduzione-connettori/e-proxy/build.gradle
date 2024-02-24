@@ -1,0 +1,30 @@
+/* 
+ * Gradle build file per una semplice applicazione Java, mono-progetto. 
+ * 
+ * - gradle build compila, crea i jar e prepara la distribuzione 
+ * - gradle run manda in esecuzione l'applicazione 
+ * - gradle clean cancella i jar file e la distribuzione 
+ */ 
+ 
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+apply plugin: 'application'
+application { 
+	mainClass = 'asw.intro.main.Main'
+	applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
+}
+

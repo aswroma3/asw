@@ -1,0 +1,9 @@
+# Custom values for sentence, with replicas.
+
+sentence: 
+  sentence: 
+    replicas: 1
+  word: 
+    replicas: 2
+  apigateway: 
+    replicas: 1
