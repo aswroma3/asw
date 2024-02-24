@@ -10,6 +10,6 @@ spring:
         git:
           uri: https://github.com/aswroma3/asw.git
           searchPaths: projects/config-data
-          default-label: master
+          default-label: main
 
 # usando il profilo 'native' cerca invece nel file system locale
