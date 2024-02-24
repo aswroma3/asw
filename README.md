@@ -6,7 +6,7 @@ a Roma Tre,
 edizione 2023-2024 (A.A. 2023-2024), 
 tenuto dal prof. [Luca Cabibbo](http://cabibbo.inf.uniroma3.it/). 
 
-Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al branch **asw-2022-2023**. 
+Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al repository **asw-2023-2024**. 
 
 Questo repository contiene il codice delle *esercitazioni* 
 del corso di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/), 
