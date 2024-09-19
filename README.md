@@ -1,4 +1,4 @@
-# Architettura dei Sistemi Software a Roma Tre (2023-2024)
+# Architettura dei Sistemi Software a Roma Tre (2024-2025)
 
 Benvenuti al repository del corso 
 di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/) 
