@@ -2,8 +2,7 @@
 # Dockerfile per l'applicazione sentence / sentence service 
 ###########################################################
 
-# FROM openjdk:17-jdk 
-FROM eclipse-temurin:17-jdk 
+FROM eclipse-temurin:21-jdk 
 
 ADD build/libs/sentence-async.jar sentence-async.jar
 

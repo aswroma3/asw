@@ -6,10 +6,23 @@
  * - gradle clean cancella i jar file e la distribuzione 
  */ 
 
-// Apply the java plugin (to add support for Java) and the application plugin (to add support for building an application)
-plugins {
-    id 'java'
-    id 'application'
+// Apply the java plugin (to add support for Java) 
+apply plugin: 'java'
+java {
+	sourceCompatibility = '21'
+}
+
+// Apply the application plugin (to add support for building an application)
+apply plugin: 'application'
+application { 
+	// Define the main class for the application
+	mainClass = 'asw.ciaomondo.CiaoMondo'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
 }
 
 // Use mavenCentral for resolving your dependencies.
@@ -17,18 +30,15 @@ repositories {
     mavenCentral()
 }
 
+// Testing 
 dependencies {
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+	// JUnit 5 
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.0'
 }
 
-// Define the main class for the application
-application { 
-	mainClass = 'asw.ciaomondo.CiaoMondo'
+test {
+    useJUnitPlatform()
 }
-	
-jar {
-    manifest {
-        attributes 'Main-Class': application.mainClass
-    }
-}
+
+

@@ -1,7 +1,7 @@
 # 
 # Vagrantfile per un singolo nodo (workstation) 
 # per la compilazione dei progetti, 
-# con Java, Gradle e Maven, Docker e Docker Compose.  
+# con Java, Gradle e Maven, Python, Docker e Docker Compose.  
 #
 # Versione "workstation", con piu' memoria e piu' processori 
 # 
@@ -20,7 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Configurazioni comuni.
 
     # Ubuntu 22.04 LTS 64 bit VirtualBox (Bento)
-    config.vm.box = "bento/ubuntu-22.04"
+    #config.vm.box = "bento/ubuntu-22.04"
+
+    # Ubuntu 24.04 LTS 64 bit VirtualBox (Bento)
+    config.vm.box = "bento/ubuntu-24.04"
 
     # folder per i progetti Asw (/home/asw/projects)
     config.vm.synced_folder "../../projects/", "/home/asw/projects", :mount_options => ["dmode=777", "fmode=777"]
@@ -56,19 +59,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.network "forwarded_port", guest: 22, host: 2222, id: 'ssh', auto_correct: true 
         node.ssh.forward_agent = true
  
-        # pubblicazione di alcune porte sull'host  
+        # pubblicazione di alcune porte sull'host (rimuovere il commento per ogni porta necessaria)
         node.vm.network "forwarded_port", guest: 8080, host: 8080, id: 'http', auto_correct: true
         # node.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
         # node.vm.network "forwarded_port", guest: 8082, host: 8082, auto_correct: true
         # node.vm.network "forwarded_port", guest: 8083, host: 8083, auto_correct: true
-        # node.vm.network "forwarded_port", guest: 8088, host: 8088, id: 'pgadmin'
-        # node.vm.network "forwarded_port", guest: 8089, host: 8089, id: 'kafka-ui'
-        # node.vm.network "forwarded_port", guest: 9092, host: 9092, id: 'kafka'
         # node.vm.network "forwarded_port", guest: 5432, host: 5432, id: 'postgres'
+        # node.vm.network "forwarded_port", guest: 8088, host: 8088, id: 'pgadmin'
+        # node.vm.network "forwarded_port", guest: 9092, host: 9092, id: 'kafka'
+        # node.vm.network "forwarded_port", guest: 8089, host: 8089, id: 'kafka-ui'
 
 		# node.vm.network "forwarded_port", guest: 9090, host: 9090, id: 'prometheus'
         # node.vm.network "forwarded_port", guest: 3000, host: 3000, id: 'grafana'
         # node.vm.network "forwarded_port", guest: 9411, host: 9411, id: 'zipkin'
+
+		# network configuration (/etc/hosts)
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "workstation/configure-workstation-hosts.sh"
 
         # installa Java, Gradle e Maven 
         node.vm.provision :shell, :inline => 'apt-get update'
@@ -76,13 +82,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
         node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-maven.sh"
 
+		# installa Python e alcune librerie per REST 
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python.sh"
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python-rest-libraries.sh"
+
 		# installa docker e docker compose 
         node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/prepare-docker.sh"
         node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker.sh"
         # node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker-compose.sh"
 		
-		node.vm.provision :shell, :inline => ASW_RESOURCES + "workstation/configure-workstation-hosts.sh"
-
 		# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
         node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
 		

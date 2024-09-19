@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Halting RABBIT MQ  
+echo Halting RabbitMQ  
 
 docker stop asw-rabbit 
 docker rm asw-rabbit 

@@ -10,15 +10,16 @@
  */ 
  
 subprojects {
+
     apply plugin: 'java'
+	java {
+		sourceCompatibility = '21'
+	}
 
     repositories {
         mavenCentral()
     }
 
-    dependencies {
-        testImplementation 'junit:junit:4.12'
-    }
 }
 
 project(':service') {
@@ -30,6 +31,12 @@ project(':server') {
         implementation project(':service')
     }
 
+    apply plugin: 'application' 
+	application { 
+		mainClass = 'asw.intro.server.Server'
+		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
+	}
+   
     jar {
         manifest {
             attributes 'Main-Class': 'asw.intro.server.Server'
@@ -37,12 +44,6 @@ project(':server') {
         }
     }
 
-    apply plugin: 'application' 
-	application { 
-		mainClass = 'asw.intro.server.Server'
-		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
-	}
-   
 }
 
 project(':client') {
@@ -51,18 +52,18 @@ project(':client') {
         implementation project(':service')
     }
 
+    apply plugin: 'application' 
+	application { 
+		mainClass = 'asw.intro.client.Main'
+		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
+	}
+
     jar {
         manifest {
             attributes 'Main-Class': 'asw.intro.client.Main'
             attributes 'Class-Path': 'service.jar' 
         }
     }
-
-    apply plugin: 'application' 
-	application { 
-		mainClass = 'asw.intro.client.Main'
-		applicationDefaultJvmArgs = ['-Djava.util.logging.config.file=build/resources/main/logging.properties']
-	}
 
 }
 

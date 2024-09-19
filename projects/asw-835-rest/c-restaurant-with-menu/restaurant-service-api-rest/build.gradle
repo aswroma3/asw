@@ -1,8 +1,16 @@
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 dependencies {
-	compileOnly "org.projectlombok:lombok:${lombokVersion}"
-	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+  // serve il numero di versione perché non è un progetto Spring Boot 
+  compileOnly "org.projectlombok:lombok:${lombokVersion}"
+  annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 jar {
-    enabled = true
+  enabled = true
 }
+

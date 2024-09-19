@@ -2,9 +2,9 @@
 
 source "/home/asw/resources/common.sh"
 
-echo "===================================="
-echo "starting kubernetes cluster (master)"
-echo "===================================="
+echo "==========================================="
+echo "starting kubernetes cluster (control plane)"
+echo "==========================================="
 
 KUBE_CLUSTER_JOIN_CMD_FILE=/home/vagrant/kube-cluster/kube_cluster_join_cmd.sh
 

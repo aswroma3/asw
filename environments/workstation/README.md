@@ -12,6 +12,7 @@ con le seguenti caratteristiche:
   
 E' composto da una sola macchina virtuale **workstation**. 
 
+
 ## Descrizione delle macchine virtuali 
 
 ### workstation
@@ -25,6 +26,8 @@ La macchina virtuale **workstation** ha il seguente software
 * Gradle 
 
 * Apache Maven 
+
+* Python 
 
 * Docker e Docker Compose 
 

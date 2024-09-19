@@ -15,7 +15,7 @@ KUBE_CLUSTER_NODES = [
     {
         :name => "kube-1",
         :type => "control-plane",
-        :box => "bento/ubuntu-22.04",
+        :box => "bento/ubuntu-24.04",
         :eth1 => "10.11.1.71",
         :httpport => "8081",
         :ingressport => "31081",
@@ -26,7 +26,7 @@ KUBE_CLUSTER_NODES = [
     {
         :name => "kube-2",
         :type => "worker",
-        :box => "bento/ubuntu-22.04",
+        :box => "bento/ubuntu-24.04",
         :eth1 => "10.11.1.72",
         :httpport => "8082",
         :ingressport => "31082",
@@ -37,7 +37,7 @@ KUBE_CLUSTER_NODES = [
     {
         :name => "kube-3",
         :type => "worker",
-        :box => "bento/ubuntu-22.04",
+        :box => "bento/ubuntu-24.04",
         :eth1 => "10.11.1.73",
         :httpport => "8083",
         :ingressport => "31083",
@@ -48,7 +48,7 @@ KUBE_CLUSTER_NODES = [
     {
         :name => "kube-dev",
         :type => "dev",
-        :box => "bento/ubuntu-22.04",
+        :box => "bento/ubuntu-24.04",
         :eth1 => "10.11.1.131",
         :gocdport => "8153",
         :memory => "2048",
@@ -61,7 +61,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 ASW_RESOURCES='/home/asw/resources/'
 
-IMAGE_BOX = "bento/ubuntu-22.04" 
+IMAGE_BOX = "bento/ubuntu-24.04" 
 
 POD_NETWORK_CIDR = "10.12.0.0"
 
@@ -69,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Configurazioni comuni.
 
-    # Ubuntu 20.04 LTS 64 bit VirtualBox (Bento)
+    # Ubuntu 24.04 LTS 64 bit VirtualBox (Bento)
     config.vm.box = IMAGE_BOX
 
     # folder per i progetti Asw (/home/asw/projects)
@@ -113,20 +113,34 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			end
 
 			# 
-			# development tools 
+			# network configuration (/etc/hosts)
 			#
-            if opts[:type] == "dev"
-				# installa Java, Gradle e Maven 
-				node.vm.provision :shell, :inline => 'apt-get update'
-				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-open-jdk.sh"
-				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
-				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-maven.sh"
-				# installa Python e alcune librerie per REST 
-				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python.sh"
-				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python-rest-libraries.sh"
-				
-				# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
-				# node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'				
+            if opts[:type] == "control-plane"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
+					s.args = ["10.11.1.70", "kube-", 1, 2]
+				end 
+            elsif opts[:type] == "worker"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
+					s.args = ["10.11.1.70", "kube-", 1, 2]
+				end 
+            else # opts[:type] == "dev" 
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-dev-hosts.sh $1 $2 $3 $4"
+					s.args = ["10.11.1.70", "kube-", 1, 2]
+				end 
+            end
+			
+			# 
+			# nfs
+			#
+            if opts[:type] == "control-plane"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-server.sh"
+            elsif opts[:type] == "worker"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-client-kube-node.sh"
+            else # opts[:type] == "dev" 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-client-kube-dev.sh"
             end
 
 			# 
@@ -145,10 +159,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			# kubernetes 
 			#
             if opts[:type] == "control-plane"
-				node.vm.provision "shell" do |s| 
-					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
-				end 
 				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm.sh"
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/start-kube-cluster-control-plane.sh $1"
@@ -164,20 +174,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				# in alternativa (ma ascolta solo su 31080); 
                 # node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kube-cluster-ingress-nginx-addon.sh"
             elsif opts[:type] == "worker"
-				node.vm.provision "shell" do |s| 
-					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
-				end 
 				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm.sh"
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/start-kube-cluster-worker.sh $1"
 					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP]
 				end 
             else # opts[:type] == "dev" 
-				node.vm.provision "shell" do |s| 
-					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-dev-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
-				end 
 				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm-client.sh"
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-client.sh $1"
@@ -186,6 +188,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-helm.sh"
             end
 			
+			# 
+			# development tools 
+			#
+            if opts[:type] == "dev"
+				# installa Java, Gradle e Maven 
+				node.vm.provision :shell, :inline => 'apt-get update'
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-open-jdk.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-maven.sh"
+				# installa Python e alcune librerie per REST 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python-rest-libraries.sh"
+            end
+
 			# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
 			node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
 

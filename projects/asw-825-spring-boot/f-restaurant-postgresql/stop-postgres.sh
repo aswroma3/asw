@@ -3,6 +3,8 @@
 # Script per arrestare Postgres con Docker Compose (v2)
 
 echo Halting Postgres
-docker compose down -v
+
+# docker compose down -v
+docker compose --profile debug down -v
 
 

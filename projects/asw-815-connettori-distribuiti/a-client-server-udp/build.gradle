@@ -10,15 +10,16 @@
  */ 
  
 subprojects {
-    apply plugin: 'java'
 
+    apply plugin: 'java'
+	java {
+		sourceCompatibility = '21'
+	}
+	
     repositories {
         mavenCentral()
     }
 
-    dependencies {
-        testImplementation 'junit:junit:4.12'
-    }
 }
 
 project(':service') {

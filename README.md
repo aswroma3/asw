@@ -3,10 +3,10 @@
 Benvenuti al repository del corso 
 di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/) 
 a Roma Tre, 
-edizione 2023-2024 (A.A. 2023-2024), 
+edizione 2024-2025 (A.A. 2024-2025), 
 tenuto dal prof. [Luca Cabibbo](http://cabibbo.inf.uniroma3.it/). 
 
-Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al repository **asw-2023-2024**. 
+Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al branch **asw-2023-2024** di questo repository. 
 
 Questo repository contiene il codice delle *esercitazioni* 
 del corso di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/), 
@@ -25,11 +25,12 @@ che vanno eseguite in degli opportuni *ambienti distribuiti*:
 
 ### Software per la gestione degli ambienti di esecuzione  
 
-Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 22H2)*. 
+Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 23H2)*. 
 
-* [VirtualBox](https://www.virtualbox.org/), versione 7.0.10
-* [Vagrant](https://www.vagrantup.com/), versione 2.3.7
-* [Git](https://git-scm.com/) 
+* [VirtualBox](https://www.virtualbox.org/), versione 7.0.20 
+  (attenzione, non è possibile la versione più recente 7.1.X di VirtualBox, perché al momento non è compatibile con Vagrant)
+* [Vagrant](https://www.vagrantup.com/), versione 2.4.1
+* [Git](https://git-scm.com/), versione 2.46.0  
 * opzionalmente [Docker](https://www.docker.com/), 
   che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali. 
 
@@ -55,8 +56,8 @@ A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*:
 ### Software per lo sviluppo del software 
 
 Ecco il software opzionale per lo sviluppo del software (non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali):
-* [OpenJDK](https://openjdk.org/), versione 17  
-* [Gradle](http://gradle.org/), versione 8.4 
+* [OpenJDK](https://openjdk.org/), versione 21  
+* [Gradle](http://gradle.org/), versione 8.10.1 
 
 ## Organizzazione del repository 
 

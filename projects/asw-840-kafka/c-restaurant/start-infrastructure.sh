@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script per avviare Postgres e Kafka con Docker Compose (v2)
+# Script per avviare Kafka con Docker Compose (v2)
 
 echo Starting infrastructure...
 

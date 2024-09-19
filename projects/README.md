@@ -6,8 +6,9 @@ Le diverse applicazioni distribuite sono organizzate in progetti
 (rappresentati da sottocartelle in questa sezione del repository), 
 ciascuno dei quali è relativo a un argomento delle esercitazioni del corso. 
 
-Attualmente non sono presenti tutti i progetti e tutte le applicazioni. 
-Verranno aggiunti a questo repository durante lo svolgimento del corso. 
+In questo momento, potrebbero non essere ancora presenti tutti i progetti e tutte le applicazioni, 
+oppure alcuni dei progetti presenti potrebbero non essere stati aggiornati. 
+In tal caso, questi progetti verranno aggiunti al repository oppure aggiornati durante lo svolgimento del corso. 
 
 L'esecuzione delle applicazioni distribuite deve essere effettuata 
 in un opportuno *ambiente di esecuzione*, 

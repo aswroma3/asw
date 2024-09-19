@@ -8,23 +8,21 @@ source "/home/asw/resources/common.sh"
 # invocare uno script separato come prepare-docker-configuration.sh 
 
 # set up Docker constants 
-# DOCKER_VERSION=5:20.10.5~3-0~ubuntu-focal
-# DOCKER_VERSION=5:20.10.6~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.7~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.14~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.16~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.18~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.21~3-0~ubuntu-focal
-#DOCKER_VERSION=5:20.10.22~3-0~ubuntu-focal
-#DOCKER_VERSION=5:24.0.0-1~ubuntu.20.04~focal (ok) 
-#DOCKER_VERSION=5:24.0.0-1~ubuntu.22.04~jammy
-DOCKER_VERSION=5:24.0.6-1~ubuntu.22.04~jammy
+#DOCKER_VERSION=5:24.0.6-1~ubuntu.22.04~jammy
+#DOCKER_VERSION=5:25.0.3-1~ubuntu.22.04~jammy
+#DOCKER_VERSION=5:27.1.2-1~ubuntu.22.04~jammy
+#DOCKER_VERSION=5:27.1.2-1~ubuntu.24.04~noble
+DOCKER_VERSION=5:27.2.1-1~ubuntu.24.04~noble
 
 # Per vedere le versioni disponibili 
 # apt-get update && apt-cache madison docker-ce
-# oppure https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/ 
-# anzi https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/ per ubuntu 22.04
-# vedi anche https://github.com/docker/docker-ce/releases (no, fermo al 2020)
+# oppure https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/ per ubuntu 22.04
+# anzi https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/ per ubuntu 24.04
+
+#CONTAINERD_VERSION=1.7.20-1
+CONTAINERD_VERSION=1.7.22-1
+#DOCKER_COMPOSE_VERSION=2.29.1-1~ubuntu.24.04~noble
+DOCKER_COMPOSE_VERSION=2.29.2-1~ubuntu.24.04~noble
 
 echo "================="
 echo "installing docker"
@@ -39,46 +37,37 @@ apt-get update
 # Install packages to allow apt to use a repository over HTTPS:
 apt-get -y install \
     ca-certificates \
-    curl \
-	gnupg \
-    lsb-release
-# prima c'era anche apt-transport-https
+    curl 
+#	gnupg \
+#    lsb-release
+# apt-transport-https
 
 # Add Docker’s official GPG key: 
-#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-chmod a+r /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
  
 # Set up the stable repository
-#echo \
-#  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-#  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-#echo \
-#  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-#  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
 echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Update (again) the apt package index 
 apt-get update 
 
 # Install the latest version of Docker CE 
-# sudo apt-get install docker-ce docker-ce-cli containerd.io
+# sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Per vedere le versioni disponibili 
+# Per vedere le versioni disponibili, e.g. 
 # apt-cache madison docker-ce
 
 # Per installare una versione specifica (raccomandato in produzione) 
-apt-get -y install docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION} containerd.io docker-compose-plugin
+apt-get -y install docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION} containerd.io=${CONTAINERD_VERSION} docker-buildx-plugin docker-compose-plugin=${DOCKER_COMPOSE_VERSION}
 
 # Alcuni esempi per verificare l'installazione 
 # docker run hello-world
-# docker run docker/whalesay cowsay Hello, world! 
+# docker run docker/whalesay cowsay Hello, world! (no, l'immagine ora è deprecata)
 # docker run -it ubuntu bash
 
 ##### post-installation 
@@ -99,4 +88,3 @@ systemctl enable containerd.service
 systemctl daemon-reload
 systemctl restart docker.service
 
-### Su Ubuntu 14.04 viene avviato di default 

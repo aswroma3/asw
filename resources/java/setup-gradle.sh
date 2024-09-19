@@ -3,11 +3,12 @@
 source "/home/asw/resources/common.sh"
 
 # set up Gradle constants 
-# https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
+# https://services.gradle.org/distributions/gradle-8.6-bin.zip
 
-#GRADLE_VERSION=8.1.1
-#GRADLE_VERSION=8.3
-GRADLE_VERSION=8.4
+#GRADLE_VERSION=8.4
+#GRADLE_VERSION=8.6
+#GRADLE_VERSION=8.10
+GRADLE_VERSION=8.10.1
 
 GRADLE_ARCHIVE=gradle-${GRADLE_VERSION}-bin.zip
 GET_GRADLE_URL=https://services.gradle.org/distributions

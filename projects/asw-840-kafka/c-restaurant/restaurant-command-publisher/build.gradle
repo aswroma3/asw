@@ -2,10 +2,10 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
-	implementation project(":efood-common-api-command")
-	implementation project(":restaurant-service-api-command")
+  implementation project(":efood-common-api-command")
+  implementation project(":restaurant-service-api-command")
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'org.springframework.kafka:spring-kafka'
+  implementation 'org.springframework.kafka:spring-kafka'
 }

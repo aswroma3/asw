@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hello
-        image: aswroma3/hello-update-kube:2023-10-v2
+        image: aswroma3/hello-update-kube:2024-08-v2
         readinessProbe: 
           httpGet: 
             path: /actuator/health

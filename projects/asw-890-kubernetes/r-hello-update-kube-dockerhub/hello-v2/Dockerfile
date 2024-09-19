@@ -2,8 +2,7 @@
 # Dockerfile per l'applicazione hello 
 ############################################
 
-# FROM openjdk:17-jdk 
-FROM eclipse-temurin:17-jdk 
+FROM eclipse-temurin:21-jdk 
 
 ADD build/libs/hello-2.0.jar hello-2.0.jar
 

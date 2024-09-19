@@ -12,6 +12,13 @@ public class Client {
 
 	/* il servizio */
 	private RemoteCounterService service;
+	
+	/* numero di chiamate da fare */ 
+	private static final int NUM_CALLS = 25; 
+	
+	/* ritardo da introdurre */ 
+	private static final int MAX_DELAY = 1000; 
+	private static final int MIN_DELAY = MAX_DELAY/2; 
 
 	/* crea un nuovo oggetto Client */
 	public Client() {
@@ -30,7 +37,7 @@ public class Client {
 			logger.info("Client: connect()");
 			service.connect();
 
-			for (int i=0; i<10; i++) {
+			for (int i=0; i<NUM_CALLS; i++) {
 				logger.info("Client: calling service.incrementCounter()");
 				service.incrementCounter();
 				logger.info("Client: calling service.getGlobalCounter()");
@@ -39,7 +46,7 @@ public class Client {
 				int sessionCount = service.getSessionCounter();
 				logger.info("Client: session count = " + sessionCount + ", global count = " + globalCount);
 				/* introduce un piccolo ritardo casuale */
-				randomSleep(250, 750);
+				randomSleep(MIN_DELAY, MAX_DELAY);
 			}
 
 			logger.info("Client: disconnect()");

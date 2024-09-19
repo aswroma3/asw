@@ -1,17 +1,17 @@
 plugins {
-	id 'org.springframework.boot' 
-	id 'io.spring.dependency-management' 
-	id 'base' 
+  id 'org.springframework.boot' 
+  id 'io.spring.dependency-management' 
+  id 'base' 
 }
 
 base {
-    archivesName = 'hello'
+  archivesName = 'hello'
 }
 version = '2.0'
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -7,13 +7,8 @@
  */ 
  
 apply plugin: 'java'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation 'junit:junit:4.12'
+java {
+	sourceCompatibility = '21'
 }
 
 apply plugin: 'application'
@@ -27,4 +22,19 @@ jar {
         attributes 'Main-Class': application.mainClass
     }
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
 

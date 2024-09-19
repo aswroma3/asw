@@ -9,6 +9,8 @@
 # questo script installa il secondo (malgrado non sia possibile accedervi sulla porta 80) 
 # ascolta http/https su 31080/31443
 
+# aggiornato a dicembre 2023  
+
 echo "======================================================="
 echo "installing kubernetes nginx ingress controller (master)"
 echo "======================================================="

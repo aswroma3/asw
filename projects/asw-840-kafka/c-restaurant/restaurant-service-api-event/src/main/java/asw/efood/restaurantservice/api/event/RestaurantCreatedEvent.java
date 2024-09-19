@@ -2,13 +2,9 @@ package asw.efood.restaurantservice.api.event;
 
 import asw.efood.common.api.event.DomainEvent; 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 public class RestaurantCreatedEvent implements DomainEvent {
 
 	private Long id; 

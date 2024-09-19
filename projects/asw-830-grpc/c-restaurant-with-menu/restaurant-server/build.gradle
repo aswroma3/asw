@@ -1,22 +1,28 @@
 plugins {
-	id 'org.springframework.boot' 
-	id 'io.spring.dependency-management' 
+  id 'org.springframework.boot' 
+  id 'io.spring.dependency-management' 
 }
-	
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 dependencies {
-	implementation project(":restaurant-service-api-grpc")
+  implementation project(":restaurant-service-api-grpc")
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.hsqldb:hsqldb'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-	compileOnly 'org.springframework.boot:spring-boot-starter-aop'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.hsqldb:hsqldb'
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+  compileOnly 'org.springframework.boot:spring-boot-starter-aop'
 
-	implementation "io.grpc:grpc-protobuf:${grpcVersion}"
-	implementation "io.grpc:grpc-stub:${grpcVersion}"
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+
+  implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+  implementation "io.grpc:grpc-stub:${grpcVersion}"
 }

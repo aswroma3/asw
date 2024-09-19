@@ -22,7 +22,7 @@ function createModifiedEtcHosts
 }
 
 # aggiunge a /etc/hosts le seguenti entry 
-# - "10.11.1.71 kube-1 kube-cluster kube-control-plane"
+# - "10.11.1.71 kube-1 kube-cluster kube-control-plane kube-nfs"
 # - "10.11.1.72 kube-2 kube-cluster kube-node"
 # - "10.11.1.73 kube-3 kube-cluster kube-node"
 #
@@ -43,7 +43,8 @@ function configureKubeClusterEtcHosts {
 		CURRENT_NODE=${CLUSTER_DOMAIN_PREFIX}$i
 		CURRENT_DOMAIN=${CLUSTER_DOMAIN_PREFIX}cluster
 		CURRENT_GROUP=${CLUSTER_DOMAIN_PREFIX}control-plane
-		echo "${CURRENT_IP} ${CURRENT_NODE} ${CURRENT_DOMAIN} ${CURRENT_GROUP}" >> ${HOSTS_FILE}
+		CURRENT_NFS=${CLUSTER_DOMAIN_PREFIX}nfs
+		echo "${CURRENT_IP} ${CURRENT_NODE} ${CURRENT_DOMAIN} ${CURRENT_GROUP} ${CURRENT_NFS}" >> ${HOSTS_FILE}
 	done
 	# poi i nodi worker 
 	for ((i = ${CLUSTER_CONTROL_PLANE_NODES}+1; i <= ${CLUSTER_CONTROL_PLANE_NODES}+${CLUSTER_WORKER_NODES}; i++))
@@ -59,7 +60,7 @@ function configureKubeClusterEtcHosts {
 
 #function configureKubeClusterEtcHosts {
 #	echo "adding entries for kube-cluster nodes to /etc/hosts"
-#	echo "10.11.1.71 kube-1 kube-cluster kube-control-plane" >> ${HOSTS_FILE}
+#	echo "10.11.1.71 kube-1 kube-cluster kube-control-plane kube-nfs" >> ${HOSTS_FILE}
 #	echo "10.11.1.72 kube-2 kube-cluster kube-node" >> ${HOSTS_FILE}
 #	echo "10.11.1.73 kube-3 kube-cluster kube-node" >> ${HOSTS_FILE}
 #}

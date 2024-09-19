@@ -2,8 +2,7 @@
 # Dockerfile per l'applicazione sentence / word service 
 #######################################################
 
-# FROM openjdk:17-jdk 
-FROM eclipse-temurin:17-jdk 
+FROM eclipse-temurin:21-jdk 
 
 ADD build/libs/word.jar word.jar
 

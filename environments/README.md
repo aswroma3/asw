@@ -4,8 +4,9 @@ Questa sezione del repository contiene il codice (*infrastructure-as-code*)
 di alcuni *ambienti di esecuzione* distribuiti virtuali. 
 Ogni sottosezione (sottocartella) è relativa a un diverso ambiente di esecuzione. 
 
-Attualmente non sono presenti tutti gli ambienti. 
-Verranno aggiunti a questo repository durante lo svolgimento del corso. 
+In questo momento, potrebbero non essere ancora presenti tutti gli ambienti utilizzati durante il corso, 
+oppure alcuni degli ambienti presenti potrebbero non essere stati aggiornati. 
+In tal caso, questi ambienti verranno aggiunti al repository oppure aggiornati durante lo svolgimento del corso. 
 
 Questi ambienti di esecuzione possono essere utilizzati per 
 eseguire i progetti delle applicazioni distribuite 

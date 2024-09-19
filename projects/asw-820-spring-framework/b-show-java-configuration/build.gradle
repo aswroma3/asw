@@ -9,7 +9,7 @@
  
 apply plugin: 'java'
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = '21'
 }
 
 repositories {
@@ -22,10 +22,10 @@ application {
 }
 
 dependencies {
-    implementation 'org.springframework:spring-context:6.0.12'
-	testImplementation 'org.springframework:spring-test:6.0.12'	
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
-	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+    implementation 'org.springframework:spring-context:6.1.12'
+	testImplementation 'org.springframework:spring-test:6.1.12'	
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.0'
 }
 
 test {

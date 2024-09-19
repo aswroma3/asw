@@ -4,5 +4,6 @@
 
 echo Starting Postgres...
 
-docker compose up -d 
+# docker compose up -d 
+docker compose --profile debug up -d 
 
