@@ -62,36 +62,43 @@ Per eseguire un'applicazione (ad eccezione delle applicazioni
 
 Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-spring-boot/f-restaurant-postgresql` e poi: 
 
-* avviare PostgreSQL eseguendo lo script `../start-postgres.sh` 
+* avviare PostgreSQL eseguendo lo script `./start-postgres.sh` 
 
 * avviare l'applicazione eseguendo il comando `gradle bootRun` 
 
-* dopo l'esecuzione dell'applicazione, arrestare PostgreSQL eseguendo lo script `../stop-postgres.sh` 
+* dopo l'esecuzione dell'applicazione, arrestare PostgreSQL eseguendo lo script `./stop-postgres.sh` 
 
 
 #### Esecuzione dell'applicazione **h-lucky-word-properties** 
 
 Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-spring-boot/h-lucky-word-properties` e poi: 
 
-* eseguire lo script `../run-with-default-property.sh` (oppure il comando `gradle bootRun`) 
+* eseguire lo script `./run-with-default-property.sh` (oppure il comando `gradle bootRun`) 
   per avviare il servizio usando la parola fortunata di default (la parola fortunata è *Default*)
 
-* eseguire lo script `../run-with-argument.sh` (oppure il comando `gradle bootRun --args="--lucky.word=Argument"`)
+* eseguire lo script `./run-with-argument.sh` (oppure il comando `gradle bootRun --args="--lucky.word=Argument"`)
   per avviare il servizio passando la parola fortunata come un argomento (la parola fortunata è *Argument*)
 
-* eseguire lo script `../run-with-env-variable.sh` (oppure il comando `LUCKY_WORD="Environment variable" gradle bootRun`)
+* eseguire lo script `./run-with-env-variable.sh` (oppure il comando `LUCKY_WORD="Environment variable" gradle bootRun`)
   per avviare il servizio passando la parola fortunata mediante una variabile d'ambiente (la parola fortunata è *Environment variable*)
+
+Per accedere alla parola fortunata è possibile: 
+
+* usare un browser web ed accedere all'URL `http://localhost:8080/lucky-word` 
+
+* oppure, eseguire lo script `./run-curl-client.sh` che accede all'URL precedente mediante *curl* 
+
 
 #### Esecuzione dell'applicazione **i-lucky-word-profiles** 
 
 Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-spring-boot/i-lucky-word-profiles` e poi: 
 
-* eseguire lo script `../run-as-default.sh` (oppure il comando `gradle bootRun`)
+* eseguire lo script `./run-as-default.sh` (oppure il comando `gradle bootRun`)
   per avviare il servizio usando il profilo di default (la parola fortunata è *Default*)
 
-* eseguire lo script `../run-as-english.sh` (oppure il comando `SPRING_PROFILES_ACTIVE="english" gradle bootRun`)
+* eseguire lo script `./run-as-english.sh` (oppure il comando `SPRING_PROFILES_ACTIVE="english" gradle bootRun`)
   per avviare il servizio usando il profilo **english** (la parola fortunata è *Happy*)
 
-* eseguire lo script `../run-as-italian.sh` (oppure il comando `SPRING_PROFILES_ACTIVE="italian" gradle bootRun`)
+* eseguire lo script `./run-as-italian.sh` (oppure il comando `SPRING_PROFILES_ACTIVE="italian" gradle bootRun`)
   per avviare il servizio usando il profilo **italian** (la parola fortunata è *Evviva*)
 
