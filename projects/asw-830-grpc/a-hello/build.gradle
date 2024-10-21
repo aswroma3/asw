@@ -1,11 +1,11 @@
 buildscript {
   ext {
-    springBootVersion = '3.3.2'
+    springBootVersion = '3.3.4'
     springDependencyManagementVersion = '1.1.6'
     // io.grpc:grpc-protobuf e io.grpc:grpc-stub
-    grpcVersion = '1.66.0'
+    grpcVersion = '1.68.0'
     // com.google.protobuf:protobuf-java-util 
-    protobufVersion = '4.27.3'
+    protobufVersion = '4.28.2'
     // https://github.com/google/protobuf-gradle-plugin 
     protobufPluginVersion = '0.9.4'
     // il codice generato da gRPC usa le annotazioni javax, fornite da questa libreria nella versione 1.x (ma non la 2.x!!!)
