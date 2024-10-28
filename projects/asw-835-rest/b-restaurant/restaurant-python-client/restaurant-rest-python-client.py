@@ -10,7 +10,7 @@ class Restaurant(BaseModel):
 	location: str 
 
 	def __str__(self): 
-		return "Restaurant(rid=" + str(self.rid) + ", name=" + self.name + ", location=" + self.location +")"
+		return "Restaurant(rid=" + str(self.rid) + ", name=" + self.name + ", location=" + self.location + ")"
 
 class GetRestaurantResponse(BaseModel):
 	restaurantId: int
