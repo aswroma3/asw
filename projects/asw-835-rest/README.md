@@ -1,7 +1,6 @@
 # Invocazione remota con REST (asw-835)
 
-Questo progetto contiene alcune applicazioni 
-che esemplificano l'invocazione remota con **REST**:  
+Questo progetto contiene alcune applicazioni che esemplificano l'invocazione remota con **REST**:  
 
 * **a-hello** è un esempio minimale di applicazione client-server basata su REST  
 
@@ -57,7 +56,9 @@ Per eseguire l'applicazione **a-hello** si proceda come segue:
    
    c. per utilizzare invece il client basato su *RestTemplate*, eseguire il comando `gradle hello-client-resttemplate:bootRun` 
 
-   d. come ulteriore alternativa, usare il comando `./run-curl-client.sh` per eseguire un semplice client bash/curl anziché il client Java 
+   d. in alternativa, usare il comando `./run-curl-client.sh` per eseguire un semplice client bash/curl anziché il client Java 
+
+   e. come ulteriore alternativa, è anche possibile usare il comando `./run-python-client.py` per eseguire un semplice client Python anziché il client Java 
 
 Per eseguire le applicazioni **b-restaurant** e **c-restaurant-with-menu** si proceda come segue: 
 
@@ -76,3 +77,5 @@ Per eseguire le applicazioni **b-restaurant** e **c-restaurant-with-menu** si pr
    b. eseguire il comando `gradle restaurant-client-rest:bootRun` (utilizza il client sincrono) 
    
    c. per utilizzare il client asincrono, eseguire il comando `gradle restaurant-async-client-rest:bootRun` 
+
+   d. in alternativa, usare il comando `./run-python-client.sh` per eseguire un client Python semplificato anziché il client Java 
