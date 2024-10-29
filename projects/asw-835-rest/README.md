@@ -78,4 +78,4 @@ Per eseguire le applicazioni **b-restaurant** e **c-restaurant-with-menu** si pr
    
    c. per utilizzare il client asincrono, eseguire il comando `gradle restaurant-async-client-rest:bootRun` 
 
-   d. in alternativa, usare il comando `./run-python-client.sh` per eseguire un client Python semplificato anziché il client Java 
+   d. in alternativa, usare il comando `./run-python-client.py` per eseguire un client Python (semplificato) anziché il client Java 
