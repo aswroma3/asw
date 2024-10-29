@@ -9,7 +9,9 @@
 // Apply the java plugin (to add support for Java) 
 apply plugin: 'java'
 java {
-	sourceCompatibility = '21'
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 // Apply the application plugin (to add support for building an application)
