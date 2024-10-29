@@ -9,7 +9,9 @@
  
 apply plugin: 'java'
 java {
-	sourceCompatibility = '21'
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 repositories {
