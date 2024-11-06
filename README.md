@@ -28,9 +28,12 @@ che vanno eseguite in degli opportuni *ambienti distribuiti*:
 Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 23H2)*. 
 
 * [VirtualBox](https://www.virtualbox.org/), versione 7.0.20 
-  (attenzione, non è possibile la versione più recente 7.1.X di VirtualBox, perché al momento non è compatibile con Vagrant)
+  (in questo momento sto sperimentando la versione più recente 7.1.4 di VirtualBox, che però richiede la versione 2.4.2 di Vagrant, 
+  e mi sembra che non tutto funzioni bene)
 * [Vagrant](https://www.vagrantup.com/), versione 2.4.1
-* [Git](https://git-scm.com/), versione 2.46.0  
+  (in questo momento sto sperimentando la versione più recente 2.4.2 di Vagrant, 
+  e mi sembra che non tutto funzioni bene)
+* [Git](https://git-scm.com/), versione 2.47.0.2  
 * opzionalmente [Docker](https://www.docker.com/), 
   che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali. 
 
