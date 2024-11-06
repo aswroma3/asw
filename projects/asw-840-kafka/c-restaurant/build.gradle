@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    springBootVersion = '3.3.2'
+    springBootVersion = '3.3.4'
     springDependencyManagementVersion = '1.1.6'
     lombokVersion = '1.18.34'
     springdocOpenApiVersion = '2.6.0'
