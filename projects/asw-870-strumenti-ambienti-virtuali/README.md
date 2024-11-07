@@ -9,6 +9,8 @@ Nei diversi ambienti, il provisioning della macchina virtuale viene effettuato i
 
 ## Descrizione degli ambienti  
 
+Ciascuno dei seguenti progetti Vagrant definisce un diverso ambiente, che deve essere creato dall'host usando il comando `vagrant up`
+
 
 ### a-apache-shell 
 
@@ -17,7 +19,7 @@ il provisioning della macchina virtuale viene effettuato mediante l'uso di uno *
 
 La macchina virtuale **default** ha il seguente software: 
 
-* Ubuntu 20.04 LTS a 64 bit (by Bento) 
+* Ubuntu 24.04 LTS a 64 bit (by Bento) 
 
 * Apache HTTP Server - installato mediante uno *script bash* 
 
@@ -37,7 +39,7 @@ il provisioning della macchina virtuale viene effettuato mediante l'uso di *Pupp
 
 La macchina virtuale **default** ha il seguente software: 
 
-* Ubuntu 20.04 LTS a 64 bit (by Bento) 
+* Ubuntu 24.04 LTS a 64 bit (by Bento) 
 
 * Puppet Apply - installato mediante uno *script bash* 
 
@@ -60,7 +62,7 @@ sulla base del modulo predefinito *puppetlabs/apache*.
 
 La macchina virtuale **default** ha il seguente software: 
 
-* Ubuntu 20.04 LTS a 64 bit (by Bento) 
+* Ubuntu 24.04 LTS a 64 bit (by Bento) 
 
 * Puppet Apply - installato mediante uno *script bash* 
 

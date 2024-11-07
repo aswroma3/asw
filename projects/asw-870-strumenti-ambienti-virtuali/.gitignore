@@ -1,4 +1,4 @@
 ### escludi le cartelle di Vagrant ###
 **/.vagrant/
-### escludi progetti di prova ###
-z*/
+### escludi il commento ###
+RICORDATI-DI-CANCELLARE-I-MODULI.txt
