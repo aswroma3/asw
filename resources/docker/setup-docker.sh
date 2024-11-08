@@ -8,27 +8,25 @@ source "/home/asw/resources/common.sh"
 # invocare uno script separato come prepare-docker-configuration.sh 
 
 # set up Docker constants 
-#DOCKER_VERSION=5:24.0.6-1~ubuntu.22.04~jammy
-#DOCKER_VERSION=5:25.0.3-1~ubuntu.22.04~jammy
-#DOCKER_VERSION=5:27.1.2-1~ubuntu.22.04~jammy
 #DOCKER_VERSION=5:27.1.2-1~ubuntu.24.04~noble
-DOCKER_VERSION=5:27.2.1-1~ubuntu.24.04~noble
+#DOCKER_VERSION=5:27.2.1-1~ubuntu.24.04~noble
+DOCKER_VERSION=5:27.3.1-1~ubuntu.24.04~noble
 
 # Per vedere le versioni disponibili 
 # apt-get update && apt-cache madison docker-ce
-# oppure https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/ per ubuntu 22.04
-# anzi https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/ per ubuntu 24.04
+# oppure https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/ per ubuntu 24.04
 
 #CONTAINERD_VERSION=1.7.20-1
 CONTAINERD_VERSION=1.7.22-1
 #DOCKER_COMPOSE_VERSION=2.29.1-1~ubuntu.24.04~noble
-DOCKER_COMPOSE_VERSION=2.29.2-1~ubuntu.24.04~noble
+#DOCKER_COMPOSE_VERSION=2.29.2-1~ubuntu.24.04~noble
+DOCKER_COMPOSE_VERSION=2.29.7-1~ubuntu.24.04~noble
 
 echo "================="
 echo "installing docker"
 echo "================="
 
-# per Ubuntu 20.04 LTS 
+# per Ubuntu 20.04 LTS e successivi 
 VAGRANT_USER=vagrant 
 
 # Update the apt package index 
