@@ -14,10 +14,10 @@ source "/home/asw/resources/common.sh"
 # https://github.com/containerd/nerdctl/releases 
 # https://github.com/containerd/nerdctl/releases/download/v1.1.0/nerdctl-1.1.0-linux-amd64.tar.gz
 
-CONTAINERD_VERSION=1.7.20
-RUNC_VERSION=1.1.13
-CNI_VERSION=1.5.1
-NERDCTL_VERSION=1.7.6
+CONTAINERD_VERSION=1.7.23
+RUNC_VERSION=1.1.15
+CNI_VERSION=1.6.0
+NERDCTL_VERSION=1.7.7
 
 echo "====================="
 echo "installing containerd"
