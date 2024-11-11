@@ -26,11 +26,11 @@ non è adatta per il rilascio con *Kubernetes*.
 Un modo semplice per eseguire Kafka in Kubernetes è utilizzare [Helm](https://helm.sh/), 
 che è già installato nell'ambiente *kube-cluster*, 
 insieme al [package Helm per Kafka](https://bitnami.com/stack/kafka/helm). 
-In pratica, vanno usati il file di configurazione [kafka-value.yaml](kafka-value.yaml) e [kafka-provisioning.yaml](kafka-provisioning.yaml) 
+In pratica, vanno usati il file di configurazione [kafka-values.yaml](kafka-values.yaml) e [kafka-provisioning.yaml](kafka-provisioning.yaml) 
 ed eseguito lo script [deploy-kafka.sh](deploy-kafka.sh) per effetture il rilascio di Kafka in Kubernetes con Helm. 
 
 Alcune osservazioni importanti: 
-* il file di configurazione [kafka-value.yaml](kafka-value.yaml) può essere usato così come è, 
+* il file di configurazione [kafka-values.yaml](kafka-values.yaml) può essere usato così come è, 
   ma bisogna sapere che definisce una configurazione estremamente semplificata di Kafka, senza controllo della sicurezza né persistenza 
 * il file di configurazione [kafka-provisioning.yaml](kafka-provisioning.yaml), prima di poter essere utilizzato, 
   va personalizzato per dichiarare i topic Kafka che si intendono usare nell'applicazione 
