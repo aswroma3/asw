@@ -1,0 +1,8 @@
+include 'recensioni'
+include 'recensioni-api'
+include 'connessioni'
+include 'connessioni-api'
+include 'recensioni-seguite'
+include 'api-gateway'
+
+rootProject.name = 'asw-goodmusic'

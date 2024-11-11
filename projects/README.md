@@ -135,9 +135,11 @@ Nei casi più semplici, è possibile eseguire un'applicazione come segue:
 -->
 
 
-<!---
-## Progetti per l'anno accademico 2023-2024 
+## Progetti per l'anno accademico 2024-2025 
 
+* [asw-goodmusic](asw-goodmusic/): *GoodMusic*: un semplice social network per la condivisione di recensioni di album musicali 
+
+<!---
 * [asw-goodbooks](asw-goodbooks/): *GoodBooks*: un semplice social network per la condivisione di recensioni di libri 
 
 * [asw-edipogram](asw-edipogram/): *Edipogram*: un semplice social network per la condivisione di enigmi e giochi enigmistici 

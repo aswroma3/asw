@@ -1,0 +1,90 @@
+## Configurazione personalizzata semplificata per bitnami/kafka per Kubernetes: 
+## senza sicurezza e senza persistenza 
+##  
+## Estratto e personalizzato a partire dal file values.yaml 
+## Luca Cabibbo
+
+## Kafka listeners configuration
+##
+listeners:
+  ## @param listeners.client.name Name for the Kafka client listener
+  ## @param listeners.client.containerPort Port for the Kafka client listener
+  ## @param listeners.client.protocol Security protocol for the Kafka client listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.client.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  client:
+    containerPort: 9092
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: CLIENT
+    sslClientAuth: ""
+  ## @param listeners.controller.name Name for the Kafka controller listener
+  ## @param listeners.controller.containerPort Port for the Kafka controller listener
+  ## @param listeners.controller.protocol Security protocol for the Kafka controller listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.controller.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  ## Ref: https://cwiki.apache.org/confluence/display/KAFKA/KIP-684+-+Support+mutual+TLS+authentication+on+SASL_SSL+listeners
+  controller:
+    name: CONTROLLER
+    containerPort: 9093
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+  ## @param listeners.interbroker.name Name for the Kafka inter-broker listener
+  ## @param listeners.interbroker.containerPort Port for the Kafka inter-broker listener
+  ## @param listeners.interbroker.protocol Security protocol for the Kafka inter-broker listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.interbroker.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  interbroker:
+    containerPort: 9094
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: INTERNAL
+    sslClientAuth: ""
+  ## @param listeners.external.containerPort Port for the Kafka external listener
+  ## @param listeners.external.protocol Security protocol for the Kafka external listener. . Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.external.name Name for the Kafka external listener
+  ## @param listeners.external.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.sslClientAuth for this listener. Allowed values are 'none', 'requested' and 'required'
+  external:
+    containerPort: 9095
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: EXTERNAL
+    sslClientAuth: ""
+  
+## @section Controller-eligible statefulset parameters
+##
+controller:
+  ## @param controller.replicaCount Number of Kafka controller-eligible nodes
+  ## Ignore this section if running in Zookeeper mode.
+  ##
+  replicaCount: 3
+  ## @param controller.controllerOnly If set to true, controller nodes will be deployed as dedicated controllers, instead of controller+broker processes.
+  ##
+  controllerOnly: false
+  ## Kafka resource requests and limits
+  ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+  ## @param controller.resourcesPreset Set container resources according to one common preset (allowed values: none, nano, micro, small, medium, large, xlarge, 2xlarge). This is ignored if controller.resources is set (controller.resources is recommended for production).
+  ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+  ##
+  resourcesPreset: "small"
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+  ##
+  persistence:
+    ## @param controller.persistence.enabled Enable Kafka data persistence using PVC, note that ZooKeeper persistence is unaffected
+    ##
+#    enabled: true
+    enabled: false
+
+## @section Broker-only statefulset parameters
+##
+broker:
+  ## @param broker.replicaCount Number of Kafka broker-only nodes
+  ##
+  replicaCount: 0
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+  ##
+  persistence:
+    ## @param broker.persistence.enabled Enable Kafka data persistence using PVC, note that ZooKeeper persistence is unaffected
+    ##
+#    enabled: true
+    enabled: false
