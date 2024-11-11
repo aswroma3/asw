@@ -1,7 +1,7 @@
 # Utilizzo di Kafka con Docker e Kubernetes 
 
 Nel rilascio dell'applicazione *GoodMusic* con *Docker* e *Kubernetes*, 
-uno degli aspetti più difficile è probabilmente l'utilizzo di *Kafka^. 
+uno degli aspetti più difficile è probabilmente l'utilizzo di *Kafka*. 
 
 Queste brevi note dovrebbero semplificare lo svolgimento del progetto relativamente all'utilizzo di Kafka. 
 
