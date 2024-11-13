@@ -9,7 +9,7 @@ import java.util.stream.*;
 
 @Service 
 @Primary 
-public class RecensioniSeguiteServiceRestbasedImpl implements RecensioniSeguiteService {
+public class RecensioniSeguiteServiceRestBasedImpl implements RecensioniSeguiteService {
 
 	@Autowired 
 	private ConnessioniClientPort connessioniClient;
