@@ -29,8 +29,8 @@ dependencies {
 //  implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
 //  implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 
-  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  implementation 'org.hsqldb:hsqldb'
+//  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//  implementation 'org.hsqldb:hsqldb'
 
   compileOnly 'org.projectlombok:lombok' 
   annotationProcessor 'org.projectlombok:lombok'
