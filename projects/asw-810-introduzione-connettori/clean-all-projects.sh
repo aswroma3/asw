@@ -8,10 +8,10 @@ echo Cleaning all projects
 # (rispetto alla posizione da cui è stata richiesta l'esecuzione dello script) 
 PATH_TO_SCRIPT=`dirname $0`
 
-# determina i progetti da costruire 
+# determina i progetti Gradle da costruire 
 PROJECTS=$(ls ${PATH_TO_SCRIPT}/*/build.gradle)
 
-# pulisce tutti i progetti 
+# pulisce tutti i progetti Gradle 
 for project in ${PROJECTS}; do 
 	DIR="$(dirname "${project}")" 
 	FILE="$(basename "${project}")"
