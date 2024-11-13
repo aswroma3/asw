@@ -25,7 +25,8 @@ Per eseguire questa versione dell'applicazione:
 
 L'applicazione può essere verificata usando lo script `run-curl-client.sh` oppure `run-curl-client.sh N` per invocare il servizio *N* volte.  
 
-Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela!**). 
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-sentence.sh` 
+(**da usare con cautela, perché comunque questo script fa il `pkill` di un insieme di processi determinati sulla base di un'espressione regolare**). 
 
 Il solo configuration server può invece essere arrestato usando lo script `kill-config-server.sh` (**da usare con cautela!**). 
 
@@ -33,4 +34,5 @@ Il solo configuration server può invece essere arrestato usando lo script `kill
 
 ### Esecuzione senza configuration server 
 
-Se non viene avviato il configuration server ma solo l'applicazione *sentence*, allora l'applicazione usa la configurazione definita nei file di configurazione locali all'applicazione *sentence*. 
+Se non viene avviato il configuration server ma solo l'applicazione *sentence*, 
+allora l'applicazione usa la configurazione definita nei file di configurazione locali all'applicazione *sentence*. 

@@ -6,4 +6,4 @@ rootProject.name = 'asw-sentence'
 
 project(':sentence-service').name = 'sentence'
 project(':word-service').name = 'word'
-project(':config-server').name = 'config'
+project(':config-server').name = 'config-server'

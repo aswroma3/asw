@@ -2,9 +2,6 @@
 
 echo Kill a running configuration server 
 
-TOMATCH=config-server
+echo "Halting process $PROCESSTOKILL"
 
-PROCESSTOKILL=$(ps -af | grep $TOMATCH | grep -v grep | awk '{print $2}' | head -n 1)
-echo "Killing process $PROCESSTOKILL"
-kill -9 $PROCESSTOKILL
-
+pkill -f 'config-server.jar'

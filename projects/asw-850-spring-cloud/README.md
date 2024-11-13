@@ -27,6 +27,9 @@ L'applicazione viene mostrata in più versioni.
 
 Le diverse versioni di questa applicazione hanno una struttura simile (ma di volta in volta un po' diversa), e la loro costruzione ed esecuzione è descritta qui di seguito. 
 
+Inoltre, il progetto [p-sentence-python-client](p-sentence-python-client/) fornisce un client Python multithreaded 
+che può essere utilizzato con tutte le versioni dell'applicazione. 
+
 ## Build  
 
 Per la costruzione di ciascuna versione dell'applicazione, bisogna 
@@ -49,7 +52,8 @@ Vanno però utilizzate più finestre (terminali) diverse. In genere, una per l'app
 
 Per l'esecuzione delle diverse versioni dell'applicazione, vedere il file *README* nella cartella di ciascun sottoprogetto. 
 
-In generale, per eseguire una versione dell'applicazione, bisogna avviare individualmente i servizi che la compongono. Ciascuna versione dell'applicazione contiene gli script necessari ad avviare l'applicazione. 
+In generale, per eseguire una versione dell'applicazione, bisogna avviare individualmente i servizi che la compongono. 
+Ciascuna versione dell'applicazione contiene gli script necessari ad avviare l'applicazione. 
 
 **Attenzione**: l'avvio dell'applicazione *sentence* può richiedere da qualche secondo a qualche minuto. 
 
@@ -57,6 +61,13 @@ Complessivamente, l'applicazione *sentence* espone un servizio REST sulla porta 
 ed è possibile ottenere una frase casuale all'indirizzo `localhost:8080`.
 
 In pratica, l'applicazione può essere verificata usando lo script `run-curl-client.sh` oppure `run-curl-client.sh N` per invocare il servizio *N* volte. 
+L'applicazione può essere verificata anche usando lo script `run-python-client.sh` del progetto [p-sentence-python-client](p-sentence-python-client/).
 
-Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela, perché fa il `pkill` di tutti i processi Java in esecuzione**). 
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-sentence.sh` 
+(**da usare con cautela, perché comunque questo script fa il `pkill` di un insieme di processi determinati sulla base di un'espressione regolare**). 
 
+Se bisogna utilizzare anche *Consul*, allora: 
+
+* Consul va avviato separatamente prima dell'applicazione, eseguendo lo script `start-consul.sh`
+
+* Consul va arrestato separatamente dopo dell'applicazione, eseguendo lo script `stop-consul.sh`
