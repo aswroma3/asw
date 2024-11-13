@@ -26,7 +26,7 @@ Preliminarmente all'esecuzione dell'applicazione è necessario avviare **Kafka**,
 
 * eseguire lo script `start-kafka.sh` 
 
-* eseguire lo script `create-some-kafka-topics.sh`, che crea i topic *asw.alpha*, *asw.beta* e *asw-gamma* 
+* eseguire lo script `create-some-kafka-topics.sh`, che crea i topic *asw-alpha*, *asw-beta* e *asw-gamma* 
 
 
 Inoltre, dopo aver eseguito l'applicazione è necessario arrestare **Kafka**, come segue: 
@@ -61,11 +61,11 @@ Inoltre:
 * se si vuole usare un altro gruppo per il consumatore (il default è *simple-consumer*), 
   avviare il consumatore con il comando `ASW_KAFKA_GROUPID=anothergroup gradle simple-consumer:bootRun`
 
-* se si vuole far ricevere i messaggi al consumatore da un altro canale (il default è *asw.alpha*), 
-  avviare il consumatore con il comando `ASW_KAFKA_CHANNEL_IN=asw.beta gradle simple-consumer:bootRun`
+* se si vuole far ricevere i messaggi al consumatore da un altro canale (il default è *asw-alpha*), 
+  avviare il consumatore con il comando `ASW_KAFKA_CHANNEL_IN=asw-beta gradle simple-consumer:bootRun`
 
-* se si vuole far inviare i messaggi al produttore a un altro canale (il default è *asw.alpha*), 
-  avviare il produttore con il comando `ASW_KAFKA_CHANNEL_OUT=asw.beta gradle simple-producer:bootRun`
+* se si vuole far inviare i messaggi al produttore a un altro canale (il default è *asw-alpha*), 
+  avviare il produttore con il comando `ASW_KAFKA_CHANNEL_OUT=asw-beta gradle simple-producer:bootRun`
 
 * se si vuole far inviare un certo numero di messaggi (il default è *20*), 
   avviare il produttore con il comando `ASW_KAFKA_PRODUCER_MESSAGES_TO_SEND=100 gradle simple-producer:bootRun` 

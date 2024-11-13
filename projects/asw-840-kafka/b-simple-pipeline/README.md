@@ -28,7 +28,7 @@ Preliminarmente all'esecuzione dell'applicazione è necessario avviare **Kafka**,
 
 * eseguire lo script `start-kafka.sh` 
 
-* eseguire lo script `create-some-kafka-topics.sh`, che crea i topic *asw.alpha*, *asw.beta* e *asw-gamma* 
+* eseguire lo script `create-some-kafka-topics.sh`, che crea i topic *asw-alpha*, *asw-beta* e *asw-gamma* 
 
 
 Inoltre, dopo aver eseguito l'applicazione è necessario arrestare **Kafka**, come segue: 
