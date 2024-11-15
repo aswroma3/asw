@@ -28,10 +28,10 @@ che vanno eseguite in degli opportuni *ambienti distribuiti*:
 Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 23H2)*. 
 
 * [VirtualBox](https://www.virtualbox.org/), versione 7.0.22 
-  (in questi giorni ho sperimentato la versione più recente 7.1.4 di VirtualBox, che richiede la versione 2.4.2 di Vagrant, 
-  ma presenta dei problemi, e per questo sono tornato alla versione 7.0.22)
+  (in questi giorni ho sperimentato la versione più recente 7.1.4 di VirtualBox, insieme alla versione 2.4.3 di Vagrant, 
+  che mi sembra funzioni bene, ma forse è ancora troppo presto per dirlo)
 * [Vagrant](https://www.vagrantup.com/), versione 2.4.1
-  (in questo momento sto sperimentando la versione più recente 2.4.2 di Vagrant, 
+  (in questo momento sto sperimentando la versione più recente 2.4.3 di Vagrant, 
   che mi sembra funzioni bene, ma forse è ancora troppo presto per dirlo)
 * [Git](https://git-scm.com/), versione 2.47.0.2  
 * opzionalmente [Docker](https://www.docker.com/), 
