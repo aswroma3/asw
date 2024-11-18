@@ -34,10 +34,7 @@ swapoff -a
 sudo sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
 
 # risolvo l'ip della macchina attuale
-# ubuntu 18.04 
-# IP_ADDR=$(ifconfig  | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}' | grep '10.11.1.')
-# ubuntu 20.04 
-# IP_ADDR=$(ip address | grep 10.11.1. | awk '{ print $2 }' | cut -d/ -f1)
+# ubuntu 24.04 
 IP_ADDR=$(ip address show dev eth1 | grep inet | grep -v inet6 | awk '{ print $2 }' | cut -d/ -f1)
 
 # IP_ADDR=`ifconfig eth1 | grep inet | awk '{print $2}'| cut -f2 -d:`

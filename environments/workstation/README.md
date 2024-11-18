@@ -12,6 +12,7 @@ con le seguenti caratteristiche:
   
 E' composto da una sola macchina virtuale **workstation**. 
 
+Versione per VirtualBox. 
 
 ## Descrizione delle macchine virtuali 
 
@@ -19,7 +20,7 @@ E' composto da una sola macchina virtuale **workstation**.
 
 La macchina virtuale **workstation** ha il seguente software 
 
-* Ubuntu 22.04 LTS a 64 bit (by Bento) 
+* Ubuntu 24.04 LTS a 64 bit (by Bento) 
 
 * Java SDK (Open JDK)
   

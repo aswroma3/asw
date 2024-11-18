@@ -17,7 +17,8 @@ DOCKER_VERSION=5:27.3.1-1~ubuntu.24.04~noble
 # oppure https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/ per ubuntu 24.04
 
 #CONTAINERD_VERSION=1.7.20-1
-CONTAINERD_VERSION=1.7.22-1
+#CONTAINERD_VERSION=1.7.22-1
+CONTAINERD_VERSION=1.7.23-1
 #DOCKER_COMPOSE_VERSION=2.29.1-1~ubuntu.24.04~noble
 #DOCKER_COMPOSE_VERSION=2.29.2-1~ubuntu.24.04~noble
 DOCKER_COMPOSE_VERSION=2.29.7-1~ubuntu.24.04~noble

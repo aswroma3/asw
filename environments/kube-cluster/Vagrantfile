@@ -6,6 +6,8 @@
 # da tre VM (una per il control plane e due nodi worker) 
 # e da una VM esterna al cluster per lo sviluppo. 
 # 
+# Versione per VirtualBox.
+# 
 
 Encoding.default_internal = Encoding.find('Windows-1250') 
 
@@ -69,7 +71,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Configurazioni comuni.
 
-    # Ubuntu 24.04 LTS 64 bit VirtualBox (Bento)
+    # usa VirtualBox come provider 
+	config.vm.provider "virtualbox"
+
+    # Ubuntu 24.04 LTS 64 bit (Bento)
     config.vm.box = IMAGE_BOX
 
     # folder per i progetti Asw (/home/asw/projects)

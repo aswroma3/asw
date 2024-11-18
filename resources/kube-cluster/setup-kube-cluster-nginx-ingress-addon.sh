@@ -22,7 +22,8 @@ sudo mkdir -p ${NGINX_INGRESS_FOLDER}
 
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/ 
 
-NGINX_INGRESS_VERSION=v3.6.2
+#NGINX_INGRESS_VERSION=v3.6.2
+NGINX_INGRESS_VERSION=v3.7.1
 
 # attenzione: usare una versione specifica e non usare il branch "main"
 GITHUB_URL=https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/${NGINX_INGRESS_VERSION}/

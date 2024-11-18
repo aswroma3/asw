@@ -1,7 +1,7 @@
 # Ambienti di esecuzione del corso di Architettura dei Sistemi Software 
 
-Questa sezione del repository contiene il codice (*infrastructure-as-code*) 
-di alcuni *ambienti di esecuzione* distribuiti virtuali. 
+Questa sezione del repository contiene il codice (*infrastructure-as-code*) di alcuni *ambienti di esecuzione* distribuiti virtuali, 
+basati su [Vagrant](https://www.vagrantup.com/) e [VirtualBox](https://www.virtualbox.org/). 
 Ogni sottosezione (sottocartella) è relativa a un diverso ambiente di esecuzione. 
 
 In questo momento, potrebbero non essere ancora presenti tutti gli ambienti utilizzati durante il corso, 
@@ -51,21 +51,6 @@ E' anche possibile:
 
 ## Ambienti 
 
-<!---
-* [developer](developer/):
-  per la compilazione e l'assemblaggio (build) dei progetti definiti nella cartella [projects/](../projects/) del repository, 
-  nonché per l'esecuzione di semplici applicazioni Java; 
-  i progetti (in questo e, anche negli altri ambienti) potranno essere trovati 
-  nella cartella **/home/asw/projects/** oppure nella cartella **projects/** dell'utente di default 
-
-* [workstation](workstation/):
-  un ambiente alternativo a [developer](developer/) per la compilazione e l'assemblaggio (build) dei progetti e per la loro esecuzione; 
-  rispetto a [developer](developer/) ha una configurazione più potente in termini di memoria e processore 
-  (dunque richiede maggiori risorse nel computer host), 
-  per consentire anche l'esecuzione concorrente di molteplici applicazioni; 
-  oltre al software di sviluppo per *Java*, ha anche *Docker* e *Docker Compose* 
---> 
-
 * [workstation](workstation/):
   un ambiente per la compilazione e l'assemblaggio (build) dei progetti Java del repository, 
   nonché per l'esecuzione di queste applicazioni Java, 
@@ -79,10 +64,4 @@ E' anche possibile:
   più un nodo per la compilazione dei progetti e per la costruzione delle immagini dei container *Docker*; 
   richiede una quantità notevole di risorse nel computer host;  
   sono raccomandati una CPU con almeno 4 core e 8 thread e una memoria RAM di almeno 16 GB 
-
-
-
-<!---
-  nulla di altro da escludere, in questo momento 
---> 
 

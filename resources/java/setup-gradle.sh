@@ -5,10 +5,10 @@ source "/home/asw/resources/common.sh"
 # set up Gradle constants 
 # https://services.gradle.org/distributions/gradle-8.6-bin.zip
 
-#GRADLE_VERSION=8.4
 #GRADLE_VERSION=8.6
 #GRADLE_VERSION=8.10
-GRADLE_VERSION=8.10.1
+#GRADLE_VERSION=8.10.1
+GRADLE_VERSION=8.11
 
 GRADLE_ARCHIVE=gradle-${GRADLE_VERSION}-bin.zip
 GET_GRADLE_URL=https://services.gradle.org/distributions

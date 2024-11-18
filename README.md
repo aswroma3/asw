@@ -37,8 +37,10 @@ Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuz
 * opzionalmente [Docker](https://www.docker.com/), 
   che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali. 
 
-E' importante osservare che VirtualBox potrebbe non essere compatibile con Hyper-V di Microsoft, 
-ed inoltre potrebbe avere un rallentamento significativo dalla Virtualization Based Security di Windows 11. 
+E' importante osservare che VirtualBox potrebbe risentire di un peggioramento delle prestazioni 
+(ovvero, di un rallentamento significativo) 
+a causa delle interazioni di VirtualBox con Hyper-V e con la Virtualization Based Security di Windows 11 
+e con i nuovi processori con core di tipo P/E. 
 A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*: 
 * disabilitazione di *Hyper-V*: 
   * tra le *Impostazioni* di *Windows 11*, cercare *Attiva o disattiva funzionalità di Windows* 
@@ -55,12 +57,18 @@ A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*:
     e disabilitare le opzioni *Integrità della memoria* e *Protezione del firmware* 
   * riavviare il computer 
   * (si noti che è possibile riabilitare la VBS effettuando le modifiche inverse)
+* disabilitazione del *power throttling* 
+  (per far assegnare a VirtualBox i P-core con buone prestazioni anziché gli E-core più efficienti da un punto di vista energetico): 
+  * avviare un *Terminale* in modalità *Admin* (aperto con *Win-X*) ed eseguire i seguenti comandi: 
+    * `powercfg /powerthrottling disable /path "C:\Program Files\Oracle\VirtualBox\VBoxHeadless.exe"`
+    * `powercfg /powerthrottling disable /path "C:\Program Files\Oracle\VirtualBox\VirtualBoxVM.exe"`
+    * per verifica, `powercfg /powerthrottling list` dovrebbe indicare *Never On* sia per *VBoxHeadless.exe* che per *VirtualBoxVM.exe*. 
 
 ### Software per lo sviluppo del software 
 
 Ecco il software opzionale per lo sviluppo del software (non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali):
 * [OpenJDK](https://openjdk.org/), versione 21  
-* [Gradle](http://gradle.org/), versione 8.10.1 
+* [Gradle](http://gradle.org/), versione 8.11 
 
 ## Organizzazione del repository 
 

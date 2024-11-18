@@ -3,7 +3,7 @@
 # per la compilazione dei progetti, 
 # con Java, Gradle e Maven, Python, Docker e Docker Compose.  
 #
-# Versione "workstation", con piu' memoria e piu' processori 
+# Versione per VirtualBox.
 # 
 
 VAGRANTFILE_API_VERSION = "2"
@@ -19,7 +19,10 @@ Encoding.default_internal = Encoding.find('Windows-1250')
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Configurazioni comuni.
 
-    # Ubuntu 24.04 LTS 64 bit VirtualBox (Bento)
+    # usa VirtualBox come provider 
+	config.vm.provider "virtualbox"
+
+    # Ubuntu 24.04 LTS 64 bit (Bento)
     config.vm.box = "bento/ubuntu-24.04"
 	
     # folder per i progetti Asw (/home/asw/projects)
@@ -71,7 +74,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # node.vm.network "forwarded_port", guest: 9411, host: 9411, id: 'zipkin'
 
 		# network configuration (/etc/hosts)
-		node.vm.provision :shell, :inline => ASW_RESOURCES + "workstation/configure-workstation-hosts.sh"
+		node.vm.provision "shell" do |s| 
+			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1"
+			s.args = "workstation"
+		end 
 
         # installa Java, Gradle e Maven 
         node.vm.provision :shell, :inline => 'apt-get update'
