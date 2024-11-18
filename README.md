@@ -101,3 +101,13 @@ Per aggiornare il contenuto della propria copia locale del repository,
 usare il seguente comando Git dalla cartella locale in cui è stato scaricato il repository: 
 
     git pull 
+
+## Ambienti di esecuzione alternativi, basati su Vagrant e VMware Workstation 
+
+La sezione [ambienti di esecuzione per VMware Workstation](/wmware-environments/) 
+propone degli ambienti di esecuzione **sperimentali** 
+basati su [Vagrant](https://www.vagrantup.com/) e [VMware Workstation](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion). 
+
+Questi ambienti sono **alternativi** agli [ambienti di esecuzione per VirtualBox](../environments/). 
+
+[Questa sezione](/wmware-environments/) descrive anche il software **aggiuntivo** richiesto per l'utilizzo di questi ambienti. 
