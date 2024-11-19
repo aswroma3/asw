@@ -2,7 +2,10 @@
 
 HOSTS_FILE=/etc/hosts 
 
+# ad esempio, dev 
 MY_HOSTNAME=$1
+# 10.11.1 per VirtualBox, 10.11.2 per VMware 
+MY_SUBNET=$2
 
 # aggiunge un # all'inizio delle linee che iniziano con 127.0.0.1 e 127.0.1.1 
 function createModifiedEtcHosts
@@ -22,7 +25,7 @@ function createModifiedEtcHosts
 function configureWorkstationEtcHosts {
 	# calcola il mio indirizzo IP (sulla rete 10.11.1.xx)
 	# ubuntu 24.04 
-	MY_IP_ADDR=$(ip address | grep 10.11.1. | awk '{ print $2 }' | cut -d/ -f1)
+	MY_IP_ADDR=$(ip address | grep ${MY_SUBNET}. | awk '{ print $2 }' | cut -d/ -f1)
 	echo "adding entries for" ${MY_HOSTNAME} "to /etc/hosts on" ${MY_IP_ADDR}
 	echo ${MY_IP_ADDR}" "${MY_HOSTNAME} >> ${HOSTS_FILE}
 }

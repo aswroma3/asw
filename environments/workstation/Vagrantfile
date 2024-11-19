@@ -75,8 +75,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 		# network configuration (/etc/hosts)
 		node.vm.provision "shell" do |s| 
-			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1"
-			s.args = "workstation"
+			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1 $2"
+			s.args = ["workstation", "10.11.1"]
 		end 
 
         # installa Java, Gradle e Maven 
