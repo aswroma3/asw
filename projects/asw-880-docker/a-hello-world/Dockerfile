@@ -1,6 +1,6 @@
 # BusyBox ha un footprint minimale 
 FROM busybox:latest
-# oppure: FROM ubuntu:22:04
+# oppure: FROM ubuntu:24:04
 
 # visualizza sempre e solo Hello, world! 
 # ENTRYPOINT echo 'Hello, world!'

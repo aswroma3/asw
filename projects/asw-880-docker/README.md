@@ -11,6 +11,8 @@ Sono proposti quattro progetti Docker:
 
 * il container [c-data-volume](c-data-volume), che gestisce un volume di pagine HTML da pubblicare con il server HTTP, alternativo al progetto precedente 
 
+* il container [d-whalesay](d-whalesay), che quando viene avviato mostra una balena che dice una frase (in modo parametrico)
+
 ### Ambiente di esecuzione 
 
 Questi container possono essere eseguiti nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
