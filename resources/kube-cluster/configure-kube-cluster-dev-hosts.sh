@@ -5,6 +5,8 @@ CLUSTER_DOMAIN_PREFIX=$2
 # forza la conversione a integer 
 CLUSTER_CONTROL_PLANE_NODES=$(($3 + 0))
 CLUSTER_WORKER_NODES=$(($4 + 0))
+# esclude quanto c'è dopo l'ultimo punto 
+MY_SUBNET=${STARTING_IP%.*}
 
 HOSTS_FILE=/etc/hosts 
 
@@ -71,7 +73,7 @@ function configureKubeClusterClientEtcHosts {
 function configureKubeClusterDevEtcHosts {
 	# calcola il mio indirizzo IP (sulla rete 10.11.1.xx)
 	# ubuntu 20.04 e 22.04
-	MY_IP_ADDR=$(ip address | grep 10.11.1. | awk '{ print $2 }' | cut -d/ -f1)
+	MY_IP_ADDR=$(ip address | grep ${MY_SUBNET}. | awk '{ print $2 }' | cut -d/ -f1)
 	echo "adding entries for kube-dev to /etc/hosts on " ${MY_IP_ADDR}
 	echo ${MY_IP_ADDR} " kube-dev" >> ${HOSTS_FILE}
 }
