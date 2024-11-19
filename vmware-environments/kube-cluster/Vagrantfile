@@ -11,14 +11,14 @@
 
 Encoding.default_internal = Encoding.find('Windows-1250') 
 
-KUBE_CLUSTER_CONTROL_PLANE_IP='10.11.1.71'
+KUBE_CLUSTER_CONTROL_PLANE_IP='10.11.2.71'
 
 KUBE_CLUSTER_NODES = [
     {
         :name => "kube-1",
         :type => "control-plane",
         :box => "bento/ubuntu-24.04",
-        :eth1 => "10.11.1.71",
+        :eth1 => "10.11.2.71",
         :httpport => "8081",
         :ingressport => "31081",
         :memory => "3072",
@@ -29,7 +29,7 @@ KUBE_CLUSTER_NODES = [
         :name => "kube-2",
         :type => "worker",
         :box => "bento/ubuntu-24.04",
-        :eth1 => "10.11.1.72",
+        :eth1 => "10.11.2.72",
         :httpport => "8082",
         :ingressport => "31082",
         :memory => "3072",
@@ -40,7 +40,7 @@ KUBE_CLUSTER_NODES = [
         :name => "kube-3",
         :type => "worker",
         :box => "bento/ubuntu-24.04",
-        :eth1 => "10.11.1.73",
+        :eth1 => "10.11.2.73",
         :httpport => "8083",
         :ingressport => "31083",
         :memory => "3072",
@@ -51,7 +51,7 @@ KUBE_CLUSTER_NODES = [
         :name => "kube-dev",
         :type => "dev",
         :box => "bento/ubuntu-24.04",
-        :eth1 => "10.11.1.131",
+        :eth1 => "10.11.2.131",
         :gocdport => "8153",
         :memory => "2048",
         :cpus => "2", 
@@ -127,17 +127,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             if opts[:type] == "control-plane"
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
+					s.args = ["10.11.2.70", "kube-", 1, 2]
 				end 
             elsif opts[:type] == "worker"
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
+					s.args = ["10.11.2.70", "kube-", 1, 2]
 				end 
             else # opts[:type] == "dev" 
 				node.vm.provision "shell" do |s| 
 					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-dev-hosts.sh $1 $2 $3 $4"
-					s.args = ["10.11.1.70", "kube-", 1, 2]
+					s.args = ["10.11.2.70", "kube-", 1, 2]
 				end 
             end
 			

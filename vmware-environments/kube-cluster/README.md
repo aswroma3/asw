@@ -30,7 +30,7 @@ La macchina virtuale **kube-1** è configurata come *control plane*, mentre le m
 
 Configurazione di rete 
 
-* Indirizzi IP: 10.11.1.71, 10.11.1.72 e 10.11.1.73 (rispettivamente) delle tre VM 
+* Indirizzi IP: 10.11.2.71, 10.11.2.72 e 10.11.2.73 (rispettivamente) delle tre VM 
 
 * Porte pubblicate sull'host: 
   * la porta 31080 (http dell'ingress controller) è pobblicata sulle porte 31081, 31082, 31083 (rispettivamente) delle tre VM 
@@ -64,7 +64,7 @@ La macchina virtuale **kube-dev** ha il seguente software
 
 Configurazione di rete 
 
-* Indirizzo IP: 10.11.1.131 
+* Indirizzo IP: 10.11.2.131 
 
 * Porte pubblicate sull'host: 8080 (http) -> 8089   
 
