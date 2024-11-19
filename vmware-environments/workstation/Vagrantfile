@@ -1,7 +1,7 @@
 # 
 # Vagrantfile per un singolo nodo (workstation) 
-# per la compilazione dei progetti, 
-# con Java, Gradle e Maven, Python, Docker e Docker Compose.  
+# per la compilazione e l'esecuzione di progetti Java,  
+# con Java, Gradle e Maven, Python, Docker e Docker Compose.   
 #
 # Versione per VMware Workstation. 
 #
@@ -45,8 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #
     config.vm.define "workstation" do |node|
         node.vm.hostname = "workstation" 
-#        node.vm.network "private_network", ip: "10.11.1.121", virtualbox__intnet: true
-        node.vm.network "private_network", ip: "10.11.1.121" 
+        node.vm.network "private_network", ip: "10.11.2.121" 
 
         node.vm.provider "vmware_desktop" do |v| 
             v.vmx["memsize"] = "4096"
@@ -74,8 +73,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 		# network configuration (/etc/hosts)
 		node.vm.provision "shell" do |s| 
-			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1"
-			s.args = "workstation"
+			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1 $2"
+			s.args = ["workstation", "10.11.2"]
 		end 
 
         # installa Java, Gradle e Maven 
@@ -96,8 +95,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
         node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
 		
-        node.vm.provision :shell, 
-            inline: "echo  'configurazione nodo workstation completata'"
+        node.vm.provision :shell, inline: "echo  'configurazione nodo workstation completata'"
 
     end
 

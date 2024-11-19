@@ -34,7 +34,7 @@ La macchina virtuale **workstation** ha il seguente software
 
 Configurazione di rete 
 
-* Indirizzo IP: 10.11.1.121 
+* Indirizzo IP: 10.11.2.121 
 
 * Porte pubblicate sull'host: 8080 -> 8080 (http) 
   <!-- , nonché 9092 -> 9092 (Kafka), 5432 -> 5432 (Postgres) -->
