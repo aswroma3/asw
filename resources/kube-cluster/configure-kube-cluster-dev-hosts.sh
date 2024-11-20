@@ -41,7 +41,7 @@ function configureKubeClusterClientEtcHosts {
 	# prima i nodi master 
 	for ((i = 1; i <= ${CLUSTER_CONTROL_PLANE_NODES}; i++))
 	do 
-		CURRENT_NUM=$(($IP_STARTING_NUM+$i))
+		CURRENT_NUM=$(($IP_STARTING_NUM+$i-1))
 		CURRENT_IP=${IP_PREFIX}${CURRENT_NUM}
 		CURRENT_NODE=${CLUSTER_DOMAIN_PREFIX}$i
 		CURRENT_DOMAIN=${CLUSTER_DOMAIN_PREFIX}cluster
@@ -52,7 +52,7 @@ function configureKubeClusterClientEtcHosts {
 	# poi i nodi worker 
 	for ((i = ${CLUSTER_CONTROL_PLANE_NODES}+1; i <= ${CLUSTER_CONTROL_PLANE_NODES}+${CLUSTER_WORKER_NODES}; i++))
 	do 
-		CURRENT_NUM=$(($IP_STARTING_NUM+$i))
+		CURRENT_NUM=$(($IP_STARTING_NUM+$i-1))
 		CURRENT_IP=${IP_PREFIX}${CURRENT_NUM}
 		CURRENT_NODE=${CLUSTER_DOMAIN_PREFIX}$i
 		CURRENT_DOMAIN=${CLUSTER_DOMAIN_PREFIX}cluster
