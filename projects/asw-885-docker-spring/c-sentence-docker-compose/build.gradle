@@ -1,33 +1,35 @@
 buildscript {
-	ext {
-		springBootVersion = '3.2.3'
-		springDependencyManagementVersion = '1.1.4'
-		springCloudVersion = '2023.0.0'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}")
-	}
+  ext {
+    springBootVersion = '3.3.5'
+    springDependencyManagementVersion = '1.1.6'
+    springCloudVersion = '2023.0.3'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}")
+  }
 }
 
 subprojects {
 
-	apply plugin: 'java'
-	java {
-		sourceCompatibility = '17'
-	}
-
-	group = 'asw.sentence'
-
-	repositories {
-		mavenCentral()
-	}
+  apply plugin: 'java'
+  java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(21)
+    }
+  }
 	
-	tasks.named('test') {
-		useJUnitPlatform()
-	}
+  group = 'asw.sentence'
+
+  repositories {
+    mavenCentral()
+  }
+
+  tasks.named('test') {
+    useJUnitPlatform()
+  }
 
 }
