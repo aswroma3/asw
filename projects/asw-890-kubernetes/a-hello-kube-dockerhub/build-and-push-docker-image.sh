@@ -2,9 +2,11 @@
 
 # per creare l'immagine docker e salvarla su docker hub 
 
-# prerequisito: 1) build del progetto java e 2) aver eseguito il docker login su docker hub 
+# prerequisiti: 
+# 1) build del progetto java e 
+# 2) aver eseguito il docker login su docker hub 
 
-VERSION=2024-08
+VERSION=2024-10
 
 docker build --rm -t hello-kube . 
 docker tag hello-kube aswroma3/hello-kube:${VERSION}

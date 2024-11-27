@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: subject-container
-        image: aswroma3/sentence-word-kube:2024-08
+        image: aswroma3/sentence-word-kube:2024-10
         env: 
         - name: SPRING_PROFILES_ACTIVE
           value: subject
@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
       - name: verb-container
-        image: aswroma3/sentence-word-kube:2024-08
+        image: aswroma3/sentence-word-kube:2024-10
         env: 
         - name: SPRING_PROFILES_ACTIVE
           value: verb
@@ -92,7 +92,7 @@ spec:
     spec:
       containers:
       - name: object-container
-        image: aswroma3/sentence-word-kube:2024-08
+        image: aswroma3/sentence-word-kube:2024-10
         env: 
         - name: SPRING_PROFILES_ACTIVE
           value: object
@@ -131,7 +131,7 @@ spec:
     spec:
       containers:
       - name: sentence-container
-        image: aswroma3/sentence-sentence-kube:2024-08
+        image: aswroma3/sentence-sentence-kube:2024-10
         env: 
         - name: ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME
           value: S-SYNC
@@ -178,7 +178,7 @@ spec:
     spec:
       containers:
       - name: sentence-async-container
-        image: aswroma3/sentence-sentence-async-kube:2024-08
+        image: aswroma3/sentence-sentence-async-kube:2024-10
         env: 
         - name: ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME
           value: S-ASYNC
@@ -224,7 +224,7 @@ spec:
     spec:
       containers:
       - name: apigateway-container
-        image: aswroma3/sentence-apigateway-kube:2024-08
+        image: aswroma3/sentence-apigateway-kube:2024-10
         ports:
         - containerPort: 8080
         livenessProbe: 

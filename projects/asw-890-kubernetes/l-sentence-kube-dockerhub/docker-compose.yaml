@@ -4,7 +4,7 @@ services:
     build: 
       context: ./word-service
       tags: 
-        - "aswroma3/sentence-word-kube:2024-08"
+        - "aswroma3/sentence-word-kube:2024-10"
         - "aswroma3/sentence-word-kube:latest"
     environment: 
       - ASW_SENTENCE_WORDSERVICE_INSTANCENAME=@
@@ -14,7 +14,7 @@ services:
     build: 
       context: ./sentence-service
       tags: 
-        - "aswroma3/sentence-sentence-kube:2024-08"
+        - "aswroma3/sentence-sentence-kube:2024-10"
         - "aswroma3/sentence-sentence-kube:latest"
     environment: 
       - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S-SYNC
@@ -24,7 +24,7 @@ services:
     build: 
       context: ./sentence-service-async
       tags: 
-        - "aswroma3/sentence-sentence-async-kube:2024-08"
+        - "aswroma3/sentence-sentence-async-kube:2024-10"
         - "aswroma3/sentence-sentence-async-kube:latest"
     environment: 
       - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S-ASYNC
@@ -34,6 +34,6 @@ services:
     build: 
       context: ./api-gateway
       tags: 
-        - "aswroma3/sentence-apigateway-kube:2024-08"
+        - "aswroma3/sentence-apigateway-kube:2024-10"
         - "aswroma3/sentence-apigateway-kube:latest"
 

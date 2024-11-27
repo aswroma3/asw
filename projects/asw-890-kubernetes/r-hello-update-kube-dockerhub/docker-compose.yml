@@ -1,10 +1,10 @@
 services:
   hello-v1:
-    image: aswroma3/hello-update-kube:2024-08-v1
+    image: aswroma3/hello-update-kube:2024-10-v1
     build: ./hello-v1
   hello-v2:
-    image: aswroma3/hello-update-kube:2024-08-v2
+    image: aswroma3/hello-update-kube:2024-10-v2
     build: ./hello-v2
   hello-v3:
-    image: aswroma3/hello-update-kube:2024-08-v3
+    image: aswroma3/hello-update-kube:2024-10-v3
     build: ./hello-v3

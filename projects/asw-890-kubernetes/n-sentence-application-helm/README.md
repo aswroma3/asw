@@ -22,7 +22,8 @@ Complessivamente, l'applicazione *sentence* espone un servizio REST sul cluster 
 agli indirizzi **http://sentence.aswroma3.it** e **http://sentence.aswroma3.it:31080**, 
 da cui è possibile ottenere una frase casuale.
 
-In pratica, l'applicazione può essere verificata usando gli script `run-curl-client-ingress.sh` e `run-curl-client-nodeport.sh`. 
+In pratica, l'applicazione può essere verificata usando gli script `run-curl-client-ingress.sh` e `run-curl-client-nodeport.sh`, 
+nonché gli script `run-python-client-ingress.sh` e `run-python-client-nodeport.sh`. 
 
 ## Arresto 
 

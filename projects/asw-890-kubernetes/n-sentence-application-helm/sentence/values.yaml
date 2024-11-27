@@ -4,7 +4,7 @@
 
 sentence: 
   image: 
-    version: "2024-08"
+    version: "2024-10"
   withasync: true 
   withnames: true 
   withdelays: false
