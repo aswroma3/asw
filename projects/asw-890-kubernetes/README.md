@@ -29,6 +29,10 @@ dell'applicazione distribuita **sentence** descritte nei progetti [asw-850-sprin
 
 * [o-sentence-application-ingress-path-rewriting](o-sentence-application-ingress-path-rewriting/): esperimenti con l'ingress controller ed il path rewriting 
 
+* [p-sentence-kube-dns-dockerhub](p-sentence-kube-dns-dockerhub/): codice sorgente per l'applicazione **sentence** basata su DNS anziché su service discovery (le immagini dei container sono già disponibili su *Docker Hub*)
+
+* [q-sentence-kube-dns-application](q-sentence-kube-dns-application/): la specifica dell'applicazione **sentence** basata su DNS anziché su service discovery per Kubernetes 
+
 * [r-hello-update-kube-dockerhub](r-hello-update-kube-dockerhub/): codice sorgente per tre diverse versione dell'applicazione **hello-update** (le immagini dei container sono già disponibili su *Docker Hub*)
 
 * [s-hello-update](s-hello-update/): esperimenti che esemplificano l'esecuzione di rolling update con Kubernetes con riferimento all'applicazione **hello-update** 

@@ -9,7 +9,8 @@ Vanno però utilizzate più finestre (terminali) diverse. In genere, una per l'a
 
 ## Esecuzione 
 
-Per avviare l'applicazione sul nodo **kube-dev**, eseguire lo script `deploy-sentence.sh`. 
+Per avviare l'applicazione sul nodo **kube-dev**, eseguire lo script `deploy-sentence.sh` 
+(oppure lo script `deploy-sentence-multi.sh` per avviare più repliche dei servizi per le parole). 
 
 Complessivamente, l'applicazione *sentence* espone un servizio REST sul cluster *kube-cluster* 
 agli indirizzi **http://sentence.aswroma3.it** e **http://sentence.aswroma3.it:31080**, 
@@ -20,5 +21,5 @@ nonché gli script `run-python-client-ingress.sh` e `run-python-client-nodeport.
 
 ## Arresto 
 
-Per arrestare l'applicazione, eseguire lo script `undeploy-sentence.sh` 
+Per arrestare l'applicazione, eseguire lo script `undeploy-sentence.sh`.
 

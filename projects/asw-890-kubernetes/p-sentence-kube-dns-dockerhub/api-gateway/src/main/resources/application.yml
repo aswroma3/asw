@@ -1,0 +1,147 @@
+# application.yml 
+--- 
+spring: 
+  application: 
+    name: apigateway
+  cloud:
+    consul:
+#    consul: 
+#      host: consul
+#      port: 8500
+#      discovery: 
+#        instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
+#        healthCheckPath: /actuator/health
+#        healthCheckInterval: 10s
+#        # configurazione per effettuare esprimenti, NON USARE UN PRODUZIONE 
+#        # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
+#        healthCheckCriticalTimeout: 45s
+#        # consul deve restituire solo servizi che passano l'health check (default=false) 
+#        queryPassing: true 
+    loadbalancer: 
+      ribbon.enabled: false 
+    # spring cloud gateway routes 
+    gateway:
+      discovery:
+        locator:
+          # spring.cloud.gateway.discovery.locator.enabled abilita la definizione implicita di rotte 
+          # sulla base dei servizi registrati nel servizio di service discover (default=false) 
+          # enabled: true       
+          enabled: false
+      # il time limiter del circuit breaker è settato a 500ms in Resilience4JConfig
+      routes:
+      - id: sentence_route
+        # uri: lb://sentence
+        uri: http://sentence:8080
+        predicates:
+        - Path=/
+        filters:
+        - SetPath=/
+        - name: CircuitBreaker
+          args: 
+            name: sentenceCircuitBreaker 
+            fallbackUri: forward:/fallback/sentence
+      - id: subject_route
+        # uri: lb://subject
+        uri: http://subject:8080
+        predicates:
+        - Path=/subject
+        filters:
+        - SetPath=/
+        - name: CircuitBreaker
+          args: 
+            name: subjectCircuitBreaker 
+            fallbackUri: forward:/fallback/subject
+      - id: verb_route
+        # uri: lb://verb
+        uri: http://verb:8080
+        predicates:
+        - Path=/verb
+        filters:
+        - SetPath=/
+        - name: CircuitBreaker
+          args: 
+            name: verbCircuitBreaker 
+            fallbackUri: forward:/fallback/verb
+      - id: object_route
+        # uri: lb://object
+        uri: http://object:8080
+        predicates:
+        - Path=/object
+        filters:
+        - SetPath=/
+        - name: CircuitBreaker
+          args: 
+            name: objectCircuitBreaker 
+            fallbackUri: forward:/fallback/object
+      - id: index_route
+        # uri: lb://sentence
+        uri: http://sentence:8080
+        predicates:
+        - Path=/index.html
+        filters:
+        - SetPath=/index.html
+    
+server: 
+#  port: ${PORT:${SERVER_PORT:0}}
+  port: 8080
+
+management: 
+  endpoint.gateway.enabled: true 
+  endpoints.web.exposure.include: info,health,gateway,beans
+
+# ATTENZIONE: 
+# QUESTA CONFIGURAZIONE E' PENSATA SOLO PER EFFETTUARE DEGLI ESPERIMENTI
+# MA NON VA USATA IN PRODUZIONE
+resilience4j:
+  # see https://resilience4j.readme.io/docs/circuitbreaker
+  circuitbreaker:
+    circuit-breaker-aspect-order: 1
+    instances:
+      sentenceCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 3s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+      subjectCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+      verbCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+      objectCircuitBreaker:
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 30
+        slow-call-rate-threshold: 50 
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 5s
+  # see https://resilience4j.readme.io/docs/retry 
+
+asw: 
+  # timeout per il circuit breaker, usato in Resilience4JConfig (il default di R4J è 1000 ms)
+  resilience4j.timelimiter.timeoutduration: 500 
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.web.HttpLogging: INFO
+    org.springframework.cloud.gateway: INFO
