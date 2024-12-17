@@ -6,4 +6,4 @@ sentence:
   word: 
     replicas: 2
   apigateway: 
-    replicas: 1
+    replicas: 2
