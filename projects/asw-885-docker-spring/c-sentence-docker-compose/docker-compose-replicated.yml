@@ -1,0 +1,68 @@
+name: sentence 
+
+services:
+  consul:
+    image: docker.io/hashicorp/consul
+  subject:
+    build: ./word-service
+    image: aswroma3/sentence-word:2024-10-compose 
+    environment: 
+      - SPRING_PROFILES_ACTIVE=subject
+      - ASW_SENTENCE_WORDSERVICE_INSTANCENAME=@
+      - ASW_SENTENCE_WORDSERVICE_DELAY=25
+    deploy:
+      mode: replicated
+      replicas: 2
+    depends_on:
+      - "consul"
+  verb:
+    build: ./word-service
+    image: aswroma3/sentence-word:2024-10-compose 
+    environment: 
+      - SPRING_PROFILES_ACTIVE=verb
+      - ASW_SENTENCE_WORDSERVICE_INSTANCENAME=@
+      - ASW_SENTENCE_WORDSERVICE_DELAY=25
+    deploy:
+      mode: replicated
+      replicas: 2
+    depends_on:
+      - "consul"
+  object:
+    build: ./word-service
+    image: aswroma3/sentence-word:2024-10-compose 
+    environment: 
+      - SPRING_PROFILES_ACTIVE=object
+      - ASW_SENTENCE_WORDSERVICE_INSTANCENAME=@
+      - ASW_SENTENCE_WORDSERVICE_DELAY=25
+    deploy:
+      mode: replicated
+      replicas: 2
+    depends_on:
+      - "consul"
+  sentence:
+    build: ./sentence-service
+    image: aswroma3/sentence-sentence:2024-10-compose 
+    environment: 
+      - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S1-SYNC
+      - ASW_SENTENCE_SENTENCESERVICE_DELAY=25
+    depends_on:
+      - "consul"
+  sentence-async:
+    build: ./sentence-service-async
+    image: aswroma3/sentence-sentence-async:2024-10-compose 
+    environment: 
+      - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S2-ASYNC
+      - ASW_SENTENCE_SENTENCESERVICE_DELAY=25
+    depends_on:
+      - "consul"
+  apigateway:
+    build: ./api-gateway
+    image: aswroma3/sentence-apigateway:2024-10-compose 
+    ports:
+      - "8080-8081:8080"
+    deploy:
+      mode: replicated
+      replicas: 2
+      endpoint_mode: vip
+    depends_on:
+      - "consul"
