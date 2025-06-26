@@ -51,7 +51,7 @@ E' anche possibile:
 ## Ambienti 
 
 * [developer](developer/):
-  una variante sperimentale basata su CentOS dell'analogo [ambiente developer per VMware Workstation basato su Ubuntu] (../vmware-ubuntu-environments/developer/). 
+  una variante sperimentale basata su CentOS dell'analogo [ambiente developer per VMware Workstation basato su Ubuntu](../vmware-ubuntu-environments/developer/). 
   
 * [kube-cluster](kube-cluster/):
-  una variante sperimentale basata su CentOS dell'analogo [ambiente kube-cluster per VMware Workstation basato su Ubuntu] (../vmware-ubuntu-environments/kube-cluster/). 
+  una variante sperimentale basata su CentOS dell'analogo [ambiente kube-cluster per VMware Workstation basato su Ubuntu](../vmware-ubuntu-environments/kube-cluster/). 
