@@ -6,7 +6,6 @@ echo "========================================="
 
 # https://docs.tigera.io/calico/latest/getting-started/kubernetes/
 
-#CALICO_VERSION=3.29.0
 #CALICO_VERSION=3.29.1
 CALICO_VERSION=3.30.2
 
