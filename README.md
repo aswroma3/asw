@@ -1,45 +1,63 @@
 # Architettura dei Sistemi Software a Roma Tre (2024-2025)
 
 Benvenuti al repository del corso 
-di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/) 
-a Roma Tre, 
+di [Architettura dei Sistemi Software](https://asw.inf.uniroma3.it/) a Roma Tre, 
 edizione 2024-2025 (A.A. 2024-2025), 
-tenuto dal prof. [Luca Cabibbo](http://cabibbo.inf.uniroma3.it/). 
+tenuto dal prof. [Luca Cabibbo](https://cabibbo.inf.uniroma3.it/). 
 
 Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al branch **asw-2023-2024** di questo repository. 
 
 Questo repository contiene il codice delle *esercitazioni* 
-del corso di [Architettura dei Sistemi Software](http://cabibbo.inf.uniroma3.it/asw/), 
+del corso di [Architettura dei Sistemi Software](https://asw.inf.uniroma3.it/), 
 che sono relative a delle semplici *applicazioni software distribuite* 
 (basate sull'uso di *middleware*), 
 che vanno eseguite in degli opportuni *ambienti distribuiti*: 
 * il software è normalmente scritto in [Java](http://www.oracle.com/technetwork/java/index.html), 
   e costruito con [Gradle](http://gradle.org/); 
 * ciascun ambiente di esecuzione distribuito è composto da una o più macchine virtuali create con 
-  [VirtualBox](https://www.virtualbox.org/) e [Vagrant](https://www.vagrantup.com/), 
+  [VirtualBox](https://www.virtualbox.org/) oppure [VMware Workstation](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
+  e [Vagrant](https://www.vagrantup.com/), 
   e accedute tramite [Git](https://git-scm.com/); 
 * inoltre, alcuni ambienti di esecuzione sono basati sui container [Docker](https://www.docker.com/)
-  e sull'orchestrazione di container [Kubernetes](https://kubernetes.io/)
+  e sull'orchestrazione di container con [Kubernetes](https://kubernetes.io/)
 
 ## Software da installare sul proprio PC 
 
 ### Software per la gestione degli ambienti di esecuzione  
 
-Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 23H2)*. 
+Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 24H1)*. 
 
-* [VirtualBox](https://www.virtualbox.org/), versione 7.0.22 
-  (in questi giorni ho sperimentato la versione più recente 7.1.4 di VirtualBox, insieme alla versione 2.4.3 di Vagrant, 
-  che mi sembra funzioni bene, ma forse è ancora troppo presto per dirlo)
-* [Vagrant](https://www.vagrantup.com/), versione 2.4.1
-  (in questo momento sto sperimentando la versione più recente 2.4.3 di Vagrant, 
-  che mi sembra funzioni bene, ma forse è ancora troppo presto per dirlo)
+* [Vagrant](https://www.vagrantup.com/), versione 2.4.7
+* [VirtualBox](https://www.virtualbox.org/), versione 7.1.10 
+* [VMware Workstation](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.3 
 * [Git](https://git-scm.com/), versione 2.47.0.2  
 * opzionalmente [Docker](https://www.docker.com/), 
-  che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali. 
+  che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali
+* almeno un provider di virtualizzazione scelto tra VirtualBox e VMware Workstation, come descritto qui di seguito 
 
-E' importante osservare che VirtualBox potrebbe risentire di un peggioramento delle prestazioni 
+Ecco il software aggiuntivo richiesto per l'utilizzo di VMware Workstation. 
+
+* [VMware Workstation Pro](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.3
+* [Vagrant VMware Utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility), versione 1.0.24
+* [Vagrant VMware Plugin](https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation)
+  
+E' inoltre necessario essere consapevoli 
+di alcune [limitazioni del supporto di Vagrant per VMware Workstation](https://developer.hashicorp.com/vagrant/docs/providers/vmware/known-issues), 
+ed in particolare la possibilità che, durante l'avvio con Vagrant di macchine virtuali VMware, 
+altre macchine virtuali VMware perdano temporaneamente la connettività di rete.  
+
+Ecco il software aggiuntivo richiesto per l'utilizzo di VirtualBox. 
+
+* [VirtualBox](https://www.virtualbox.org/), versione 7.1.10 
+  
+E' inoltre necessario essere consapevoli 
+di alcune [problematiche del supporto di Vagrant per VirtualBox](https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/common-issues), 
+ed in particolare la possibilità che, durante l'avvio con Vagrant di macchine virtuali VirtualBox, 
+il sistema host non sia in grado di connettersi in rete con la macchina virtuale.  
+
+E' importante osservare che VirtualBox e VMware Workstation potrebbero risentire di un peggioramento delle prestazioni 
 (ovvero, di un rallentamento significativo) 
-a causa delle interazioni di VirtualBox con Hyper-V e con la Virtualization Based Security di Windows 11 
+a causa delle interazioni di VirtualBox e VMware Workstation con Hyper-V e con la Virtualization Based Security di Windows 11 
 e con i nuovi processori con core di tipo P/E. 
 A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*: 
 * disabilitazione di *Hyper-V*: 
@@ -68,7 +86,8 @@ A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*:
 
 Ecco il software opzionale per lo sviluppo del software (non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali):
 * [OpenJDK](https://openjdk.org/), versione 21  
-* [Gradle](http://gradle.org/), versione 8.11 
+* [Gradle](http://gradle.org/), versione 8.12.1 
+
 
 ## Organizzazione del repository 
 
@@ -86,6 +105,7 @@ Attualmente sono presenti tutti i progetti e tutti gli ambienti,
 **ma alcuni di questi potrebbero ancora riferirsi alla precedente edizione del corso**. 
 Durante lo svolgimento del corso tutti i progetti e tutti gli ambienti verranno aggiornati, in modo incrementale. 
 
+
 ## Accesso al repository 
 
 Per effettuare il download del repository, usare il seguente comando Git 
@@ -101,13 +121,3 @@ Per aggiornare il contenuto della propria copia locale del repository,
 usare il seguente comando Git dalla cartella locale in cui è stato scaricato il repository: 
 
     git pull 
-
-## Ambienti di esecuzione alternativi, basati su Vagrant e VMware Workstation 
-
-La sezione [ambienti di esecuzione per VMware Workstation](/wmware-environments/) 
-propone degli ambienti di esecuzione **sperimentali** 
-basati su [Vagrant](https://www.vagrantup.com/) e [VMware Workstation](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion). 
-
-Questi ambienti sono **alternativi** agli [ambienti di esecuzione per VirtualBox](../environments/). 
-
-[Questa sezione](/wmware-environments/) descrive anche il software **aggiuntivo** richiesto per l'utilizzo di questi ambienti. 

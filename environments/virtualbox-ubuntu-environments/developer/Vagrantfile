@@ -1,0 +1,128 @@
+# 
+# Vagrantfile per un singolo nodo (dev) 
+# per la compilazione e l'esecuzione di progetti Java,  
+# con Java, Gradle, Python e Docker.  
+#
+# Versione per VirtualBox basata su Ubuntu.
+# 
+
+VAGRANTFILE_API_VERSION = "2"
+
+# usa VirtualBox come provider
+VM_PROVIDER = "virtualbox"
+# Ubuntu 24.04 LTS 64 bit (Bento)
+VM_IMAGE_BOX = "bento/ubuntu-24.04" 
+# Ubuntu resources folder 
+RESOURCES_FOLDER = "../../../resources/ubuntu-resources/"
+# guest resources folder 
+ASW_RESOURCES = "/home/asw/resources/"
+# downloads folder 
+DOWNLOADS_FOLDER = "../../../resources/downloads/"
+# projects folder 
+PROJECTS_FOLDER = "../../../projects/"
+# host name
+HOST_NAME = "dev"
+# IP address 
+IP_ADDRESS = "10.11.1.121"
+# IP subnet 
+IP_SUBNET = "10.11.1" 
+
+# risolve un problema delle versioni più recenti di Vagrant su Windows 
+# see https://github.com/hashicorp/vagrant/issues/11637
+# sugli altri OS probabilmente va commentato 
+Encoding.default_external = Encoding.find('Windows-1250')
+Encoding.default_internal = Encoding.find('Windows-1250') 
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    # virtualization provider 
+	config.vm.provider VM_PROVIDER
+
+    # VM image box 
+    config.vm.box = VM_IMAGE_BOX
+	
+    # folder per le risorse condivise per gli ambienti Asw  
+    config.vm.synced_folder RESOURCES_FOLDER, ASW_RESOURCES, :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i download condivisi gli ambienti Asw  
+    config.vm.synced_folder DOWNLOADS_FOLDER, "/home/asw/downloads", :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i progetti Asw (/home/asw/projects)
+    config.vm.synced_folder PROJECTS_FOLDER, "/home/asw/projects", :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i dati condivisi per gli ambienti Asw (/home/asw/data) 
+	# da usare per eventuali volumi docker 
+    # config.vm.synced_folder "../../data/", "/home/asw/data", :mount_options => ["dmode=777", "fmode=777"]
+
+    #
+    # Configurazione del nodo "dev", che prevede: 
+    # - Java SDK (Open JDK 21)
+    # - Gradle 
+    # - Python 
+    # - Docker 
+    #
+    config.vm.define "dev" do |node|
+        node.vm.hostname = HOST_NAME 
+		# usa una rete internal (la VM non è visibile dall'host tramite questo indirizzo)
+        node.vm.network "private_network", ip: IP_ADDRESS, virtualbox__intnet: true
+        # in alternativa, usa una rete host-only (la VM è visibile dall'host tramite questo indirizzo) 
+        #node.vm.network "private_network", ip: IP_ADDRESS 
+
+        node.vm.provider "virtualbox" do |v| 
+			# queste risorse consentono anche di lanciare più applicazioni Spring e anche più contenitori Docker
+            v.memory = 4096 
+            v.cpus = 4
+            # nei casi più semplici bastano queste risorse  
+			# v.memory = 2048
+			# v.cpus = 2
+        end 
+
+        node.vm.network "forwarded_port", guest: 22, host: 2222, id: 'ssh', auto_correct: true 
+        node.ssh.forward_agent = true
+ 
+        # pubblicazione di alcune porte sull'host (rimuovere il commento per ogni porta necessaria)
+        node.vm.network "forwarded_port", guest: 8080, host: 8080, id: 'http', auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8081, host: 8081, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8082, host: 8082, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 8083, host: 8083, auto_correct: true
+        # node.vm.network "forwarded_port", guest: 5432, host: 5432, id: 'postgres'
+        # node.vm.network "forwarded_port", guest: 8088, host: 8088, id: 'pgadmin'
+        # node.vm.network "forwarded_port", guest: 9092, host: 9092, id: 'kafka'
+        # node.vm.network "forwarded_port", guest: 8089, host: 8089, id: 'kafka-ui'
+
+		# node.vm.network "forwarded_port", guest: 9090, host: 9090, id: 'prometheus'
+        # node.vm.network "forwarded_port", guest: 3000, host: 3000, id: 'grafana'
+        # node.vm.network "forwarded_port", guest: 9411, host: 9411, id: 'zipkin'
+
+		# network configuration (/etc/hosts)
+		node.vm.provision "shell" do |s| 
+			s.inline = ASW_RESOURCES + "util/configure-etc-hosts.sh $1 $2"
+			s.args = [HOST_NAME, IP_SUBNET]
+		end 
+
+        # installa prerequisiti e strumenti utili 
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "util/setup-unzip.sh"
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "util/setup-grpcurl.sh"
+
+        # installa Java e Gradle 
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-open-jdk.sh"
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
+
+		# installa Python e un ambiente virtuale con alcune librerie per gRPC, REST e Kafka  
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python.sh"
+		node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python-asw-venv.sh"
+
+		# installa docker e docker compose 
+        node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker.sh"
+		
+		# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
+        node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
+		
+		node.vm.provision "shell" do |s| 
+			s.inline = ASW_RESOURCES + "done.sh $1"
+			s.args = [ HOST_NAME ]
+		end 
+
+    end
+
+end

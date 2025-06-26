@@ -1,0 +1,241 @@
+# 
+# Vagrantfile per un cluster Kubernetes composto 
+# da tre VM (una per il control plane e due nodi worker) 
+# e da una VM esterna al cluster per lo sviluppo. 
+# 
+# Versione per VMware Workstation basata su Ubuntu.
+# 
+
+VAGRANTFILE_API_VERSION = "2"
+
+Encoding.default_internal = Encoding.find('Windows-1250') 
+
+# usa VMware Workstation come provider
+VM_PROVIDER = "vmware_desktop"
+# Ubuntu 24.04 LTS 64 bit (Bento)
+VM_IMAGE_BOX = "bento/ubuntu-24.04" 
+# Ubuntu resources folder 
+RESOURCES_FOLDER = "../../../resources/ubuntu-resources/"
+# guest resources folder 
+ASW_RESOURCES = "/home/asw/resources/"
+# downloads folder 
+DOWNLOADS_FOLDER = "../../../resources/downloads/"
+# projects folder 
+PROJECTS_FOLDER = "../../../projects/"
+
+# kube-cluster parameters 
+KUBE_CLUSTER_CONTROL_PLANE_IP='10.11.2.71'
+CLUSTER_DOMAIN_PREFIX='kube-'
+POD_NETWORK_CIDR = "10.12.0.0"
+
+KUBE_CLUSTER_NODES = [
+    {
+        :name => "kube-1",
+        :type => "control-plane",
+#        :box => "bento/ubuntu-24.04",
+        :eth1 => "10.11.2.71",
+        :httpport => "8081",
+        :sshport => "2211",
+        :ingressport => "31081",
+        :memory => "3072",
+        :cpus => "2", 
+        :cpuexecutioncap => "100" 
+    },
+    {
+        :name => "kube-2",
+        :type => "worker",
+#        :box => "bento/ubuntu-24.04",
+        :eth1 => "10.11.2.72",
+        :httpport => "8082",
+        :sshport => "2212",
+        :ingressport => "31082",
+        :memory => "3072",
+        :cpus => "2", 
+        :cpuexecutioncap => "100" 
+    },
+    {
+        :name => "kube-3",
+        :type => "worker",
+#        :box => "bento/ubuntu-24.04",
+        :eth1 => "10.11.2.73",
+        :httpport => "8083",
+        :sshport => "2213",
+        :ingressport => "31083",
+        :memory => "3072",
+        :cpus => "2", 
+        :cpuexecutioncap => "100" 
+    },
+    {
+        :name => "kube-dev",
+        :type => "dev",
+#        :box => "bento/ubuntu-24.04",
+        :eth1 => "10.11.2.79",
+#        :httpport => "8084",
+        :sshport => "2214",
+        :gocdport => "8154",
+        :memory => "2048",
+        :cpus => "2", 
+        :cpuexecutioncap => "100" 
+    }
+]
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    # Configurazioni comuni
+
+    # virtualization provider 
+	config.vm.provider VM_PROVIDER
+
+    # VM image box 
+    config.vm.box = VM_IMAGE_BOX
+	
+    # folder per le risorse condivise per gli ambienti Asw  
+    config.vm.synced_folder RESOURCES_FOLDER, ASW_RESOURCES, :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i download condivisi gli ambienti Asw  
+    config.vm.synced_folder DOWNLOADS_FOLDER, "/home/asw/downloads", :mount_options => ["dmode=777", "fmode=777"]
+
+    # folder per i progetti Asw (/home/asw/projects)
+    config.vm.synced_folder PROJECTS_FOLDER, "/home/asw/projects", :mount_options => ["dmode=777", "fmode=777"]
+	
+    # folder per i dati condivisi per gli ambienti Asw (/home/asw/data) 
+	# da usare per eventuali volumi docker 
+    # config.vm.synced_folder "../../data/", "/home/asw/data", :mount_options => ["dmode=777", "fmode=777"]
+	
+    KUBE_CLUSTER_NODES.each do |opts|
+        config.vm.define opts[:name] do |node|
+
+            # node.vm.box = opts[:box]
+            # node.vm.box_version = opts[:box_version]
+            node.vm.hostname = opts[:name]
+#            node.vm.network "private_network", ip: opts[:eth1], virtualbox__intnet: true
+            node.vm.network "private_network", ip: opts[:eth1] 
+			
+			node.vm.boot_timeout = 600
+			
+            node.vm.provider "vmware_desktop" do |v|
+                v.vmx["memsize"] = opts[:memory]
+                v.vmx["numvcpus"] = opts[:cpus]
+				v.vmx["displayname"] = opts[:name]
+                v.clone_directory = "C:/Var/VMware VMs"
+                v.linked_clone = "false"
+				## questo non sembra avere un equivalente 
+                ## v.customize ["modifyvm", :id, "--cpuexecutioncap", opts[:cpuexecutioncap]]
+            end
+
+            if opts[:sshport] 
+				node.vm.network "forwarded_port", guest: 22, host: opts[:sshport], id: 'ssh', auto_correct: true
+				node.ssh.forward_agent = true
+			end
+            
+            if opts[:httpport] 
+				node.vm.network "forwarded_port", guest: 8080, host: opts[:httpport], id: 'http', auto_correct: true
+			end
+            if opts[:ingressport] 
+				node.vm.network "forwarded_port", guest: 31080, host: opts[:ingressport], id: 'ingress', auto_correct: true
+			end
+            if opts[:gocdport] 
+				node.vm.network "forwarded_port", guest: 8153, host: opts[:gocdport], id: 'gocd', auto_correct: true
+			end
+
+			# 
+			# network configuration (/etc/hosts)
+			#
+            if opts[:type] == "control-plane"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-etc-hosts.sh $1 $2 $3 $4"
+					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP, CLUSTER_DOMAIN_PREFIX, 1, 2]
+				end 
+            elsif opts[:type] == "worker"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-etc-hosts.sh $1 $2 $3 $4"
+					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP, CLUSTER_DOMAIN_PREFIX, 1, 2]
+				end 
+            else # opts[:type] == "dev" 
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-etc-hosts.sh $1 $2 $3 $4 $5"
+					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP, CLUSTER_DOMAIN_PREFIX, 1, 2, opts[:name]]
+				end 
+            end
+			
+			# 
+			# nfs
+			#
+			if opts[:type] == "control-plane"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-server.sh"
+			elsif opts[:type] == "worker"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-client.sh"
+			else # opts[:type] == "dev" 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-nfs-client.sh TRUE"
+			end
+
+			# 
+			# docker / containerd
+			#
+            if opts[:type] == "dev"
+				# installa docker  
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "docker/setup-docker.sh"
+            else # opts[:type] == "control-plane" || opts[:type] == "worker"
+				# installa containerd  
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-containerd.sh"
+            end
+
+			# 
+			# kubernetes 
+			#
+            if opts[:type] == "control-plane"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm.sh"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/start-kube-cluster-control-plane.sh $1"
+					s.args = [POD_NETWORK_CIDR]
+				end 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-helm.sh"
+ 				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/setup-kube-cluster-calico-network-addon.sh $1"
+					s.args = [POD_NETWORK_CIDR]
+				end 
+				# ingress controller (ascolta su 80): 
+                node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kube-cluster-nginx-ingress-addon.sh"
+            elsif opts[:type] == "worker"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm.sh"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/start-kube-cluster-worker.sh $1"
+					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP]
+				end 
+            else # opts[:type] == "dev" 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-kubernetes-kubeadm-client.sh"
+				node.vm.provision "shell" do |s| 
+					s.inline = ASW_RESOURCES + "kube-cluster/configure-kube-cluster-client.sh $1"
+					s.args = [KUBE_CLUSTER_CONTROL_PLANE_IP]
+				end 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/setup-helm.sh"
+            end
+			
+			# 
+			# development tools 
+			#
+			if opts[:type] == "dev"
+				# installa prerequisiti e strumenti utili 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "util/setup-unzip.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "util/setup-grpcurl.sh"
+				# installa Java, Gradle e Maven 
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-open-jdk.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "java/setup-gradle.sh"
+				# installa Python e un ambiente virtuale con alcune librerie per gRPC, REST e Kafka  
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python.sh"
+				node.vm.provision :shell, :inline => ASW_RESOURCES + "python/setup-python-asw-venv.sh"
+			end
+
+			# crea un link simbolico alla cartella dei progetti asw nella cartella dell'utente di default 
+			node.vm.provision :shell, :inline => 'ln -s /home/asw/projects projects'
+
+			node.vm.provision "shell" do |s| 
+				s.inline = ASW_RESOURCES + "done.sh $1"
+				s.args = [ opts[:name] ]
+			end 
+			
+        end
+
+    end
+
+end 
