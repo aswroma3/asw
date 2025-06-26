@@ -9,13 +9,13 @@ che esemplificano l'uso di [Spring Boot](https://spring.io/projects/spring-boot)
 
 * **c-hello-web-mvc** esemplifica Spring Web MVC 
 
-* **d-restaurant-web-data-jpa** è un'applicazione per la gestione di ristoranti, che esemplifica l'uso di Spring Data JPA (nel contesto di un'applicazione Spring Web MVC)
+* **d-restaurants** è un'applicazione per la gestione di ristoranti, che esemplifica l'uso di Spring Data JPA (nel contesto di un'applicazione Spring Web MVC)
 
-* **e-restaurant-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
+* **e-restaurants-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
 
-* **f-restaurant-postgresql** esemplifica l'uso PostgreSQL con Spring Boot  
+* **f-restaurants-postgresql** esemplifica l'uso PostgreSQL con Spring Boot  
 
-* **g-restaurant-actuator** esemplifica l'uso di Spring Boot Actuator 
+* **g-restaurants-actuator** esemplifica l'uso di Spring Boot Actuator 
 
 * **h-lucky-word-properties** esemplifica l'uso delle proprietà per la configurazione delle applicazioni 
 
@@ -40,34 +40,33 @@ In pratica, per compilare e assemblare ciascuna applicazione, bisogna
 Ciascuna di queste applicazioni è composta da un unico componente eseguibile. 
 Le applicazioni web possono essere accedute sulla porta **8080** dell'host, 
 sia se eseguite sul proprio PC che se vengono eseguite 
-nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+nel nodo **dev** di un ambiente **developer**. 
 
 ### Ambiente di esecuzione 
 
 Ciascuna di queste applicazioni può essere eseguita direttamente sul proprio PC,
-oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
-In questo modo, però, le applicazioni web che espongono servizi alla porta **8080** del nodo **workstation** 
+oppure nel nodo **dev** di un ambiente **developer**. 
+In questo modo, però, le applicazioni web che espongono servizi alla porta **8080** del nodo **dev** 
 vengono pubblicate sulla porta **8080** dell'host. 
 
 ### Esecuzione 
 
 Per eseguire un'applicazione (ad eccezione delle applicazioni 
-**f-restaurant-postgresql**, **h-lucky-word-properties** e **i-lucky-word-profiles**, descritte più avanti): 
+**f-restaurants-postgresql**, **h-lucky-word-properties** e **i-lucky-word-profiles**, descritte più avanti): 
 
 1. posizionarsi nella cartella principale dell'applicazione di interesse - ad esempio `~/projects/asw-825-spring-boot/a-hello`
 
 2. eseguire il comando `gradle bootRun` (attenzione, bisogna usare il task `bootRun` di Gradle, e non il task `run`)
 
-#### Esecuzione dell'applicazione **f-restaurant-postgresql** 
+#### Esecuzione dell'applicazione **f-restaurants-postgresql** 
 
-Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-spring-boot/f-restaurant-postgresql` e poi: 
+Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-spring-boot/f-restaurants-postgresql` e poi: 
 
 * avviare PostgreSQL eseguendo lo script `./start-postgres.sh` 
 
 * avviare l'applicazione eseguendo il comando `gradle bootRun` 
 
 * dopo l'esecuzione dell'applicazione, arrestare PostgreSQL eseguendo lo script `./stop-postgres.sh` 
-
 
 #### Esecuzione dell'applicazione **h-lucky-word-properties** 
 
@@ -87,7 +86,6 @@ Per accedere alla parola fortunata è possibile:
 * usare un browser web ed accedere all'URL `http://localhost:8080/lucky-word` 
 
 * oppure, eseguire lo script `./run-curl-client.sh` che accede all'URL precedente mediante *curl* 
-
 
 #### Esecuzione dell'applicazione **i-lucky-word-profiles** 
 

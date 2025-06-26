@@ -2,3 +2,14 @@ gRPC non è ancora compatibile con Spring 3
 
 Credo che il motivo sia che genera codice Java con le annotazioni javax 
 
+Esistono delle dipendenze starter per grpc, tuttavia: 
+- net.devh:grpc-server-spring-boot-starter
+  https://grpc-ecosystem.github.io/grpc-spring/en/server/getting-started.html
+  esemplificata per esempio da 
+  https://medium.com/@AlexanderObregon/getting-started-with-grpc-in-spring-boot-using-the-grpcservice-annotation-2decabbb3a02 
+  usata qui nel progetto za-hello-grpc-spring 
+  semplifica un pochino le cose, ma la libreria non è ufficialmente supportata da Spring 
+- questa libreria supporta anche i test di integrazione, il che non è male 
+- tuttavia, li supporta ancora in modo limitato, il che è poco utile  
+- è iniziato il supporto ufficiale di Spring per gRPC, ma è ancora sperimentale (siamo alla versione 0.3.X) 
+Direi forse di lasciare le cose così fino a quando non ci sia un supporto sufficiale e stabile 

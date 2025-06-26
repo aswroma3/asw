@@ -1,0 +1,18 @@
+<html>
+<body> 
+
+<h1>Find restaurants by location</h1> 
+
+<div>
+	<form th:action="@{/web/restaurants/findByLocation/?location=}+${location}" method="GET"
+	      th:object="${form}">
+		<div> 
+			<label>Location</label>
+			<input type="text" th:field="*{location}" required>
+		</div>
+		<button type="submit">Search restaurants</button>
+	</form>
+</div>
+										
+</body> 
+</html>

@@ -1,0 +1,19 @@
+<html>
+<body> 
+
+<h1><span th:text="${restaurant.name}">name goes here</span></h1> 
+
+<p>
+	Restaurant <span th:text="${restaurant.name}">name goes here</span>
+	(id=<span th:text="${restaurant.id}">id goes here</span>)
+	is located in <span th:text="${restaurant.location}">location goes here</span>.
+</p> 
+
+<hr/>
+
+<p><a href="/web/restaurants">Restaurants list</a></p> 
+<p><a href="/web/restaurants?add">Add a restaurant</a></p> 
+<p><a href="/web/restaurants?search">Find restaurants by location</a></p> 
+
+</body> 
+</html>

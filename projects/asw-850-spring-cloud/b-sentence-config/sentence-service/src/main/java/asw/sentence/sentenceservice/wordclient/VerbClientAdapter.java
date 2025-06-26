@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 public class VerbClientAdapter implements WordClientPort {
 
 	@Value("${asw.sentence.sentenceservice.verb.uri}") 
-	private String verbUri;
+	private String uri;
 
 	@Autowired 
 	private WordRestClient wordRestClient;
 	
 	public String getWord() {
-		return wordRestClient.getWord(verbUri); 
+		return wordRestClient.getWord(uri); 
 	}
 	
 }

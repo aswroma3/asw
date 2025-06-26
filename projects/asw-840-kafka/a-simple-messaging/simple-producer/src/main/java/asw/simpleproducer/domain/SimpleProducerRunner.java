@@ -22,7 +22,7 @@ public class SimpleProducerRunner implements CommandLineRunner {
 	@Value("${asw.kafka.producer.messages-to-send}")
 	private int messagesToSend;
 
-	public void run(String[] args) throws InterruptedException {
+	public void run(String... args) throws InterruptedException {
 		
 		for (int i=0; i<messagesToSend || messagesToSend==0; i++) {
 			// String message = "Message #" + i; 

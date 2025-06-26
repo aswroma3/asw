@@ -12,10 +12,8 @@ public class ObjectClientAdapter implements WordClientPort {
 	private WordRestClient objectRestClient;
 	
 	public String getWord() {
-		return objectRestClient.getWord("object"); 
+		return objectRestClient.getWord(); 
 	}
 	
 }
-
-
 

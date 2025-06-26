@@ -1,0 +1,21 @@
+SCELTA DELLE LIBRERIE 
+
+Client REST 
+Alternative principali: httpx e requests
+Scelta: httpx 
+Motivazioni: async support, http/2 support 
+see: https://oxylabs.io/blog/httpx-vs-requests-vs-aiohttp 
+
+Server REST 
+Alternative principali: flask e fastapi
+Scelta: fastapi 
+Motivazioni: più moderno e più semplice (anche se flask è probabilmente più supportato e diffuso) 
+see: https://www.turing.com/kb/fastapi-vs-flask-a-detailed-comparison
+see: https://shakuro.com/blog/fastapi-vs-flask
+
+Per l'esecuzione richiede uvicorn (?) oppure basta fastapi (?)
+
+Basta Python3.9 o serve Python 3.12?
+
+PROBLEMA: 
+le versioni di pydantic di CentOS e Ubuntu sono incompatibili (più vecchia quella di Ubuntu) 

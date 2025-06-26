@@ -14,6 +14,7 @@ L'esecuzione delle applicazioni distribuite deve essere effettuata
 in un opportuno *ambiente di esecuzione*, 
 definito nella cartella [environments/](../environments/) del repository. 
 
+
 ## Contenuto dei progetti 
 
 I **progetti** si trovano, in ogni ambiente di esecuzione, 
@@ -27,6 +28,7 @@ e in particolare ogni componente eseguibile dell'applicazione
 va eseguito in una macchina virtuale opportuna dell'ambiente. 
 
 Queste informazioni sono descritte nell'ambito di ciascun progetto. 
+
 
 ## Build  
 
@@ -45,8 +47,10 @@ Per compilare un'applicazione sul proprio PC bisogna:
 
 In alternativa, è possibile compilare un'applicazione in una macchina virtuale:   
 
-1. collegarsi con `vagrant ssh` alla macchina virtuale **workstation** 
-   dell'ambiente [workstation](../environments/workstation/), su cui sono installati *Java SDK* e *Gradle* 
+1. collegarsi con `vagrant ssh` alla macchina virtuale **dev** 
+   dell'ambiente [developer per VirtualBox](../environments/virtualbox-environments/developer/) 
+   oppure dell'ambiente [developer per VMware Workstation](../environments/vmware-environments/developer/), 
+   su cui sono installati *Java SDK* e *Gradle* 
 
 2. posizionarsi nella cartella principale dell'applicazione di interesse 
 
@@ -98,39 +102,46 @@ Nei casi più semplici, è possibile eseguire un'applicazione come segue:
 * [asw-850-spring-cloud](asw-850-spring-cloud/): *Spring Cloud* 
 
 <!---
-
   nient'altro da escludere 
 -->
+
+
+## Progetti basati su Python
+
+A titolo di esempio, questi progetti realizzati con Python esemplificano l'uso di gRPC, REST e Kafka con Python: 
+
+* [asw-830-grpc-python](asw-830-grpc-python/): invocazione remota con *gRPC* 
+
+* [asw-835-rest-python](asw-835-rest-python/): invocazione remota con *REST* 
+
+* [asw-840-kafka-python](asw-840-kafka-python/): comunicazione asincrona con *Kafka*
 
 
 ## Progetti Vagrant 
 
-* [asw-870-strumenti-ambienti-virtuali](asw-870-strumenti-ambienti-virtuali/): gestione di ambienti virtuali con *Vagrant* e *Oracle VM VirtualBox* 
-
+* [asw-860-strumenti-ambienti-virtuali](asw-860-strumenti-ambienti-virtuali/): gestione di ambienti virtuali con *Vagrant* e *Oracle VM VirtualBox* 
 
 <!---
-
   nient'altro da escludere 
 -->
 
+
 ## Progetti Docker 
 
-* [asw-880-docker](asw-880-docker/): introduzione a *Docker* 
+* [asw-870-docker](asw-870-docker/): introduzione a *Docker* 
 
-* [asw-885-docker-spring](asw-885-docker-spring/): esecuzione di applicazioni *Spring* con *Docker* 
+* [asw-875-docker-spring](asw-875-docker-spring/): esecuzione di applicazioni *Spring* con *Docker* 
 
 <!---
-
-* [asw-899-docker-su-swarm](asw-899-docker-su-swarm/): rilascio di un'applicazione multi-servizi e multi-container sullo swarm *swarm.inf.uniroma3.it*
+  nient'altro da escludere 
 -->
+
 
 ## Progetti Kubernetes 
 
-
-* [asw-890-kubernetes](asw-890-kubernetes/): *orchestrazione* di container con *Kubernetes* 
+* [asw-880-kubernetes](asw-880-kubernetes/): *orchestrazione* di container con *Kubernetes* 
 
 <!---
-
   nient'altro da escludere 
 -->
 
@@ -150,11 +161,3 @@ Nei casi più semplici, è possibile eseguire un'applicazione come segue:
 
 * [asw-order-manager](asw-order-manager/): *OrderManager*: una semplice applicazione a microservizi per la gestione di ordini di prodotti 
 -->
-
-<!---
-* [asw-895-docker-orchestrazione](asw-895-docker-orchestrazione/): *composizione* e *orchestrazione* di *contenitori Docker* 
-
-* [asw-899-docker-su-swarm](asw-899-docker-su-swarm/): rilascio di un'applicazione multi-servizi e multi-contenitori sullo swarm *swarm.inf.uniroma3.it*
--->
-
-

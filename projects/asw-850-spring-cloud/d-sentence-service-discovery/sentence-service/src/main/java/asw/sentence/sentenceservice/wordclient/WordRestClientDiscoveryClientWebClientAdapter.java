@@ -27,9 +27,9 @@ public class WordRestClientDiscoveryClientWebClientAdapter implements WordRestCl
 
 	private Random random = new Random(); 
 
-	public String getWord(String service) {
+	public String getWord(String serviceId) {
 		String word = null; 
-		URI uri = getWordUri(service); 
+		URI uri = getWordUri(serviceId); 
 		if (uri!=null) {
 			word = webClientGet(uri); 
 		} else {
@@ -55,9 +55,9 @@ public class WordRestClientDiscoveryClientWebClientAdapter implements WordRestCl
 		return word; 
 	}	
 
-	private URI getWordUri(String service) {
+	private URI getWordUri(String serviceId) {
 		URI uri = null; 
-		List<ServiceInstance> list = discoveryClient.getInstances(service);
+		List<ServiceInstance> list = discoveryClient.getInstances(serviceId);
 		if (list!=null && list.size()>0) {
 //			uri = list.get(0).getUri();
 			int randomIndex = random.nextInt(list.size());

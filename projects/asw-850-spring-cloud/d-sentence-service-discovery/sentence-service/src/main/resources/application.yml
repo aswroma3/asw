@@ -23,3 +23,8 @@ server:
 #  port: ${PORT:${SERVER_PORT:0}}
   port: 8080
 
+asw.sentence: 
+  sentenceservice: 
+    subject.serviceId: subject
+    verb.serviceId: verb
+    object.serviceId: object

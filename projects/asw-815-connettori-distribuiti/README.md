@@ -34,7 +34,7 @@ Ciascuna applicazione è composta da due componenti eseguibili (**server** e **cl
 ## Ambiente di esecuzione 
 
 Anche questa applicazione può essere eseguita direttamente sul proprio PC 
-(oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**), 
+(oppure nel nodo **dev** di un ambiente **developer**), 
 utilizzando però due finestre (terminali) diverse: 
 una per il **server** ed una per il **client**. 
 
@@ -55,7 +55,7 @@ Per eseguire un'applicazione si proceda in questo modo:
    a. posizionarsi nella cartella principale dell'applicazione - ad esempio, `~/projects/asw-815-socket/a-client-server-udp`
 
    b. eseguire il comando `gradle client:run` oppure il comando `gradle client:run --args 10.11.1.121` 
-      (`10.11.1.121` è l'indirizzo IP del nodo **workstation**, in cui è in esecuzione il **server**) 
+      (`10.11.1.121` è l'indirizzo IP del nodo **dev**, in cui è in esecuzione il **server**) 
 	  oppure, per accedere a un server remoto differente, 
 	  eseguire il comando `gradle client:run --args indirizzo-server-remoto` 
 

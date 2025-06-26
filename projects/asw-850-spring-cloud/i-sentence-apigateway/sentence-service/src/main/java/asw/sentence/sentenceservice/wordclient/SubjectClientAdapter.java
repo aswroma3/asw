@@ -12,10 +12,8 @@ public class SubjectClientAdapter implements WordClientPort {
 	private WordRestClient subjectRestClient;
 	
 	public String getWord() {
-		return subjectRestClient.getWord("subject"); 
+		return subjectRestClient.getWord(); 
 	}
 	
 }
-
-
 

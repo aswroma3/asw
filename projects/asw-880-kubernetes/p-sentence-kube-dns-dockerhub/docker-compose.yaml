@@ -1,0 +1,39 @@
+services:
+  word:
+#    image: sentence-word-kube 
+    build: 
+      context: ./word-service
+      tags: 
+        - "aswroma3/sentence-word-kube-dns:2025-02"
+        - "aswroma3/sentence-word-kube-dns:latest"
+    environment: 
+      - ASW_SENTENCE_WORDSERVICE_INSTANCENAME=@
+      - ASW_SENTENCE_WORDSERVICE_DELAY=50
+  sentence:
+#    image: sentence-sentence-kube 
+    build: 
+      context: ./sentence-service
+      tags: 
+        - "aswroma3/sentence-sentence-kube-dns:2025-02"
+        - "aswroma3/sentence-sentence-kube-dns:latest"
+    environment: 
+      - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S-SYNC
+      - ASW_SENTENCE_SENTENCESERVICE_DELAY=50
+  sentence-async:
+#    image: sentence-sentence-async-kube
+    build: 
+      context: ./sentence-service-async
+      tags: 
+        - "aswroma3/sentence-sentence-async-kube-dns:2025-02"
+        - "aswroma3/sentence-sentence-async-kube-dns:latest"
+    environment: 
+      - ASW_SENTENCE_SENTENCESERVICE_INSTANCENAME=S-ASYNC
+      - ASW_SENTENCE_SENTENCESERVICE_DELAY=50
+  apigateway:
+#    image: sentence-apigateway-kube
+    build: 
+      context: ./api-gateway
+      tags: 
+        - "aswroma3/sentence-apigateway-kube-dns:2025-02"
+        - "aswroma3/sentence-apigateway-kube-dns:latest"
+

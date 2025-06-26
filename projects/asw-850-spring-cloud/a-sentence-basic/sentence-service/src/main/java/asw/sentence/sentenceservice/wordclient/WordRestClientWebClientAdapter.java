@@ -15,11 +15,11 @@ public class WordRestClientWebClientAdapter implements WordRestClient {
 	@Autowired
     private WebClient webClient;
 	
-	public String getWord(String wordUri) {
+	public String getWord(String uri) {
 		String word = null; 
         Mono<String> response = webClient
                 .get()
-				.uri(wordUri)
+				.uri(uri)
                 .retrieve()
                 .bodyToMono(String.class);
         try {

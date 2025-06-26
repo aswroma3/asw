@@ -1,5 +1,4 @@
-rootProject.name = 'simple-messaging'
 include "simple-producer"
 include "simple-consumer"
 
-
+//rootProject.name = 'simple-messaging'

@@ -27,7 +27,7 @@ L'applicazione viene mostrata in più versioni.
 
 Le diverse versioni di questa applicazione hanno una struttura simile (ma di volta in volta un po' diversa), e la loro costruzione ed esecuzione è descritta qui di seguito. 
 
-Inoltre, il progetto [p-sentence-python-client](p-sentence-python-client/) fornisce un client Python multithreaded 
+Inoltre, il progetto [p-sentence-python-client](p-sentence-python-client/) fornisce un semplice client Python concorrente 
 che può essere utilizzato con tutte le versioni dell'applicazione. 
 
 ## Build  
@@ -45,7 +45,7 @@ Per la descrizione dei componenti eseguibili, vedere il file README nella cartel
 
 ### Ambiente di esecuzione 
 
-Queste applicazioni vanno eseguite nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+Queste applicazioni vanno eseguite nel nodo **dev** di un ambiente **developer**. 
 Vanno però utilizzate più finestre (terminali) diverse. In genere, una per l'applicazione *sentence* e una per il suo client.  
 
 ### Esecuzione 
@@ -57,7 +57,7 @@ Ciascuna versione dell'applicazione contiene gli script necessari ad avviare l'a
 
 **Attenzione**: l'avvio dell'applicazione *sentence* può richiedere da qualche secondo a qualche minuto. 
 
-Complessivamente, l'applicazione *sentence* espone un servizio REST sulla porta **8080** del nodo **workstation**, 
+Complessivamente, l'applicazione *sentence* espone un servizio REST sulla porta **8080** del nodo **dev**, 
 ed è possibile ottenere una frase casuale all'indirizzo `localhost:8080`.
 
 In pratica, l'applicazione può essere verificata usando lo script `run-curl-client.sh` oppure `run-curl-client.sh N` per invocare il servizio *N* volte. 

@@ -12,10 +12,8 @@ public class VerbClientAdapter implements WordClientPort {
 	private WordRestClient verbRestClient;
 	
 	public String getWord() {
-		return verbRestClient.getWord("verb"); 
+		return verbRestClient.getWord(); 
 	}
 	
 }
-
-
 

@@ -1,0 +1,38 @@
+<html>
+<body> 
+
+<h1>Restaurants list</h1> 
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Id</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="restaurant : ${restaurants}">
+				<td th:text="${restaurant.name}">Restaurant name</td>
+				<td th:text="${restaurant.location}">Restaurant location</td>
+				<td th:text="${restaurant.id}">Restaurant id</td>
+                <td>
+                    <a th:href="@{'/web/restaurants/'+${restaurant.id}}">
+                        <span th:text="@{'/web/restaurants/'+${restaurant.id}}">link</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr/>
+
+<p><a href="/web/restaurants">Restaurants list</a></p> 
+<p><a href="/web/restaurants?add">Add a restaurant</a></p> 
+<p><a href="/web/restaurants?search">Find restaurants by location</a></p> 
+
+</body> 
+</html>

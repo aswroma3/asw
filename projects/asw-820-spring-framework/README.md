@@ -31,7 +31,7 @@ Ciascuna di queste applicazioni è composta da un unico componente eseguibile.
 ### Ambiente di esecuzione 
 
 Ciascuna di queste applicazioni può essere eseguita direttamente sul proprio PC,
-oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+oppure nel nodo **dev** di un ambiente **developer**. 
 
 ### Esecuzione 
 

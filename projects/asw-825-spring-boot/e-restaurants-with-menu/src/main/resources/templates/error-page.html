@@ -1,0 +1,25 @@
+<html>
+<body> 
+
+<h1>Restaurant service error page</h1> 
+
+	<p th:if="${request}">
+		<b>Request:</b> <span th:text="${request}">request</span>
+	</p>
+
+	<p th:if="${status}">
+		<b>Response Status:</b> <span th:text="${status}">status-code</span>
+	</p>
+
+	<p th:if="${errorMessage}">
+		<b>Error message:</b> <span th:text="${errorMessage}">Error message</span>
+	</p>
+
+	<p th:unless="${errorMessage}">
+		Cause unknown (no exception details available)
+	</p>
+
+<p>Back to <a href="/">Restaurant service</a></p>  
+
+</body> 
+</html>

@@ -1,0 +1,13 @@
+include "efood-common-api-event"
+include "efood-common-api-command"
+include "restaurant-service-api-event"
+include "restaurant-service-api-command"
+include "restaurant-service-api-rest"
+include "restaurant-server"
+include "restaurant-event-listener"
+include "restaurant-command-publisher"
+include "restaurant-client-rest"
+
+//rootProject.name = 'restaurants'
+
+

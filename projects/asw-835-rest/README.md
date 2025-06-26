@@ -4,10 +4,10 @@ Questo progetto contiene alcune applicazioni che esemplificano l'invocazione rem
 
 * **a-hello** è un esempio minimale di applicazione client-server basata su REST  
 
-* **b-restaurant** è l'applicazione per la gestione di ristoranti (già definita in un precedente progetto),
+* **b-restaurants** è l'applicazione per la gestione di ristoranti (già definita in un precedente progetto),
   che ora espone i suoi servizi mediante REST e con un client REST 
 
-* **c-restaurant-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
+* **c-restaurants-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
 
 Le diverse applicazioni hanno una struttura simile, 
 e la loro costruzione ed esecuzione è descritta qui di seguito. 
@@ -28,12 +28,12 @@ In pratica, per compilare e assemblare ciascuna applicazione, bisogna
 Queste applicazioni sono tutte composte da due componenti eseguibili (un componente server e un componente client). 
 Le applicazioni web possono essere accedute sulla porta **8080** dell'host, 
 sia se eseguite sul proprio PC che se vengono eseguite 
-nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+nel nodo **dev** di un ambiente **developer**. 
 
 ### Ambiente di esecuzione 
 
 Ciascuna di queste applicazioni può essere eseguita direttamente sul proprio PC, 
-oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+oppure nel nodo **dev** di un ambiente **developer**. 
 Vanno però utilizzate due finestre (terminali) diverse: una per il **server** e una per il **client**. 
 
 ### Esecuzione 
@@ -60,11 +60,11 @@ Per eseguire l'applicazione **a-hello** si proceda come segue:
 
    e. come ulteriore alternativa, è anche possibile usare il comando `./run-python-client.py` per eseguire un semplice client Python anziché il client Java 
 
-Per eseguire le applicazioni **b-restaurant** e **c-restaurant-with-menu** si proceda come segue: 
+Per eseguire le applicazioni **b-restaurants** e **c-restaurants-with-menu** si proceda come segue: 
 
 1. sulla finestra (terminale) nodo **server** 
 
-   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/b-restaurant` oppure `~/projects/asw-835-rest/c-restaurant-with-menu`
+   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/b-restaurants` oppure `~/projects/asw-835-rest/c-restaurants-with-menu`
 
    b. eseguire il comando `gradle restaurant-server:bootRun` 
    
@@ -72,7 +72,7 @@ Per eseguire le applicazioni **b-restaurant** e **c-restaurant-with-menu** si pr
 
 2. sulla finestra **client** 
 
-   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/b-restaurant` oppure `~/projects/asw-835-rest/c-restaurant-with-menu`
+   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/b-restaurants` oppure `~/projects/asw-835-rest/c-restaurants-with-menu`
 
    b. eseguire il comando `gradle restaurant-client-rest:bootRun` (utilizza il client sincrono) 
    

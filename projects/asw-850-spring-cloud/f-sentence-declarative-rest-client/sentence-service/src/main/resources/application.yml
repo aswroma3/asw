@@ -22,3 +22,9 @@ spring:
 server: 
 #  port: ${PORT:${SERVER_PORT:0}}
   port: 8080
+
+asw.sentence: 
+  sentenceservice: 
+    subject.feignName: subject
+    verb.feignName: verb
+    object.feignName: object

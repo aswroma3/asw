@@ -14,7 +14,7 @@ Questa applicazione è composta da due componenti eseguibili:
 
 ## Ambiente di esecuzione 
 
-Queste applicazioni vanno eseguite nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+Queste applicazioni vanno eseguite nel nodo **dev** di un ambiente **developer**. 
 Vanno però utilizzate più finestre (terminali) diverse, una per ciascun componente eseguibile dell'applicazione. 
 
 
@@ -22,7 +22,7 @@ Vanno però utilizzate più finestre (terminali) diverse, una per ciascun componen
 
 Preliminarmente all'esecuzione dell'applicazione è necessario avviare **Kafka**, come segue: 
 
-* sul nodo **workstation**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
+* nel nodo **dev**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
 
 * eseguire lo script `start-kafka.sh` 
 
@@ -31,7 +31,7 @@ Preliminarmente all'esecuzione dell'applicazione è necessario avviare **Kafka**,
 
 Inoltre, dopo aver eseguito l'applicazione è necessario arrestare **Kafka**, come segue: 
 
-* sul nodo **workstation**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
+* nel nodo **dev**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
 
 * eseguire lo script `stop-kafka.sh` 
 

@@ -22,9 +22,9 @@ public class WordRestClientLoadBalancerClientRestTemplateAdapter implements Word
 	@Autowired 
 	private RestTemplate restTemplate;
 
-	public String getWord(String service) {
+	public String getWord(String serviceId) {
 		String word = null; 
-		URI uri = getWordUri(service); 
+		URI uri = getWordUri(serviceId); 
 		if (uri!=null) {
 			word = restTemplateGet(uri); 
 		} else {
@@ -45,9 +45,9 @@ public class WordRestClientLoadBalancerClientRestTemplateAdapter implements Word
 		return word; 
 	}
 
-	private URI getWordUri(String service) {
+	private URI getWordUri(String serviceId) {
 		URI uri = null; 
-		ServiceInstance instance = loadBalancer.choose(service);
+		ServiceInstance instance = loadBalancer.choose(serviceId);
 		if (instance!=null) {
 			uri = instance.getUri();
 		}

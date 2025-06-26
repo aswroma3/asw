@@ -34,7 +34,7 @@ Ciascuna di queste applicazioni è composta da un unico componente eseguibile.
 ### Ambiente di esecuzione 
 
 Ciascuna di queste applicazioni può essere eseguita direttamente sul proprio PC, 
-oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+oppure nel nodo **dev** di un ambiente **developer**. 
 
 ### Esecuzione 
 
@@ -60,7 +60,7 @@ I componenti comunicano sulla porta **6789** del **server**.
 ### Ambiente di esecuzione 
 
 Anche questa applicazione può essere eseguita direttamente sul proprio PC 
-(oppure nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**), 
+(oppure nel nodo **dev** di un ambiente **developer**), 
 utilizzando però due finestre (terminali) diverse: 
 una per il **server** e una per il **client**. 
 
@@ -81,5 +81,5 @@ Per eseguire questa applicazione si proceda in questo modo:
    a. posizionarsi nella cartella principale dell'applicazione - in questo caso, `~/projects/asw-810-introduzione-connettori/f-client-server`
 
    b. eseguire il comando `gradle client:run` oppure il comando `gradle client:run --args 10.11.1.121` 
-      (`10.11.1.121` è l'indirizzo IP del nodo **workstation**, in cui è in esecuzione il **server**) 
+      (`10.11.1.121` è l'indirizzo IP del nodo **dev**, in cui è in esecuzione il **server**) 
 	  oppure il comando `gradle client:run --args indirizzo-server-remoto` (per accedere ad un server remoto)

@@ -2,6 +2,7 @@ package asw.sentence.sentenceservice.wordclient;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 
@@ -13,16 +14,19 @@ import reactor.core.publisher.Mono;
 @Primary 
 public class WordRestClientLoadBalancedWebClientAdapter implements WordRestClient {
 
+	@Value("${asw.sentence.sentenceservice.serviceIdToUriFormat}") 
+	private String serviceIdToUriFormat;
+
 	@Autowired 
 	@Qualifier("loadBalancedWebClient")
     private WebClient webClient;
 	
-	public String getWord(String service) {
+	public String getWord(String serviceId) {
 		String word = null; 
-		String serviceUri = "http://" + service; 
+		String uri = getWordUri(serviceId); 
         Mono<String> response = webClient
                 .get()
-				.uri(serviceUri)
+				.uri(uri)
                 .retrieve()
                 .bodyToMono(String.class);
         try {
@@ -32,6 +36,12 @@ public class WordRestClientLoadBalancedWebClientAdapter implements WordRestClien
 			word = "***";
         }
 		return word; 
+	}	
+
+	private String getWordUri(String serviceId) {
+//		String uri = "http://" + service; 
+		String uri = String.format(serviceIdToUriFormat, serviceId); 
+		return uri; 
 	}	
 
 }

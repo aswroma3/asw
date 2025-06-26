@@ -14,7 +14,7 @@ public class HelloClientRunner implements CommandLineRunner {
 	@Autowired
 	private HelloClientPort helloClientAdapter;
 
-	public void run(String[] args) throws InterruptedException {
+	public void run(String... args) throws InterruptedException {
 		logger.info( helloClientAdapter.sayHello("Luca") );
 		logger.info( helloClientAdapter.sayHello("World") );
 	}

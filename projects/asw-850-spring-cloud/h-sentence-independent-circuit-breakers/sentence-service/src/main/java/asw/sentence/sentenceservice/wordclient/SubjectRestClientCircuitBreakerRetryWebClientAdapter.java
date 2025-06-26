@@ -2,6 +2,7 @@ package asw.sentence.sentenceservice.wordclient;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 
@@ -15,6 +16,12 @@ import io.github.resilience4j.retry.annotation.Retry;
 @Service("subjectRestClient") 
 public class SubjectRestClientCircuitBreakerRetryWebClientAdapter implements WordRestClient {
 
+	@Value("${asw.sentence.sentenceservice.subject.serviceId}") 
+	private String serviceId;
+	
+	@Value("${asw.sentence.sentenceservice.serviceIdToUriFormat}") 
+	private String serviceIdToUriFormat;
+	
 	@Autowired 
 	@Qualifier("loadBalancedWebClient")
     private WebClient webClient;
@@ -25,11 +32,11 @@ public class SubjectRestClientCircuitBreakerRetryWebClientAdapter implements Wor
     // @CircuitBreaker(name = "subjectClientCircuitBreaker", fallbackMethod = "getFallbackWord")
 	// oppure 
     // @Retry(name = "wordClientRetry", fallbackMethod = "getFallbackWord")
-	public String getWord(String service) {
-		String serviceUri = "http://" + service; 
+	public String getWord() {
+		String uri = getWordUri(serviceId); 
         Mono<String> response = webClient
                 .get()
-				.uri(serviceUri)
+				.uri(uri)
                 .retrieve()
                 .bodyToMono(String.class);
         return response.block();
@@ -40,4 +47,10 @@ public class SubjectRestClientCircuitBreakerRetryWebClientAdapter implements Wor
 		return fallbackWord; 
 	}
 
+	private String getWordUri(String serviceId) {
+//		String uri = "http://" + service; 
+		String uri = String.format(serviceIdToUriFormat, serviceId); 
+		return uri; 
+	}
+	
 }

@@ -6,7 +6,9 @@ Questo progetto contiene alcune applicazioni distribuite basate sulla **comunica
   
 * **b-simple-pipeline** è una semplice applicazione con un produttore di messaggi, un filtro di messaggi e un consumatore di messaggi 
   
-* **c-restaurant** è l'applicazione per la gestione di ristoranti (già definita in un precedente progetto), con cui è ora possibile interagire anche in modo asincrono 
+* **c-restaurants** è l'applicazione per la gestione di ristoranti (già definita in un precedente progetto), con cui è ora possibile interagire anche in modo asincrono 
+
+* **d-restaurants-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
 
 Le diverse applicazioni hanno una struttura simile, e la loro costruzione ed esecuzione è descritta qui di seguito. 
 
@@ -31,7 +33,7 @@ Per la descrizione dei componenti, vedere il file README nella cartella di ciasc
 
 ### Ambiente di esecuzione 
 
-Queste applicazioni vanno eseguite nell'ambiente [workstation](../../environments/workstation/), sul nodo **workstation**. 
+Queste applicazioni vanno eseguite nel nodo **dev** di un ambiente **developer**. 
 Vanno però utilizzate più finestre (terminali) diverse, una per ciascun componente eseguibile dell'applicazione. 
 
 

@@ -14,10 +14,10 @@ public class WordRestClientRestTemplateAdapter implements WordRestClient {
 	@Autowired 
 	private RestTemplate restTemplate;
 	
-	public String getWord(String wordUri) {
+	public String getWord(String uri) {
 		String word = null; 
 		try {
-			word = restTemplate.getForObject(wordUri, String.class);
+			word = restTemplate.getForObject(uri, String.class);
 		} catch (RestClientException e) {
             /* eccezione remota */ 
 			word = "***"; 

@@ -5,7 +5,7 @@ che non è un'applicazione distribuita.
 
 ## Build  
 
-Per la costruzione dell'applicazione, nell'ambiente di esecuzione [workstation](../../environments/workstation/), sul nodo **workstation**, 
+Per la costruzione dell'applicazione, nel nodo **dev** di un ambiente **developer**, 
 vedere anche le istruzioni descritta nella sezione [projects/](../): 
 
 1. posizionarsi nella cartella principale dell'applicazione `asw-000-ciao-mondo` - 
@@ -14,15 +14,17 @@ vedere anche le istruzioni descritta nella sezione [projects/](../):
 
 2. eseguire il comando `gradle build`  
 
+
 ## Componenti eseguibili 
 
 L'applicazione **ciao-mondo** è composta da un unico componente eseguibile, 
 che dopo la costruzione è presente nella cartella **build/libs** dell'applicazione. 
 
+
 ## Ambiente di esecuzione 
 
-L'applicazione **ciao-mondo** può essere eseguita direttamente nell'ambiente 
-[workstation](../../environments/workstation/), sul nodo **workstation**. 
+L'applicazione **ciao-mondo** può essere eseguita direttamente nel nodo **dev** di un ambiente **developer**. 
+
 
 ## Esecuzione 
 

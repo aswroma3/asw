@@ -1,0 +1,37 @@
+buildscript {
+  ext {
+    springBootVersion = '3.4.2'
+    springDependencyManagementVersion = '1.1.7'
+    lombokVersion = '1.18.36'
+    springdocOpenApiVersion = '2.8.4'
+    mockWebServerVersion = '4.12.0'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+subprojects {
+
+  apply plugin: 'java'
+  java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(21)
+    }
+  }
+	
+  group = 'asw.efood'
+
+  repositories {
+    mavenCentral()
+  }
+
+  tasks.named('test') {
+    useJUnitPlatform()
+  }
+
+}
+

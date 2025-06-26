@@ -2,7 +2,7 @@ include 'sentence-service'
 include 'word-service'
 include 'config-server'
 
-rootProject.name = 'asw-sentence'
+//rootProject.name = 'asw-sentence'
 
 project(':sentence-service').name = 'sentence'
 project(':word-service').name = 'word'

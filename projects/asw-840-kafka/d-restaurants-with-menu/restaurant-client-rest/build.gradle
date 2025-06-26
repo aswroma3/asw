@@ -1,0 +1,35 @@
+plugins {
+  id 'org.springframework.boot' 
+  id 'io.spring.dependency-management' 
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+dependencies {
+  implementation project(":restaurant-service-api-rest")
+
+  implementation 'org.springframework.boot:spring-boot-starter'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux' 
+
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+
+  testImplementation 'org.springframework.boot:spring-boot-starter-test' 
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  testImplementation("com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}") 
+  testImplementation('io.projectreactor:reactor-test') 
+}
+
+//tasks.withType(JavaCompile) {
+//    options.compilerArgs << '-Xlint:unchecked'
+//    options.deprecation = true
+//}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    jvmArgs(['-XX:+EnableDynamicAgentLoading', '-Xshare:off'])
+}
