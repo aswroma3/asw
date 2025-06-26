@@ -40,7 +40,8 @@ dell'applicazione distribuita **sentence** descritte nei progetti [asw-850-sprin
 
 ## Ambiente di esecuzione 
 
-Queste applicazioni vanno eseguite nel nodo **kube-dev** di un ambiente **kube-cluster**. 
+Queste applicazioni vanno eseguite nel nodo **kube-dev** di un ambiente **kube-cluster**
+(quello per VirtualBox oppure quello per VMware Workstation). 
 
 In alcuni casi preliminari o intermedi, il client può essere eseguito solo dai nodi **kube-1**, **kube-2** e **kube-3** del cluster.
 Può essere necessario utilizzare più finestre (terminali) diverse. In genere, una per l'applicazione e una per il suo client.  

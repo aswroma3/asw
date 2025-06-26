@@ -1,4 +1,4 @@
-# Comunicazione asincrona con Kafka, versione per Python (asw-840-kafka-python)
+	# Comunicazione asincrona con Kafka, versione per Python (asw-840-kafka-python)
 
 Questo progetto contiene alcune applicazioni Python che esemplificano la comunicazione asincrona con **Kafka**. 
 
