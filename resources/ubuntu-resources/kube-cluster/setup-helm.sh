@@ -4,7 +4,8 @@
 # https://github.com/helm/helm/releases
 
 #HELM_VERSION=3.16.3
-HELM_VERSION=3.16.4
+#HELM_VERSION=3.16.4
+HELM_VERSION=3.18.3
 
 # https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz
 

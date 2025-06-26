@@ -6,7 +6,7 @@ echo "===================================="
 
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-KUBERNETES_VERSION=1.32 
+KUBERNETES_VERSION=1.33 
 
 # installing kubeadm, kubelet and kubectl
 
