@@ -25,11 +25,9 @@ che vanno eseguite in degli opportuni *ambienti distribuiti*:
 
 ### Software per la gestione degli ambienti di esecuzione  
 
-Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 24H1)*. 
+Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 24H2)*. 
 
 * [Vagrant](https://www.vagrantup.com/), versione 2.4.7
-* [VirtualBox](https://www.virtualbox.org/), versione 7.1.10 
-* [VMware Workstation](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.3 
 * [Git](https://git-scm.com/), versione 2.47.0.2  
 * opzionalmente [Docker](https://www.docker.com/), 
   che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali
