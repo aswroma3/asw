@@ -6,7 +6,8 @@ source "/home/asw/resources/common.sh"
 # https://github.com/helm/helm/releases
 
 #HELM_VERSION=3.16.3
-HELM_VERSION=3.16.4
+#HELM_VERSION=3.16.4
+HELM_VERSION=3.18.3
 
 HELM_FILE=helm-v${HELM_VERSION}-linux-amd64.tar.gz 
 

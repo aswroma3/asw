@@ -14,20 +14,21 @@ source "/home/asw/resources/common.sh"
 # https://github.com/containerd/nerdctl/releases 
 # https://github.com/containerd/nerdctl/releases/download/v1.1.0/nerdctl-1.1.0-linux-amd64.tar.gz
 
-# sto provando la versione 2.0
-# dà un warning nei preflight checks di kubeadm (solo su kube-1) 
-# però per il resto sembra funzionare  
 #CONTAINERD_VERSION=1.7.24
 #CONTAINERD_VERSION=2.0.1
-CONTAINERD_VERSION=2.0.2
+#CONTAINERD_VERSION=2.0.2
+CONTAINERD_VERSION=2.1.3
 #RUNC_VERSION=1.2.3
-RUNC_VERSION=1.2.5
+#RUNC_VERSION=1.2.5
+RUNC_VERSION=1.3.0
 #CNI_VERSION=1.6.1
-CNI_VERSION=1.6.2
+#CNI_VERSION=1.6.2
+CNI_VERSION=1.7.1
 # bisogna provare la versione 2.0
 #NERDCTL_VERSION=1.7.7
 #NERDCTL_VERSION=2.0.2
-NERDCTL_VERSION=2.0.3
+#NERDCTL_VERSION=2.0.3
+NERDCTL_VERSION=2.1.2
 
 echo "====================="
 echo "installing containerd"
