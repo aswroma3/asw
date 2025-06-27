@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "==================="
-echo "disabling firewalld"
-echo "==================="
+echo "====================="
+echo "configuring firewalld"
+echo "====================="
 
 # ci sono problemi di comunicazione tra i nodi del cluster 
 # probabilmente la colpa è di firewalld 
@@ -16,6 +16,7 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 # oppure proviamo ad aprire le porte 6443 e 10250
+# ho provato, ma non funziona (per esempio, fallisce con nfs) 
 
 #firewall-cmd --permanent --add-port=6443/tcp
 #firewall-cmd --permanent --add-port=10250/tcp
