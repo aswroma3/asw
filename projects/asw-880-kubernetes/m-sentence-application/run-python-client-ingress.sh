@@ -27,5 +27,7 @@ SERVICE_HOST=kube-node
 
 echo Accessing ${SERVICE_INGRESS_HOST} on ${SERVICE_HOST}:${INGRESS_PORT}
 
+source /home/asw/venv/bin/activate 
+
 python3 -m rest-python-client-ingress $N $DELAY ${SERVICE_INGRESS_HOST} ${SERVICE_HOST} ${INGRESS_PORT}
 

@@ -22,5 +22,7 @@ SERVICE_NODEPORT=$(kubectl get services/${SERVICE} -n ${SERVICE_NAMESPACE} -o go
 
 echo Accessing ${SERVICE} on ${SERVICE_HOST}:${SERVICE_NODEPORT}
 
+source /home/asw/venv/bin/activate 
+
 python3 -m rest-python-client-nodeport $N $DELAY ${SERVICE_HOST}:${SERVICE_NODEPORT}
 

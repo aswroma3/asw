@@ -19,7 +19,8 @@ spring:
     loadbalancer: 
       ribbon.enabled: false 
     # spring cloud gateway routes 
-    gateway:
+    #gateway:
+    gateway.server.webflux:
       discovery:
         locator:
           # spring.cloud.gateway.discovery.locator.enabled abilita la definizione implicita di rotte 
@@ -80,7 +81,8 @@ server:
   port: 8080
 
 management: 
-  endpoint.gateway.enabled: true 
+#  endpoint.gateway.enabled: true 
+  endpoint.gateway.access: unrestricted 
   endpoints.web.exposure.include: info,health,gateway,beans
 
 # ATTENZIONE: 

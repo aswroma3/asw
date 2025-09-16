@@ -2,4 +2,4 @@
 
 echo Starting RabbitMQ in a Docker Container 
 
-docker run -d --hostname localhost --name asw-rabbit --publish 5672:5672 rabbitmq:3
+docker run -d --hostname localhost --name asw-rabbit --publish 5672:5672 rabbitmq:4

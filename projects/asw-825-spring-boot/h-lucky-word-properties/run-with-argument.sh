@@ -4,6 +4,6 @@
 
 echo Running with lucky word passed as an argument
 
-java -jar build/libs/lucky-word.jar --lucky.word=Argument
+java -jar build/libs/lucky-word.jar --lucky.word=Argument &
 
-# gradle bootRun --args="--lucky.word=Argument"
+# gradle bootRun --args="--lucky.word=Argument" &

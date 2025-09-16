@@ -4,6 +4,6 @@
 
 echo Running as DEFAULT  
 
-java -jar build/libs/lucky-word.jar
+java -jar build/libs/lucky-word.jar &
 
-# gradle bootRun 
+# gradle bootRun &

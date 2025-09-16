@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOCKERHUB_USERNAME=aswroma3 
-VERSION=2024-10
+VERSION=2025-09
 
 docker network create sentence-net 
 

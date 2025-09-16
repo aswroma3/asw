@@ -10,6 +10,9 @@ Le applicazioni sono definite in corrispondenza ad alcune delle applicazioni mos
 
 Alcune osservazioni su queste applicazioni Python: 
 
+* prima di eseguire ognuna delle applicazioni, è necessario compilare i relativi file **.proto** 
+  eseguendo lo script `compile-proto-to-python.sh`
+
 * l'implementazione delle funzionalità potrebbe essere semplificata rispetto alle versioni per Spring Boot 
 
 * tuttavia, le diverse implementazioni tra loro dovrebbero essere compatibili; ad esempio: 
