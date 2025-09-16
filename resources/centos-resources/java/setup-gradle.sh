@@ -8,7 +8,7 @@ source "/home/asw/resources/common.sh"
 #GRADLE_VERSION=8.11.1
 #GRADLE_VERSION=8.12.1
 #GRADLE_VERSION=8.13
-GRADLE_VERSION=8.14.2
+GRADLE_VERSION=8.14.3
 
 GRADLE_ARCHIVE=gradle-${GRADLE_VERSION}-bin.zip
 GET_GRADLE_URL=https://services.gradle.org/distributions

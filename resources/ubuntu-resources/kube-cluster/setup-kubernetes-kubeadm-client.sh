@@ -7,7 +7,8 @@ echo "==============================================="
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 
-KUBERNETES_VERSION=1.33 
+#KUBERNETES_VERSION=1.33
+KUBERNETES_VERSION=1.34
 
 # let iptables see bridged traffic
 cat <<EOF | tee /etc/sysctl.d/k8s.conf

@@ -8,10 +8,6 @@ source "/home/asw/resources/common.sh"
 # invocare uno script separato come prepare-docker-configuration.sh 
 
 # set up Docker constants 
-#DOCKER_VERSION=5:27.3.1-1~ubuntu.24.04~noble
-#DOCKER_VERSION=5:27.4.1-1~ubuntu.24.04~noble
-#DOCKER_VERSION=5:28.0.0-1~ubuntu.24.04~noble
-DOCKER_VERSION=5:28.2.2-1~ubuntu.24.04~noble
 
 # Per vedere le versioni disponibili 
 # apt-get update && apt-cache madison docker-ce
@@ -22,14 +18,25 @@ DOCKER_VERSION=5:28.2.2-1~ubuntu.24.04~noble
 #CONTAINERD_VERSION=1.7.25-1
 CONTAINERD_VERSION=1.7.27-1
 
+#DOCKER_VERSION=5:27.3.1-1~ubuntu.24.04~noble
+#DOCKER_VERSION=5:27.4.1-1~ubuntu.24.04~noble
+#DOCKER_VERSION=5:28.0.0-1~ubuntu.24.04~noble
+#DOCKER_VERSION=5:28.2.2-1~ubuntu.24.04~noble
+#DOCKER_VERSION=5:28.3.3-1~ubuntu.24.04~noble
+DOCKER_VERSION=5:28.4.0-1~ubuntu.24.04~noble
+
 #DOCKER_COMPOSE_VERSION=2.29.7-1~ubuntu.24.04~noble
 #DOCKER_COMPOSE_VERSION=2.32.1-1~ubuntu.24.04~noble
 #DOCKER_COMPOSE_VERSION=2.33.0-1~ubuntu.24.04~noble
-DOCKER_COMPOSE_VERSION=2.36.2-1~ubuntu.24.04~noble
+#DOCKER_COMPOSE_VERSION=2.36.2-1~ubuntu.24.04~noble
+#DOCKER_COMPOSE_VERSION=2.39.1-1~ubuntu.24.04~noble
+DOCKER_COMPOSE_VERSION=2.39.2-1~ubuntu.24.04~noble
 
 #DOCKER_BUILDX_VERSION=0.19.3-1~ubuntu.24.04~noble
 #DOCKER_BUILDX_VERSION=0.21.0-1~ubuntu.24.04~noble
-DOCKER_BUILDX_VERSION=0.24.0-1~ubuntu.24.04~noble
+#DOCKER_BUILDX_VERSION=0.24.0-1~ubuntu.24.04~noble
+#DOCKER_BUILDX_VERSION=0.26.1-1~ubuntu.24.04~noble
+DOCKER_BUILDX_VERSION=0.27.0-1~ubuntu.24.04~noble
 
 echo "================="
 echo "installing docker"

@@ -20,7 +20,7 @@ definiti nella cartella [projects/](../projects/) del repository.
 
 Per usare delle versioni più recenti del software di sviluppo (come *JDK* e *Gradle*) 
 potrebbe essere necessario modificare le prime righe dei relativi script di installazione 
-(ad esempio, **asw/resources/centos-resources/java/setup-open-jdk.sh** per *Open JDK*), 
+(ad esempio, **asw/resources/ubuntu-resources/java/setup-open-jdk.sh** per *Open JDK*), 
 indicando il numero della versione da utilizzare. 
 
 
@@ -39,7 +39,7 @@ Per gestire un ambiente bisogna:
 
 1. usare una shell (per esempio, Git) del proprio PC 
 
-2. posizionarsi nella cartella dell'ambiente di interesse (ad esempio, **asw/environments/virtualbox-environments/developer**)
+2. posizionarsi nella cartella dell'ambiente di interesse (ad esempio, **asw/environments/virtualbox-ubuntu-environments/developer**)
 
 3. per avviare o creare l'ambiente di esecuzione, usare il comando `vagrant up` 
 

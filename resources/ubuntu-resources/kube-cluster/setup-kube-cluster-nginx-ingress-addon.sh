@@ -18,13 +18,14 @@ echo "installing kubernetes nginx ingress controller (master)"
 echo "======================================================="
 
 NGINX_INGRESS_FOLDER=/home/vagrant/kube-cluster/nginx-ingress
-sudo mkdir -p ${NGINX_INGRESS_FOLDER}
+mkdir -p ${NGINX_INGRESS_FOLDER}
 
 # https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/ 
 # https://docs.nginx.com/nginx-ingress-controller/releases/
 
 #NGINX_INGRESS_VERSION=v3.7.2
-NGINX_INGRESS_VERSION=v5.0.0
+#NGINX_INGRESS_VERSION=v5.0.0
+NGINX_INGRESS_VERSION=v5.1.1
 
 # attenzione: usare una versione specifica e non usare il branch "main"
 NGINX_GITHUB_URL=https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/${NGINX_INGRESS_VERSION}

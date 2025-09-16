@@ -6,7 +6,8 @@ echo "===================================="
 
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-KUBERNETES_VERSION=1.33 
+#KUBERNETES_VERSION=1.33
+KUBERNETES_VERSION=1.34
 
 # Set SELinux in permissive mode (effectively disabling it)
 setenforce 0

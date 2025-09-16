@@ -19,8 +19,8 @@ definiti nella cartella [projects/](../../projects/) del repository.
 
 Ecco il software richiesto per l'utilizzo di questi ambienti. 
 
-* [VMware Workstation Pro](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.3
-* [Vagrant](https://www.vagrantup.com/), versione 2.4.7
+* [VMware Workstation Pro](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.4
+* [Vagrant](https://www.vagrantup.com/), versione 2.4.9
 * [Vagrant VMware Utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility), versione 1.0.24
 * [Vagrant VMware Plugin](https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation)
   
@@ -34,7 +34,7 @@ altre macchine virtuali VMware perdano temporaneamente la connettività di rete.
 
 Per usare delle versioni più recenti del software di sviluppo (come *JDK* e *Gradle*) 
 potrebbe essere necessario modificare le prime righe dei relativi script di installazione 
-(ad esempio, **asw/resources/java/setup-open-jdk.sh** per *Open JDK*), 
+(ad esempio, **asw/ubuntu-resources/java/setup-open-jdk.sh** per *Open JDK*), 
 indicando il numero della versione da utilizzare. 
 
 

@@ -6,7 +6,8 @@ echo "===================================="
 
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-KUBERNETES_VERSION=1.33 
+#KUBERNETES_VERSION=1.33
+KUBERNETES_VERSION=1.34
 
 # installing kubeadm, kubelet and kubectl
 
@@ -34,7 +35,7 @@ apt-mark hold kubelet kubeadm kubectl
 
 swapoff -a
 # setto lo swapoff anche per il post reboot
-sudo sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
+sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
 
 # risolvo l'ip della macchina attuale
 # ubuntu 24.04 

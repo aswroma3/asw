@@ -7,7 +7,8 @@ echo "========================================="
 # https://docs.tigera.io/calico/latest/getting-started/kubernetes/
 
 #CALICO_VERSION=3.29.1
-CALICO_VERSION=3.30.2
+#CALICO_VERSION=3.30.2
+CALICO_VERSION=3.30.3
 
 # usa questa pod network al posto di quella di default (192.168.0.0)
 # POD_NETWORK_CIDR=10.12.0.0
@@ -35,3 +36,5 @@ kubectl wait --for=condition=established crd/installations.operator.tigera.io
 kubectl create -f ${CALICO_FOLDER}/custom-resources.yaml
 
 # kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+
+# check: watch kubectl get pods -n calico-system

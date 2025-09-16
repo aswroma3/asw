@@ -2,10 +2,10 @@
 
 Benvenuti al repository del corso 
 di [Architettura dei Sistemi Software](https://asw.inf.uniroma3.it/) a Roma Tre, 
-edizione 2024-2025 (A.A. 2024-2025), 
+edizione 2025-2026 (A.A. 2025-2026), 
 tenuto dal prof. [Luca Cabibbo](https://cabibbo.inf.uniroma3.it/). 
 
-Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al branch **asw-2023-2024** di questo repository. 
+Per la versione del repository relativa alla precedente edizione del corso, si faccia invece riferimento al branch **asw-2024-2025** di questo repository. 
 
 Questo repository contiene il codice delle *esercitazioni* 
 del corso di [Architettura dei Sistemi Software](https://asw.inf.uniroma3.it/), 
@@ -27,15 +27,15 @@ che vanno eseguite in degli opportuni *ambienti distribuiti*:
 
 Ecco il software utilizzato dal docente per la gestione degli ambienti di esecuzione con *Windows 11 Pro (versione 24H2)*. 
 
-* [Vagrant](https://www.vagrantup.com/), versione 2.4.7
-* [Git](https://git-scm.com/), versione 2.47.0.2  
+* [Vagrant](https://www.vagrantup.com/), versione 2.4.9
+* [Git](https://git-scm.com/), versione 2.51.0  
 * opzionalmente [Docker](https://www.docker.com/), 
   che però non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali
 * almeno un provider di virtualizzazione scelto tra VirtualBox e VMware Workstation, come descritto qui di seguito 
 
 Ecco il software aggiuntivo richiesto per l'utilizzo di VMware Workstation. 
 
-* [VMware Workstation Pro](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.3
+* [VMware Workstation Pro](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion), versione 17.6.4
 * [Vagrant VMware Utility](https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility), versione 1.0.24
 * [Vagrant VMware Plugin](https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation)
   
@@ -46,7 +46,7 @@ altre macchine virtuali VMware perdano temporaneamente la connettività di rete.
 
 Ecco il software aggiuntivo richiesto per l'utilizzo di VirtualBox. 
 
-* [VirtualBox](https://www.virtualbox.org/), versione 7.1.10 
+* [Oracle VirtualBox](https://www.virtualbox.org/), versione 7.1.12 
   
 E' inoltre necessario essere consapevoli 
 di alcune [problematiche del supporto di Vagrant per VirtualBox](https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/common-issues), 
@@ -57,7 +57,7 @@ E' importante osservare che VirtualBox e VMware Workstation potrebbero risentire
 (ovvero, di un rallentamento significativo) 
 a causa delle interazioni di VirtualBox e VMware Workstation con Hyper-V e con la Virtualization Based Security di Windows 11 
 e con i nuovi processori con core di tipo P/E. 
-A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*: 
+A tal fine, io utilizzo la seguente configurazione di *Windows 11* (che però disabilità alcune funzionalità di Windows e potrebbe peggiorare la sua sicurezza): 
 * disabilitazione di *Hyper-V*: 
   * tra le *Impostazioni* di *Windows 11*, cercare *Attiva o disattiva funzionalità di Windows* 
     (oppure *Attivazione o disattivazione delle funzionalità di Windows*)
@@ -84,7 +84,7 @@ A tal fine, io ho utilizzato la seguente configurazione di *Windows 11*:
 
 Ecco il software opzionale per lo sviluppo del software (non è strettamente necessario, poiché può essere eseguito nelle macchine virtuali):
 * [OpenJDK](https://openjdk.org/), versione 21  
-* [Gradle](http://gradle.org/), versione 8.12.1 
+* [Gradle](http://gradle.org/), versione 8.14.3 
 
 
 ## Organizzazione del repository 
@@ -111,7 +111,7 @@ dalla cartella locale in cui si vuole scaricare il repository:
 
     git clone https://github.com/aswroma3/asw 
 
-Oppure (se il sistema host è Windows): 
+**Se però il sistema host è Windows**, allora **è necessario utilizzare** questo comando (che lascia i file scaricati nel formato Unix): 
 
     git clone --config core.autocrlf=input https://github.com/aswroma3/asw 
 

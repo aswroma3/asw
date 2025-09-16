@@ -19,8 +19,8 @@ definiti nella cartella [projects/](../../projects/) del repository.
 
 Ecco il software richiesto per l'utilizzo di questi ambienti. 
 
-* [VirtualBox](https://www.virtualbox.org/), versione 7.1.10 
-* [Vagrant](https://www.vagrantup.com/), versione 2.4.7
+* [VirtualBox](https://www.virtualbox.org/), versione 7.1.12 
+* [Vagrant](https://www.vagrantup.com/), versione 2.4.9
   
 E' inoltre necessario essere consapevoli 
 di alcune [problematiche del supporto di Vagrant per VirtualBox](https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/common-issues), 

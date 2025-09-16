@@ -141,7 +141,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			# 
 			# firewalld  
 			#
-            node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/configure-firewalld.sh"
+            node.vm.provision :shell, :inline => ASW_RESOURCES + "kube-cluster/disable-firewalld.sh"
 
 			# 
 			# network configuration (/etc/hosts)

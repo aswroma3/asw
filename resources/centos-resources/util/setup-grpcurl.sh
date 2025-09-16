@@ -6,7 +6,8 @@ source "/home/asw/resources/common.sh"
 # see https://github.com/fullstorydev/grpcurl 
 # https://github.com/fullstorydev/grpcurl/releases/download/v1.9.2/grpcurl_1.9.2_linux_amd64.rpm
 
-GRPCURL_VERSION=1.9.2
+#GRPCURL_VERSION=1.9.2
+GRPCURL_VERSION=1.9.3
 
 GRPCURL_ARCHIVE=grpcurl_${GRPCURL_VERSION}_linux_amd64.rpm
 GET_GRPCURL_URL=https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}
