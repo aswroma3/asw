@@ -1,4 +1,4 @@
-# Architettura dei Sistemi Software a Roma Tre (2024-2025)
+# Architettura dei Sistemi Software a Roma Tre (2025-2026)
 
 Benvenuti al repository del corso 
 di [Architettura dei Sistemi Software](https://asw.inf.uniroma3.it/) a Roma Tre, 
