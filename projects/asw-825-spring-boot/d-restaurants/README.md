@@ -24,7 +24,7 @@ Per eseguire l'applicazione (dopo la sua costruzione), si proceda in questo modo
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-825-spring-boot/c-restaurants/`
 
-   b. eseguire il comando `gradle bootRun` oppure eseguire lo script `run-restaurant-server.sh`
+   b. eseguire il comando `gradle bootRun &` oppure eseguire lo script `run-restaurants-server.sh`
    
-   c. il servizio può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh` 
+   c. il servizio può essere arrestato eseguendo lo script `stop-gradle-processes.sh` 
       (**attenzione**: questo script arresta tutti i processi Gradle in esecuzione) 
