@@ -24,8 +24,8 @@ application {
 }
 
 dependencies {
-    implementation 'org.springframework:spring-context:6.2.10'
-	testImplementation 'org.springframework:spring-test:6.2.10'	
+    implementation 'org.springframework:spring-context:6.2.11'
+	testImplementation 'org.springframework:spring-test:6.2.11'	
     testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.4'
 }
