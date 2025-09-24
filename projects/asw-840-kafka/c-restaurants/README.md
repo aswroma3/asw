@@ -48,7 +48,7 @@ Si proceda in questo modo:
 
    b. eseguire il comando `gradle restaurant-event-listener:bootRun` 
    
-   c. l'ascoltatore di eventi può essere arrestato con CTRL-C 
+   c. l'ascoltatore di eventi può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh`
 
 2. sulla finestra (terminale) nodo **server** 
 
@@ -56,7 +56,7 @@ Si proceda in questo modo:
 
    b. eseguire il comando `gradle restaurant-server:bootRun` 
    
-   c. il servizio può essere arrestato con CTRL-C 
+   c. il servizio può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh`
 
 3. sulla finestra **command publisher** 
 

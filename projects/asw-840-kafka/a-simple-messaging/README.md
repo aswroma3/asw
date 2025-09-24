@@ -22,16 +22,14 @@ Vanno però utilizzate più finestre (terminali) diverse, una per ciascun componen
 
 Preliminarmente all'esecuzione dell'applicazione è necessario avviare **Kafka**, come segue: 
 
-* nel nodo **dev**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
+* nel nodo **dev**, posizionarsi nella cartella principale di questo progetto `~/projects/asw-840-kafka/a-simple-messaging/` 
 
-* eseguire lo script `start-kafka.sh` 
-
-* eseguire lo script `create-some-kafka-topics.sh`, che crea i topic *asw-alpha*, *asw-beta* e *asw-gamma* 
+* eseguire lo script `start-kafka-for-simple-messaging.sh`, che avvia *Kafka* ed inoltre crea i topic *asw-alpha*, *asw-beta* e *asw-gamma* 
 
 
 Inoltre, dopo aver eseguito l'applicazione è necessario arrestare **Kafka**, come segue: 
 
-* nel nodo **dev**, posizionarsi nella cartella principale del progetto `~/projects/asw-840-kafka/` 
+* nel nodo **dev**, posizionarsi nella cartella principale di questo progetto `~/projects/asw-840-kafka/a-simple-messaging/` 
 
 * eseguire lo script `stop-kafka.sh` 
 
@@ -44,15 +42,15 @@ Si proceda in questo modo:
 
 1. sulla finestra (terminale) nodo **consumatore** 
 
-   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/a-simple-messaging`
+   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/a-simple-messaging/`
 
    b. eseguire il comando `gradle simple-consumer:bootRun` 
    
-   c. il consumatore può essere arrestato con CTRL-C 
+   c. il consumatore può essere poi arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh`
 
 2. sulla finestra **produttore** 
 
-   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/a-simple-messaging`
+   a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/a-simple-messaging/`
 
    b. eseguire il comando `gradle simple-producer:bootRun` 
 
