@@ -27,11 +27,11 @@ dependencies {
 }
 
 //tasks.withType(JavaCompile) {
-//    options.compilerArgs << '-Xlint:unchecked'
-//    options.deprecation = true
+//  options.compilerArgs << '-Xlint:unchecked'
+//  options.deprecation = true
 //}
 
 tasks.named('test') {
-    useJUnitPlatform()
-    jvmArgs(['-XX:+EnableDynamicAgentLoading', '-Xshare:off'])
+  useJUnitPlatform()
+  jvmArgs(['-XX:+EnableDynamicAgentLoading', '-Xshare:off'])
 }

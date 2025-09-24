@@ -25,8 +25,8 @@ dependencies {
   implementation "io.grpc:grpc-protobuf:${grpcVersion}"
   implementation "io.grpc:grpc-stub:${grpcVersion}"
 
-  // per le annotazioni javax
-  compileOnly "jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationApiVersionForGRPCGeneratedCode}"
+  // per le annotazioni javax (no, non più necessario)
+  // compileOnly "jakarta.annotation:jakarta.annotation-api:${jakartaAnnotationApiVersionForGRPCGeneratedCode}"
 
   implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
   implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
