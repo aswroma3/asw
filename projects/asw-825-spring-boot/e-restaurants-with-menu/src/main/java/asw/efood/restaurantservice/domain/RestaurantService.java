@@ -36,20 +36,18 @@ public class RestaurantService {
 
  	public Restaurant getRestaurant(Long id) throws RestaurantServiceException {
 		Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-		if (restaurant!=null) { 
-			return restaurant; 
-		} else {
+		if (restaurant==null) { 
 			throw new RestaurantServiceException("Unable to find restaurant with " + id); 
 		}
+		return restaurant; 
 	}
 
  	public Restaurant getRestaurant(String name, String location) throws RestaurantServiceException {
 		Restaurant restaurant = restaurantRepository.findByNameAndLocation(name, location).orElse(null);
-		if (restaurant!=null) { 
-			return restaurant; 
-		} else {
+		if (restaurant==null) { 
 			throw new RestaurantServiceException("Unable to find restaurant with " + name + " and " + location); 
 		}
+		return restaurant; 
 	}
 
 	public Collection<Restaurant> getAllRestaurants() {
@@ -64,22 +62,20 @@ public class RestaurantService {
 
  	public RestaurantMenu createOrUpdateRestaurantMenu(Long id, List<MenuItem> menuItems) throws RestaurantServiceException {
 		Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-		if (restaurant!=null) { 
-			RestaurantMenu menu = new RestaurantMenu(restaurant.getId(), menuItems);
-			menu = restaurantMenuRepository.save(menu);
-			return menu;
-		} else {
+		if (restaurant==null) { 
 			throw new RestaurantServiceException("Unable to create or update restaurant menu: unable to find restaurant with " + id); 
 		}
+		RestaurantMenu menu = new RestaurantMenu(restaurant.getId(), menuItems);
+		menu = restaurantMenuRepository.save(menu);
+		return menu;
 	}
 
  	public RestaurantMenu getRestaurantMenu(Long id) throws RestaurantServiceException {
 		RestaurantMenu menu = restaurantMenuRepository.findById(id).orElse(null);
-		if (menu!=null) { 
-			return menu; 
-		} else {
+		if (menu==null) { 
 			throw new RestaurantServiceException("Unable to find restaurant menu with " + id); 
 		}
+		return menu; 
 	}
 
 }

@@ -31,20 +31,18 @@ public class RestaurantService {
 
  	public Restaurant getRestaurant(Long id) throws RestaurantServiceException {
 		Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-		if (restaurant!=null) { 
-			return restaurant; 
-		} else {
+		if (restaurant==null) { 
 			throw new RestaurantServiceException("Unable to find restaurant with " + id); 
 		}
+		return restaurant; 
 	}
 
  	public Restaurant getRestaurant(String name, String location) throws RestaurantServiceException {
 		Restaurant restaurant = restaurantRepository.findByNameAndLocation(name, location).orElse(null);
-		if (restaurant!=null) { 
-			return restaurant; 
-		} else {
+		if (restaurant==null) { 
 			throw new RestaurantServiceException("Unable to find restaurant with " + name + " and " + location); 
 		}
+		return restaurant; 
 	}
 
 	public Collection<Restaurant> getAllRestaurants() {

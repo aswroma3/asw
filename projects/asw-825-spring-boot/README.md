@@ -64,7 +64,7 @@ Posizionarsi nella cartella principale dell'applicazione, `~/projects/asw-825-sp
 
 * avviare PostgreSQL eseguendo lo script `./start-postgres.sh` 
 
-* avviare l'applicazione eseguendo il comando `gradle bootRun` 
+* avviare l'applicazione eseguendo il comando `gradle bootRun &` 
 
 * dopo l'esecuzione dell'applicazione, arrestare PostgreSQL eseguendo lo script `./stop-postgres.sh` 
 
