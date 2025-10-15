@@ -56,7 +56,7 @@ Per eseguire un'applicazione (ad eccezione delle applicazioni
 
 1. posizionarsi nella cartella principale dell'applicazione di interesse - ad esempio `~/projects/asw-825-spring-boot/a-hello`
 
-2. eseguire il comando `gradle bootRun` (attenzione, bisogna usare il task `bootRun` di Gradle, e non il task `run`)
+2. eseguire il comando `gradle bootRun &` (attenzione, bisogna usare il task `bootRun` di Gradle, e non il task `run`)
 
 #### Esecuzione dell'applicazione **f-restaurants-postgresql** 
 
