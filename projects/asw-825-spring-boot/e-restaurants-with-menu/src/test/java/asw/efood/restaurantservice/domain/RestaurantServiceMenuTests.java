@@ -36,7 +36,7 @@ public class RestaurantServiceMenuTests {
 	private RestaurantMenuRepository restaurantMenuRepository;
 
 	@InjectMocks 
-	private RestaurantService restaurantService; 
+	private RestaurantService restaurantService = new RestaurantServiceImpl(); 
 
 	@Test
 	public void testCreateRestaurant() {
