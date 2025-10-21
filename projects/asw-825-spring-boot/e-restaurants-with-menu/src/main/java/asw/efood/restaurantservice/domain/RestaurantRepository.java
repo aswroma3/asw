@@ -9,11 +9,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
- 	public Optional<Restaurant> findByNameAndLocation(String name, String location); 
+ 	Optional<Restaurant> findByNameAndLocation(String name, String location); 
 
-	public Collection<Restaurant> findAll();
+	Collection<Restaurant> findAll();
 	
-	public Collection<Restaurant> findAllByLocation(String location);
+	Collection<Restaurant> findAllByLocation(String location);
 
 }
 
