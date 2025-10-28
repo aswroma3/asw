@@ -10,8 +10,8 @@ option java_package = "asw.efood.restaurantservice.api.grpc";
 service RestaurantService {
   rpc createRestaurant(CreateRestaurantRequest) returns (CreateRestaurantReply) {}
   rpc getRestaurantById(GetRestaurantByIdRequest) returns (GetRestaurantReply) {}
-  rpc getAllRestaurants(GetAllRestaurantsRequest) returns (GetRestaurantsReply) {}
   rpc getRestaurantByNameAndLocation(GetRestaurantByNameAndLocationRequest) returns (GetRestaurantReply) {}
+  rpc getAllRestaurants(GetAllRestaurantsRequest) returns (GetRestaurantsReply) {}
   rpc getRestaurantsByLocation(GetRestaurantsByLocationRequest) returns (GetRestaurantsReply) {}
 }
 

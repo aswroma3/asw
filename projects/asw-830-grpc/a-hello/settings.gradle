@@ -1,5 +1,5 @@
 include "hello-service-api"
-include "hello-server"
+include "hello-service"
 include "hello-client"
 
 //rootProject.name = 'hello'

@@ -5,7 +5,7 @@ Questo progetto contiene alcune applicazioni che esemplificano l'invocazione rem
 * **a-hello** è un esempio minimale di applicazione client-server basata su GRPC  
 
 * **b-restaurants** è l'applicazione per la gestione di ristoranti (già definita in un precedente progetto),
-  che ora espone i suoi servizi mediante gRPC e con un client gRPC 
+  che ora espone i suoi servizi mediante gRPC e che ora include anche un client gRPC 
 
 * **c-restaurants-with-menu** estende l'applicazione precedente con la gestione dei menu dei ristoranti 
 
@@ -45,9 +45,9 @@ Per eseguire l'applicazione **a-hello** si proceda come segue:
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-830-grpc/a-hello`
 
-   b. eseguire il comando `gradle hello-server:bootRun` 
+   b. eseguire il comando `gradle hello-service:bootRun &` 
    
-   c. il server può essere poi arrestato con CTRL-C 
+   c. il server può essere poi arrestato eseguendo lo script `stop-gradle-processes.sh` 
 
 2. sulla finestra **client** 
 
@@ -62,9 +62,10 @@ Per eseguire le applicazioni **b-restaurants** e **c-restaurants-with-menu** si 
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-830-grpc/b-restaurants` oppure `~/projects/asw-830-grpc/c-restaurants-with-menu`
 
-   b. eseguire il comando `gradle restaurant-server:bootRun` 
+   b. eseguire il comando `gradle restaurant-service:bootRun &` 
    
-   c. il server può essere poi arrestato con CTRL-C 
+   c. il server può essere poi arrestato eseguendo lo script `stop-gradle-processes.sh` 
+      (**attenzione**: questo script arresta tutti i processi Gradle in esecuzione) 
 
 2. sulla finestra **client** 
 

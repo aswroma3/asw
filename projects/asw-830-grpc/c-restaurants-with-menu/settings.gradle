@@ -1,5 +1,5 @@
 include "restaurant-service-api-grpc"
-include "restaurant-server"
+include "restaurant-service"
 include "restaurant-client-grpc"
 
 //rootProject.name = 'restaurants'

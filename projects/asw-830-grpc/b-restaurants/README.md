@@ -26,9 +26,9 @@ Per eseguire l'applicazione (dopo la sua costruzione), si proceda in questo modo
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-830-grpc/b-restaurants/`
 
-   b. eseguire il comando `gradle restaurant-server:bootRun` oppure eseguire lo script `run-restaurant-server.sh`
+   b. eseguire il comando `gradle restaurant-server:bootRun &` oppure eseguire lo script `run-restaurant-service.sh`
    
-   c. il servizio può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh` 
+   c. il servizio può essere arrestato eseguendo lo script `stop-gradle-processes.sh` 
       (**attenzione**: questo script arresta tutti i processi Gradle in esecuzione) 
 
 2. nel nodo **dev** di un ambiente **developer**, in una finestra (terminale) **client** 

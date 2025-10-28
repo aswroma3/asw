@@ -81,7 +81,6 @@ public class RestaurantClientGrpcAdapter implements RestaurantClientPort {
 
 	public Long createRestaurant(String name, String location) throws RestaurantServiceException {
 		logger.info("Creating restaurant " + name + " " + location);
-		Long restaurantId = null; 
 		CreateRestaurantRequest request = CreateRestaurantRequest.newBuilder()
 				.setName(name)
 				.setLocation(location)
@@ -89,7 +88,7 @@ public class RestaurantClientGrpcAdapter implements RestaurantClientPort {
 		try {
 			ListenableFuture<CreateRestaurantReply> futureReply = futureStub.createRestaurant(request);
 			CreateRestaurantReply reply = futureReply.get();
-			restaurantId = reply.getRestaurantId();
+			Long restaurantId = reply.getRestaurantId();
 			logger.info("Restaurant created with: " + restaurantId);
 			return restaurantId;
 		} catch (ExecutionException e) {
@@ -104,12 +103,11 @@ public class RestaurantClientGrpcAdapter implements RestaurantClientPort {
 
 	public Restaurant getRestaurant(Long restaurantId) throws RestaurantServiceException {
 		logger.info("Looking for restaurant with " + restaurantId);
-		Restaurant restaurant = null; 
 		GetRestaurantByIdRequest request = GetRestaurantByIdRequest.newBuilder().setRestaurantId(restaurantId).build();
 		try {
 			ListenableFuture<GetRestaurantReply> futureReply = futureStub.getRestaurantById(request);
 			GetRestaurantReply reply = futureReply.get();
-			restaurant = new Restaurant(reply.getRestaurantId(), reply.getName(), reply.getLocation()); 
+			Restaurant restaurant = new Restaurant(reply.getRestaurantId(), reply.getName(), reply.getLocation()); 
 			logger.info("Restaurant found: " + restaurant.toString());
 			return restaurant;
 		} catch (ExecutionException e) {
@@ -124,13 +122,12 @@ public class RestaurantClientGrpcAdapter implements RestaurantClientPort {
 
 	public Restaurant getRestaurantByNameAndLocation(String name, String location) throws RestaurantServiceException {
 		logger.info("Looking for restaurant with " + name + " and " + location);
-		Restaurant restaurant = null; 
 		GetRestaurantByNameAndLocationRequest request = 
 			GetRestaurantByNameAndLocationRequest.newBuilder().setName(name).setLocation(location).build();
 		try {
 			ListenableFuture<GetRestaurantReply> futureReply = futureStub.getRestaurantByNameAndLocation(request);
 			GetRestaurantReply reply = futureReply.get();
-			restaurant = new Restaurant(reply.getRestaurantId(), reply.getName(), reply.getLocation()); 
+			Restaurant restaurant = new Restaurant(reply.getRestaurantId(), reply.getName(), reply.getLocation()); 
 			logger.info("Restaurant found: " + restaurant.toString());
 			return restaurant;
 		} catch (ExecutionException e) {
