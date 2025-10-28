@@ -2,7 +2,7 @@
 # Server gRPC per Hello 
 #
 
-from hello_service.HelloService import hello_service 
+from .HelloService import hello_service 
 
 import grpc
 import hello_grpc.HelloService_pb2 as HelloService_pb2

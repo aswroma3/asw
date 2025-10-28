@@ -9,7 +9,7 @@ from .HelloGrpcServer import HelloGrpcServer
 import logging
 
 def run():
-    print("Starting Hello gRPC Server")
+    print("Starting Hello Service (with gRPC Server)")
     hello_grpc_server = HelloGrpcServer()
     hello_grpc_server.start() 
     

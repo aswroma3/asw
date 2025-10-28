@@ -2,4 +2,4 @@
 
 source /home/asw/venv/bin/activate 
 
-python3 -m restaurant_server.main &
+python3 -m hello_service.main & 

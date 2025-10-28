@@ -13,7 +13,7 @@ import logging
 
 @inject
 def run(restaurant_grpc_server = Provide[Container.restaurant_grpc_server_provider]):
-    print("Starting Restaurant gRPC Server")
+    print("Starting Restaurant Service (with gRPC Server)")
     restaurant_grpc_server.start() 
 
 if __name__ == "__main__":
