@@ -4,7 +4,7 @@ Questo progetto contiene alcune applicazioni Python che esemplificano l'invocazi
 
 Le applicazioni sono definite in corrispondenza ad alcune delle applicazioni mostrate nel progetto [asw-835-rest](../asw-835-rest/): 
 
-* **a-hello** è un esempio minimale di applicazione client-server basata su gRPC  
+* **a-hello** è un esempio minimale di applicazione client-server basata su REST  
 
 * **b-restaurants** è l'applicazione per la gestione di ristoranti 
 

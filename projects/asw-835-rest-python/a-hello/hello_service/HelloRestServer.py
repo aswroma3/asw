@@ -4,7 +4,7 @@
 
 from fastapi import FastAPI
 
-from hello_service.HelloService import hello_service
+from .HelloService import hello_service
 
 app = FastAPI()
 
