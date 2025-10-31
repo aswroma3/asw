@@ -44,9 +44,10 @@ Per eseguire l'applicazione **a-hello** si proceda come segue:
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/a-hello`
 
-   b. eseguire il comando `gradle hello-server:bootRun` 
+   b. eseguire il comando `gradle hello-service:bootRun &` 
    
-   c. il server può essere arrestato con CTRL-C 
+   c. il server può essere arrestato eseguendo lo script `stop-gradle-processes.sh` 
+      (**attenzione**: questo script arresta tutti i processi Gradle in esecuzione)  
 
 2. sulla finestra **client** 
 
@@ -66,9 +67,10 @@ Per eseguire le applicazioni **b-restaurants** e **c-restaurants-with-menu** si 
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-835-rest/b-restaurants` oppure `~/projects/asw-835-rest/c-restaurants-with-menu`
 
-   b. eseguire il comando `gradle restaurant-server:bootRun` 
+   b. eseguire il comando `gradle restaurant-service:bootRun &` 
    
-   c. il server può essere arrestato con CTRL-C 
+   c. il server può essere arrestato eseguendo lo script `stop-gradle-processes.sh` 
+      (**attenzione**: questo script arresta tutti i processi Gradle in esecuzione)  
 
 2. sulla finestra **client** 
 
@@ -77,5 +79,3 @@ Per eseguire le applicazioni **b-restaurants** e **c-restaurants-with-menu** si 
    b. eseguire il comando `gradle restaurant-client-rest:bootRun` (utilizza il client sincrono) 
    
    c. per utilizzare il client asincrono, eseguire il comando `gradle restaurant-async-client-rest:bootRun` 
-
-   d. in alternativa, usare il comando `./run-python-client.py` per eseguire un client Python (semplificato) anziché il client Java 

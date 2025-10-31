@@ -1,4 +1,4 @@
-include "hello-server"
+include "hello-service"
 include "hello-client"
 include "hello-client-resttemplate"
 

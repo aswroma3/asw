@@ -40,7 +40,6 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
 
     public Long createRestaurant(String name, String location) throws RestaurantServiceException {
         logger.info("Creating restaurant " + name + " " + location);
-		Long restaurantId = null; 
         String restaurantUri = restaurantServiceUri + "/restaurants";
         logger.info("Creating " + restaurantUri + " with " + name + " and " + location);
 		CreateRestaurantRequest request = new CreateRestaurantRequest(name, location); 
@@ -52,7 +51,7 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
                 .bodyToMono(CreateRestaurantResponse.class);
         try {
             CreateRestaurantResponse crr = response.block();
-			restaurantId = crr.getRestaurantId(); 
+			Long restaurantId = crr.getRestaurantId(); 
             logger.info("Restaurant created with: " + restaurantId);
 			return restaurantId; 
         } catch (WebClientException e) {
@@ -63,7 +62,6 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
 
     public Restaurant getRestaurant(Long restaurantId) throws RestaurantServiceException {
         logger.info("Looking for restaurant with " + restaurantId);
-        Restaurant restaurant = null;
         String restaurantUri = restaurantServiceUri + "/restaurants/{restaurantId}";
         logger.info("Looking for " + restaurantUri + " with " + restaurantId);
         Mono<GetRestaurantResponse> response = webClient
@@ -73,7 +71,7 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
                 .bodyToMono(GetRestaurantResponse.class);
         try {
             GetRestaurantResponse grr = response.block();
-			restaurant = getRestaurantResponseToRestaurant(grr);
+			Restaurant restaurant = getRestaurantResponseToRestaurant(grr);
             logger.info("Restaurant found: " + restaurant.toString());
 			return restaurant; 
         } catch (WebClientException e) {
@@ -85,6 +83,35 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
 	private Restaurant getRestaurantResponseToRestaurant(GetRestaurantResponse r) {
 		return new Restaurant(r.getRestaurantId(), r.getName(), r.getLocation());
 	}
+
+    public Restaurant getRestaurantByNameAndLocation(String name, String location) throws RestaurantServiceException {
+        logger.info("Looking for restaurant with " + name + " and " + location);
+        String restaurantUri = restaurantServiceUri + "/restaurants/findByNameAndLocation/";
+        String restaurantPath = restaurantServiceUriBasePath + "/restaurants/findByNameAndLocation/";
+        logger.info("Looking for " + restaurantUri + " with " + name + " and " + location);
+        Mono<GetRestaurantResponse> response = webClient
+                .get()
+//				.uri(restaurantUri + "?name=" + name + "&location="+location)
+				.uri(builder -> builder
+					.scheme(restaurantServiceUriScheme)
+					.host(restaurantServiceUriHost)
+					.port(restaurantServiceUriPort)
+					.path(restaurantPath)
+					.queryParam("name", name)
+					.queryParam("location", location)
+					.build())
+                .retrieve()
+                .bodyToMono(GetRestaurantResponse.class);
+        try {
+            GetRestaurantResponse grr = response.block();
+			Restaurant restaurant = getRestaurantResponseToRestaurant(grr);
+            logger.info("Restaurant found: " + restaurant.toString());
+			return restaurant; 
+        } catch (WebClientException e) {
+            logger.info("Restaurant not found, with exception " + e.getMessage());
+			throw new RestaurantServiceException("RestaurantServiceException for getRestaurant(" + name + ", " + location + ")");
+        }
+    }
 
     public List<Restaurant> getAllRestaurants() {
         logger.info("Looking for all restaurants");
@@ -110,36 +137,6 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
             logger.info("Restaurants not found, with exception " + e.getMessage());
         }
 		return restaurants; 
-    }
-
-    public Restaurant getRestaurantByNameAndLocation(String name, String location) throws RestaurantServiceException {
-        logger.info("Looking for restaurant with " + name + " and " + location);
-        Restaurant restaurant = null;
-        String restaurantUri = restaurantServiceUri + "/restaurants/findByNameAndLocation/";
-        String restaurantPath = restaurantServiceUriBasePath + "/restaurants/findByNameAndLocation/";
-        logger.info("Looking for " + restaurantUri + " with " + name + " and " + location);
-        Mono<GetRestaurantResponse> response = webClient
-                .get()
-//				.uri(restaurantUri + "?name=" + name + "&location="+location)
-				.uri(builder -> builder
-					.scheme(restaurantServiceUriScheme)
-					.host(restaurantServiceUriHost)
-					.port(restaurantServiceUriPort)
-					.path(restaurantPath)
-					.queryParam("name", name)
-					.queryParam("location", location)
-					.build())
-                .retrieve()
-                .bodyToMono(GetRestaurantResponse.class);
-        try {
-            GetRestaurantResponse grr = response.block();
-			restaurant = getRestaurantResponseToRestaurant(grr);
-            logger.info("Restaurant found: " + restaurant.toString());
-        } catch (WebClientException e) {
-            logger.info("Restaurant not found, with exception " + e.getMessage());
-			throw new RestaurantServiceException("RestaurantServiceException for getRestaurant(" + name + ", " + location + ")");
-        }
-		return restaurant; 
     }
 
     public List<Restaurant> getRestaurantsByLocation(String location) {
@@ -177,7 +174,6 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
 
     public List<MenuItem> getRestaurantMenu(Long restaurantId) throws RestaurantServiceException {
         logger.info("Looking for menu of restaurant with " + restaurantId);
-		List<MenuItem> menuItems = null; 
         String restaurantMenuUri = restaurantServiceUri + "/restaurants/{restaurantId}/menu";
         logger.info("Looking for " + restaurantMenuUri + " with " + restaurantId);
         Mono<GetRestaurantMenuResponse> response = webClient
@@ -187,7 +183,7 @@ public class RestaurantClientRestAdapter implements RestaurantClientPort {
                 .bodyToMono(GetRestaurantMenuResponse.class);
         try {
             GetRestaurantMenuResponse grmr = response.block();
-			menuItems = grmr.getMenuItems().stream() 
+			List<MenuItem> menuItems = grmr.getMenuItems().stream() 
 				.map( item -> new MenuItem(item.getId(), item.getName(), item.getPrice()) ) 
 				.collect(Collectors.toList()); 
 			logger.info("Restaurant menu found: " + menuItems.toString());

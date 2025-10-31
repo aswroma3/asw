@@ -1,5 +1,5 @@
 include "restaurant-service-api-rest"
-include "restaurant-server"
+include "restaurant-service"
 include "restaurant-client-rest"
 
 //rootProject.name = 'restaurants'
