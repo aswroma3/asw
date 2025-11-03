@@ -1,0 +1,26 @@
+Encoding.default_external = Encoding.find('Windows-1250')
+Encoding.default_internal = Encoding.find('Windows-1250') 
+
+# usa VirtualBox come provider
+VM_PROVIDER = "virtualbox"
+
+# IP address 
+IP_ADDRESS = "10.11.1.191"
+
+# Host port per il servizio www 
+HOST_PORT = 8081
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider VM_PROVIDER
+
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.hostname = "web"
+
+  config.vm.network "private_network", ip: IP_ADDRESS, virtualbox__intnet: true
+  config.vm.network "forwarded_port", guest: 80, host: HOST_PORT
+
+  # Provision with Bash 
+  config.vm.provision :shell, path: "install-apache.sh"
+
+end

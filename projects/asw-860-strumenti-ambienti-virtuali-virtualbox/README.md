@@ -1,4 +1,4 @@
-# Strumenti per la gestione di ambienti virtuali (asw-860)
+# Strumenti per la gestione di ambienti virtuali (asw-860, versione per VirtualBox) 
 
 Questo "progetto" contiene la definizione di tre diversi *ambienti virtuali*, 
 tutti basati sull'uso di *strumenti per la gestione di ambienti virtuali* 
