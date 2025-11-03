@@ -1,0 +1,120 @@
+# Configurazione personalizzata per bitnamilegacy/kafka per Kubernetes 
+# Luca Cabibbo
+
+## @section Kafka common parameters
+
+## Bitnami Kafka image version
+## ref: https://hub.docker.com/r/bitnami/kafka/tags/
+image:
+  registry: docker.io
+#  repository: bitnami/kafka
+  repository: bitnamilegacy/kafka
+
+## Kafka listeners configuration
+##
+listeners:
+  ## @param listeners.client.name Name for the Kafka client listener
+  ## @param listeners.client.containerPort Port for the Kafka client listener
+  ## @param listeners.client.protocol Security protocol for the Kafka client listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.client.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  client:
+    containerPort: 9092
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: CLIENT
+    sslClientAuth: ""
+  ## @param listeners.controller.name Name for the Kafka controller listener
+  ## @param listeners.controller.containerPort Port for the Kafka controller listener
+  ## @param listeners.controller.protocol Security protocol for the Kafka controller listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.controller.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  ## Ref: https://cwiki.apache.org/confluence/display/KAFKA/KIP-684+-+Support+mutual+TLS+authentication+on+SASL_SSL+listeners
+  controller:
+    name: CONTROLLER
+    containerPort: 9093
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+  ## @param listeners.interbroker.name Name for the Kafka inter-broker listener
+  ## @param listeners.interbroker.containerPort Port for the Kafka inter-broker listener
+  ## @param listeners.interbroker.protocol Security protocol for the Kafka inter-broker listener. Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.interbroker.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.authType for this listener. Allowed values are 'none', 'requested' and 'required'
+  interbroker:
+    containerPort: 9094
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: INTERNAL
+    sslClientAuth: ""
+  ## @param listeners.external.containerPort Port for the Kafka external listener
+  ## @param listeners.external.protocol Security protocol for the Kafka external listener. . Allowed values are 'PLAINTEXT', 'SASL_PLAINTEXT', 'SASL_SSL' and 'SSL'
+  ## @param listeners.external.name Name for the Kafka external listener
+  ## @param listeners.external.sslClientAuth Optional. If SASL_SSL is enabled, configure mTLS TLS authentication type. If SSL protocol is enabled, overrides tls.sslClientAuth for this listener. Allowed values are 'none', 'requested' and 'required'
+  external:
+    containerPort: 9095
+#    protocol: SASL_PLAINTEXT
+    protocol: PLAINTEXT
+    name: EXTERNAL
+    sslClientAuth: ""
+
+## @section Controller-eligible statefulset parameters
+##
+controller:
+  ## @param controller.replicaCount Number of Kafka controller-eligible nodes
+  ##
+  replicaCount: 3
+  ## @param controller.controllerOnly If set to true, controller nodes will be deployed as dedicated controllers, instead of controller+broker processes.
+  ##
+  controllerOnly: false
+  ## @param controller.quorumBootstrapServers Override the Kafka controller quorum bootstrap servers of the Kafka Kraft cluster. If not set, it will be automatically configured to use all controller-eligible nodes.
+  ##
+  persistence:
+    ## @param controller.persistence.enabled Enable Kafka data persistence using PVC
+    ##
+#    enabled: true
+    enabled: false
+
+## @section Broker-only statefulset parameters
+##
+broker:
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+  ##
+  persistence:
+    ## @param broker.persistence.enabled Enable Kafka data persistence using PVC
+    ##
+#    enabled: true
+    enabled: false
+
+## @section Kafka provisioning parameters
+##
+
+## Kafka provisioning
+##
+provisioning:
+  ## @param provisioning.enabled Enable Kafka provisioning Job
+  ##
+#  enabled: false
+  enabled: true
+  ## @param provisioning.numPartitions Default number of partitions for topics when unspecified
+  ##
+#  numPartitions: 1
+  numPartitions: 2
+  ## @param provisioning.replicationFactor Default replication factor for topics when unspecified
+  ##
+  replicationFactor: 1
+  ## @param provisioning.topics Kafka topics to provision
+  ## - name: topic-name
+  ##   partitions: 1
+  ##   replicationFactor: 1
+  ##   ## https://kafka.apache.org/documentation/#topicconfigs
+  ##   config:
+  ##     max.message.bytes: 64000
+  ##     flush.messages: 1
+  ##
+#  topics: []
+  topics: 
+  - name: product-service-event-channel
+    partitions: 4
+    replicationFactor: 1
+  - name: order-service-event-channel
+    partitions: 4
+    replicationFactor: 1

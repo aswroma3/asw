@@ -1,0 +1,37 @@
+buildscript {
+  ext {
+    springBootVersion = '3.5.6'
+    springDependencyManagementVersion = '1.1.7'
+    springCloudVersion = '2025.0.0'
+    lombokVersion = '1.18.42'
+    springdocOpenApiVersion = '2.8.13'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}")
+  }
+}
+
+subprojects {
+
+  apply plugin: 'java'
+  java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(21)
+    }
+  }
+	
+  group = 'asw.bettermusic'
+
+  repositories {
+    mavenCentral()
+  }
+
+  tasks.named('test') {
+    useJUnitPlatform()
+  }
+
+}

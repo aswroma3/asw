@@ -1,0 +1,11 @@
+include 'album'
+include 'album-api'
+include 'recensioni'
+include 'recensioni-api'
+include 'connessioni'
+include 'connessioni-api'
+include 'recensioni-seguite'
+include 'recensioni-seguite-api'
+include 'api-gateway'
+
+rootProject.name = 'asw-bettermusic'
