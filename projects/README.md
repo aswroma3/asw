@@ -118,7 +118,11 @@ A titolo di esempio, questi progetti realizzati con Python esemplificano l'uso d
 
 ## Progetti Vagrant 
 
-* [asw-860-strumenti-ambienti-virtuali](asw-860-strumenti-ambienti-virtuali/): gestione di ambienti virtuali con *Vagrant* e *Oracle VM VirtualBox* 
+* [asw-860-strumenti-ambienti-virtuali-virtualbox](asw-860-strumenti-ambienti-virtuali-virtualbox/): 
+  gestione di ambienti virtuali con *Vagrant* e *Oracle VM VirtualBox* 
+
+* [asw-860-strumenti-ambienti-virtuali-vmware](asw-860-strumenti-ambienti-virtuali-vmware/): 
+  gestione di ambienti virtuali con *Vagrant* e *VMware Workstation* 
 
 <!---
   nient'altro da escludere 
@@ -145,11 +149,13 @@ A titolo di esempio, questi progetti realizzati con Python esemplificano l'uso d
 -->
 
 
-## Progetti per l'anno accademico 2024-2025 
+## Progetti per l'anno accademico 2025-2026 
 
-* [asw-goodmusic](asw-goodmusic/): *GoodMusic*: un semplice social network per la condivisione di recensioni di album musicali 
+* [asw-bettermusic](asw-bettermusic/): *BetterMusic*: un semplice social network per la condivisione di recensioni di album musicali 
 
 <!---
+* [asw-goodmusic](asw-goodmusic/): *GoodMusic*: un semplice social network per la condivisione di recensioni di album musicali 
+
 * [asw-goodbooks](asw-goodbooks/): *GoodBooks*: un semplice social network per la condivisione di recensioni di libri 
 
 * [asw-edipogram](asw-edipogram/): *Edipogram*: un semplice social network per la condivisione di enigmi e giochi enigmistici 
