@@ -118,11 +118,8 @@ A titolo di esempio, questi progetti realizzati con Python esemplificano l'uso d
 
 ## Progetti Vagrant 
 
-* [asw-860-strumenti-ambienti-virtuali-virtualbox](asw-860-strumenti-ambienti-virtuali-virtualbox/): 
-  gestione di ambienti virtuali con *Vagrant* e *Oracle VM VirtualBox* 
-
-* [asw-860-strumenti-ambienti-virtuali-vmware](asw-860-strumenti-ambienti-virtuali-vmware/): 
-  gestione di ambienti virtuali con *Vagrant* e *VMware Workstation* 
+* [asw-860-strumenti-ambienti-virtuali](asw-860-strumenti-ambienti-virtuali/): 
+  gestione di ambienti virtuali con *Vagrant* insieme a *Oracle VM VirtualBox* oppure a *VMware Workstation* 
 
 <!---
   nient'altro da escludere 
