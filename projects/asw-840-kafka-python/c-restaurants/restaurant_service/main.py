@@ -18,12 +18,12 @@ def run(restaurant_event_publisher = Provide[Container.restaurant_event_publishe
         restaurant_service = Provide[Container.restaurant_service_provider], 
         restaurant_command_listener = Provide[Container.restaurant_command_listener_provider], 
         simple_message_consumer = Provide[Container.simple_message_consumer_provider]):
-    print("Running Restaurant REST Server")
-    uvicorn.run("restaurant_server.rest_server.RestaurantRestServer:app", port=8080, host="0.0.0.0")
+    print("Running Restaurant Service (with REST Server and Kafka support)")
+    uvicorn.run("restaurant_service.rest_server.RestaurantRestServer:app", port=8080, host="0.0.0.0")
 
 if __name__ == "__main__":
     logging.basicConfig()
     container = Container()
-#    container.wire(modules=[__name__, "restaurant_server.rest_server.RestaurantRestServer"])
-    container.wire(modules=[__name__, "restaurant_server.rest_server.RestaurantRestServer"])
+#    container.wire(modules=[__name__, "restaurant_service.rest_server.RestaurantRestServer"])
+    container.wire(modules=[__name__, "restaurant_service.rest_server.RestaurantRestServer"])
     run()

@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 from restaurant_service_api_rest.RestaurantRestApi import *
 
-from restaurant_server.ioc_container import Container 
+from restaurant_service.ioc_container import Container 
 
 #from dependency_injector import containers, providers
 from dependency_injector.wiring import Provide, inject

@@ -1,10 +1,10 @@
 from dependency_injector import containers, providers
 #from dependency_injector.wiring import Provide, inject
 
-from restaurant_server.domain.RestaurantService import RestaurantService 
-from restaurant_server.domain.RestaurantCommandHandler import RestaurantCommandHandler 
-from restaurant_server.event_publisher.RestaurantEventPublisher import RestaurantEventPublisher
-from restaurant_server.command_listener.RestaurantCommandListener import RestaurantCommandListener
+from restaurant_service.domain.RestaurantService import RestaurantService 
+from restaurant_service.domain.RestaurantCommandHandler import RestaurantCommandHandler 
+from restaurant_service.event_publisher.RestaurantEventPublisher import RestaurantEventPublisher
+from restaurant_service.command_listener.RestaurantCommandListener import RestaurantCommandListener
 from restaurant_kafka_utils.SimpleKafkaMessageProducer import SimpleMessageProducer
 from restaurant_kafka_utils.SimpleKafkaMessageConsumer import SimpleMessageConsumer
 
