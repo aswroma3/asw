@@ -2,6 +2,6 @@ package asw.simplefilter.domain;
 
 public interface SimpleMessagePublisherPort {
 
-    public void publish(String message);
+    void publish(String message);
 
 }

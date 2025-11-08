@@ -6,6 +6,9 @@ echo Starting Kafka...
 
 docker compose up -d 
 
+# waiting for kafka to start 
+sleep 5 
+
 echo Creating some Kafka topics for simple messaging
 
 KAFKA_DOCKER=$(docker ps | grep kafka | grep -v zookeeper | awk '{print $1}')

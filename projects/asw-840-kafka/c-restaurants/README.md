@@ -46,17 +46,17 @@ Si proceda in questo modo:
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/c-restaurants/`
 
-   b. eseguire il comando `gradle restaurant-event-listener:bootRun` 
+   b. eseguire il comando `gradle restaurant-event-listener:bootRun &` 
    
-   c. l'ascoltatore di eventi può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh`
+   c. l'ascoltatore di eventi può essere arrestato eseguendo lo script `stop-gradle-processes.sh`
 
 2. sulla finestra (terminale) nodo **server** 
 
    a. posizionarsi nella cartella principale dell'applicazione `~/projects/asw-840-kafka/c-restaurants/`
 
-   b. eseguire il comando `gradle restaurant-server:bootRun` 
+   b. eseguire il comando `gradle restaurant-service:bootRun &` 
    
-   c. il servizio può essere arrestato con CTRL-C oppure eseguendo lo script `stop-gradle-processes.sh`
+   c. il servizio può essere arrestato eseguendo lo script `stop-gradle-processes.sh`
 
 3. sulla finestra **command publisher** 
 
