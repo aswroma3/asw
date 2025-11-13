@@ -21,6 +21,8 @@ spring:
 server: 
   port: ${PORT:${SERVER_PORT:0}}
 #  port: 8080
+  # per swagger, se dietro a un api gateway 
+  #forward-headers-strategy: framework
 
 asw.sentence: 
   wordservice: 

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface VerbFeignClient {
 
 	@GetMapping("/")
-	public String getWord(); 
+	String getWord(); 
 
 }

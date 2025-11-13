@@ -2,6 +2,6 @@ package asw.sentence.sentenceservice.wordclient;
 
 public interface WordRestClient {
 
-	public String getWord(String uri); 
+	String getWord(String uri); 
 
 }

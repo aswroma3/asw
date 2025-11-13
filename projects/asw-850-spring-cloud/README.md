@@ -27,8 +27,9 @@ L'applicazione viene mostrata in più versioni.
 
 Le diverse versioni di questa applicazione hanno una struttura simile (ma di volta in volta un po' diversa), e la loro costruzione ed esecuzione è descritta qui di seguito. 
 
-Inoltre, il progetto [p-sentence-python-client](p-sentence-python-client/) fornisce un semplice client Python concorrente 
-che può essere utilizzato con tutte le versioni dell'applicazione. 
+Inoltre, 
+* il progetto [p-sentence-python-client](p-sentence-python-client/) fornisce un semplice client Python concorrente 
+  che può essere utilizzato con tutte le versioni dell'applicazione. 
 
 ## Build  
 
