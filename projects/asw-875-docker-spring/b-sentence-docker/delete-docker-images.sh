@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOCKERHUB_USERNAME=aswroma3 
-VERSION=2025-09
+VERSION=2025-10
 
 docker image rm sentence-sentence
 docker image rm sentence-sentence-async

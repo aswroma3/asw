@@ -4,6 +4,6 @@ import java.util.concurrent.CompletableFuture;
 
 public interface WordClientAsyncPort {
 
-	public CompletableFuture<String> getWordAsync(); 
+	CompletableFuture<String> getWordAsync(); 
 	
 }

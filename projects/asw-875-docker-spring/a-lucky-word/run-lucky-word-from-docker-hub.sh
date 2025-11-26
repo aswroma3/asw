@@ -6,8 +6,8 @@
 # prerequisito: (3) tagga e salva l'immagine su docker hub  
 
 docker container run -d -p 8080:8080 --name=lucky-word aswroma3/lucky-word
-# docker container run -d -p 8080:8080 --name=lucky-word -e "SPRING_PROFILES_ACTIVE=english" aswroma3/lucky-word 
-# docker container run -d -p 8080:8080 --name=lucky-word -e "SPRING_PROFILES_ACTIVE=italian" aswroma3/lucky-word 
+# docker container run -d -p 8080:8080 --name=lucky-word -e SPRING_PROFILES_ACTIVE=english aswroma3/lucky-word 
+# docker container run -d -p 8080:8080 --name=lucky-word -e SPRING_PROFILES_ACTIVE=italian aswroma3/lucky-word 
 
 
 

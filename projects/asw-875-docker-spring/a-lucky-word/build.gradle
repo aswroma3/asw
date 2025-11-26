@@ -1,6 +1,6 @@
 plugins {
   id 'java'
-  id 'org.springframework.boot' version '3.5.5'
+  id 'org.springframework.boot' version '3.5.6'
   id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -25,5 +25,7 @@ dependencies {
 }
 
 tasks.named('test') {
-  useJUnitPlatform()
+    useJUnitPlatform()
+    // evita un messaggio di warning 
+    jvmArgs(['-XX:+EnableDynamicAgentLoading', '-Xshare:off'])
 }
