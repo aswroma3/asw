@@ -82,3 +82,6 @@ E' anche possibile:
   richiede una quantità notevole di risorse nel computer host;  
   sono raccomandati una CPU con almeno 4 core e 8 thread e una memoria RAM di almeno 16 GB 
 
+* [aws-developer](aws-developer/):
+  un ambiente di esecuzione pensato per supportare l'accesso a un cluster Kuebernetes
+  basato sul servizio Amazon Elastic Kubernetes Service (EKS) 
