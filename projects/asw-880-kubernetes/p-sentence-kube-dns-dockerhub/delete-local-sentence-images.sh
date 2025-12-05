@@ -4,7 +4,7 @@
 # NON USARE DIRETTAMENTE 
 # chiamare tramite delete-sentence-images-from-kube-cluster.sh
 
-VERSION=2025-09
+VERSION=2025-10
 
 # con docker 
 

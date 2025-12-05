@@ -20,7 +20,6 @@ spring:
     loadbalancer: 
       ribbon.enabled: false 
     # spring cloud gateway routes 
-    #gateway:
     gateway.server.webflux:
       discovery:
         locator:
@@ -82,8 +81,8 @@ server:
   port: 8080
 
 management: 
-#  endpoint.gateway.enabled: true 
-  endpoint.gateway.access: unrestricted 
+# per ispezionare le rotte dell'api gateway mediante l'actuator 
+  endpoint.gateway.access: read-only 
   endpoints.web.exposure.include: info,health,gateway,beans
 
 # ATTENZIONE: 

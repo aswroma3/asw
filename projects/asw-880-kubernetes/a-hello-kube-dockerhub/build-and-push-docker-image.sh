@@ -6,7 +6,7 @@
 # 1) build del progetto java e 
 # 2) aver eseguito il docker login su docker hub 
 
-VERSION=2025-09
+VERSION=2025-10
 
 docker build --rm -t hello-kube . 
 docker tag hello-kube aswroma3/hello-kube:${VERSION}

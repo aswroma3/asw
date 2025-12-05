@@ -13,7 +13,6 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.cloud:spring-cloud-starter'
 //  implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
-//  implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-client-loadbalancer'
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
