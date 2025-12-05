@@ -14,28 +14,17 @@ source "/home/asw/resources/common.sh"
 # https://github.com/containerd/nerdctl/releases 
 # https://github.com/containerd/nerdctl/releases/download/v1.1.0/nerdctl-1.1.0-linux-amd64.tar.gz
 
-#CONTAINERD_VERSION=1.7.24
-#CONTAINERD_VERSION=2.0.1
-#CONTAINERD_VERSION=2.0.2
-#CONTAINERD_VERSION=2.1.3
-CONTAINERD_VERSION=2.1.4
+#CONTAINERD_VERSION=2.1.5
+CONTAINERD_VERSION=2.2.0
 
-#RUNC_VERSION=1.2.3
-#RUNC_VERSION=1.2.5
-#RUNC_VERSION=1.3.0
-RUNC_VERSION=1.3.1
+#RUNC_VERSION=1.3.1
+RUNC_VERSION=1.3.3
 
-#CNI_VERSION=1.6.1
-#CNI_VERSION=1.6.2
 #CNI_VERSION=1.7.1
 CNI_VERSION=1.8.0
 
-#NERDCTL_VERSION=1.7.7
-#NERDCTL_VERSION=2.0.2
-#NERDCTL_VERSION=2.0.3
-#NERDCTL_VERSION=2.1.2
-#NERDCTL_VERSION=2.1.3
-NERDCTL_VERSION=2.1.4
+#NERDCTL_VERSION=2.1.6
+NERDCTL_VERSION=2.2.0
 
 echo "====================="
 echo "installing containerd"
