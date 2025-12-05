@@ -141,6 +141,9 @@ A titolo di esempio, questi progetti realizzati con Python esemplificano l'uso d
 
 * [asw-880-kubernetes](asw-880-kubernetes/): *orchestrazione* di container con *Kubernetes* 
 
+* [asw-880-kubernetesaws-eks](asw-880-kubernetes-aws-eks/): *orchestrazione* di container con *Kubernetes* 
+  utilizzando il servizio *Amazon Elastic Kubernetes Service (EKS)*
+
 <!---
   nient'altro da escludere 
 -->

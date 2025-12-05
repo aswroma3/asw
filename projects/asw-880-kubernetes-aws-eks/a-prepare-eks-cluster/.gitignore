@@ -1,0 +1,6 @@
+### escludi il file con le credenziali aws ###
+aws_credentials
+
+LEGGIMI.md
+config/
+
